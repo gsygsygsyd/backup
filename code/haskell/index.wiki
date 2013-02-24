@@ -1,0 +1,19 @@
+﻿%title Haskell笔记
+
+[[../../index|首页]]
+==Haskell笔记==
+----
+<center>`Haskell函数式编程交流群`（群号：72874436）欢迎各路`Haskell`爱好者的加入</center>
+----
+<center>
+`唐凤`对`Haskell`的评价
+
+比 `C++` 更快，比 `Perl` 更简洁，比 `Python` 更正规，比 `Ruby` 更灵活，比 `C#` 更规范，比 `Java` 更强壮，和 `PHP` 更是毫无关系
+</center>
+----
+<center>
+[[base/index|语言基础]]
+----
+[[taste/index|编程体会]]
+</center>
+----

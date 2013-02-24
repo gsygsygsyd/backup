@@ -1,0 +1,9 @@
+﻿%title Family
+
+[[../../index|首页]] - [[../index|Album]]
+==Family==
+----
+<center>[[pic04.html|f03.jpg]]</center>
+----
+<red>date</red> : 2010-07-27
+----

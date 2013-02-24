@@ -1,0 +1,92 @@
+%title 竖式表达式问题
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Subject]]
+==竖式表达式问题==
+----
+===问题描述===
+
+连续输入不超过`10`个数字（如 `2367`、`35679`等），要求输出所有`三位数 x 两位数`形式的竖式表达式（如 `123 * 45 == 5535`等），该表达式需要满足的要求如下
+
+# 竖式表达式中所有出现的数字必须在所输入的数字范围以内
+# 必须按下面的格式打印输出：
+{{{
+<1>
+  222
+X  33
+-----
+  666
+ 666
+-----
+ 7326
+
+<2>
+  333
+X  22
+-----
+  666
+ 666
+-----
+ 7326
+
+The number of solutions = 2
+}}}
+----
+===算法求解===
+
+求解的关键在于数字是否超出范围的判断，以及打印的格式问题
+
+代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+#include <string.h>
+
+int
+main(int argc, char *argv[]){
+    int flag, count = 0;
+    char num[11], buf[20];
+
+    // 获取范围数据，将其存入字符数组
+    scanf("%s", num);
+
+    // 遍历每一对三位数乘两位数竖式组合
+    for(int abc = 100; abc <= 999; ++abc){
+        for(int de = 10; de <= 99; ++de){
+            int x = abc*(de%10);  // abc*e
+            int y = abc*(de/10);  // abc*d*10
+            int z = abc*de;       // abc*de
+
+            // 将竖式中所有可能的数字一股脑灌入临时缓冲区
+            sprintf(buf, "%d%d%d%d%d", abc, de, x, y, z);
+            // 每轮循环都将标志位置为1
+            flag = 1;
+
+            // 利用库函数strchr判断缓冲区数字是否在num数组元素的范围之内
+            for(int i = 0; i < strlen(buf); ++i){
+                // 只要有一个数字不在num数组元素范围之内，就将标志位置0，后续循环不再执行
+                if(NULL == strchr(num, buf[i])){
+                    flag = 0;
+                    break;
+                }
+            }
+
+            // 如果竖式的所有数字都没有超出预定范围，则打印输出该竖式表达式
+            if(flag){
+                printf("<%d>\n", ++count);
+                printf("%5d\nX%4d\n-----\n", abc, de);
+                printf("%5d\n%4d\n-----\n", x, y);
+                printf("%5d\n\n", z);
+            }
+        }
+    }
+
+    // 输出所有满足题意的竖式个数
+    printf("The number of solutions = %d\n", count);
+
+    return 0;
+}  // main
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-18
+----

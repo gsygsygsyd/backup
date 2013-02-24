@@ -1,0 +1,28 @@
+%title 工具函数汇总
+
+[[../../../index|首页]] - [[../index|Erlang]] - [[index|Base]]
+==工具函数汇总==
+----
+===内置函数（BIF）===
+
+# `is_boolean().`：测试某个值是否为布尔类型，如 `is_boolean(false).`返回`true`
+# `tuple_size().`：返回目标元组的元素个数，如 `tuple_size({abc, {def, 123}, ghi}).`返回`3`
+# `length().`：返回目标列表的元素个数，如 `length([1, 2, 3, 4]).`返回`4`
+# `element().`：获取元组指定下标的元素值，如 `element(2, {abc, {def, 123}, ghi}).`返回`{def, 123}`（下标从`1`开始）
+# `setelement().`：修改元组指定下标的元素值，如 `setelement(2, {abc, {def, 123}, ghi}, test).`，结果为`{abc, test, ghi}`
+----
+===列表函数===
+
+# `lists:nth().`：返回指定下标的元素值，如 `lists:nth(2, [1, 2, 3, 4]).`返回`2`
+# `lists:last().`：返回列表最后一个元素，如 `lists:last([1, 2, 3, 4]).`返回`4`
+# `lists:max().`：返回列表元素最大值，如 `lists:max([1, 2, 3, 4]).`返回`4`
+# `lists:sum().`：列表元素求和，如 `lists:sum[1, 2, 3, 4].`返回`10`
+# `lists:member().`：判断某元素值是否包含于目标列表当中，如 `lists:member(5, [1, 2, 3, 4]).`返回`false`
+# `lists:delete().`：删除指定下标处的元素，如 `lists:delete(2, [1, 2, 3, 4]).`返回`[1, 3, 4]`
+# `lists:sort().`：返回排序后的列表，按从小到大排序，如 `lists:sort([1, 3, 2, 4]).`返回`[1, 2, 3, 4]`
+# `lists:reverse().`：返回翻转后的列表，如 `lists:reverse([1, 2, 3, 4]).`返回`[4, 3, 2, 1]`
+# `lists:split().`：从指定下标处分割列表，返回的结果为一个元组，如 `lists:split(1, [1, 2, 3, 4]).`返回`{[1], [2, 3, 4]}`
+# `lists:zip().`：接受两个列表作为参数，将各对应元素依次拆分再合并，返回一个元素值为元组的列表，如 `lists:zip([1, 2], [3, 4]).`返回`[{1, 3}, {2, 4}]`
+----
+<red>date</red> : 2012-07-21
+----

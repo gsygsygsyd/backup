@@ -1,0 +1,69 @@
+%title 判断两数相加的进位次数
+
+[[../../../index|首页]] - [[../index|C]] - [[index|Subject]]
+==判断两数相加的进位次数==
+----
+===问题描述===
+
+输入一个数对，以空格分隔，要求计算该数对相加时出现了多少次进位，输出进位的次数，如`123 + 567`有一次进位
+
+要求可以连续多次执行计算操作，直到输入`0 0`为止
+----
+===算法求解===
+
+处理的重点在于要将每次的进位值也加入计算，不能一时疏忽把进位值给丢了
+
+代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+
+int accountDigit(int num);
+
+int
+main(int argc, char *argv[]){
+    int a, b;
+
+    while(2 == scanf("%d%d", &a, &b)){
+        // 如果输入的数对是0 0，则退出循环
+        if(0 == a && 0 == b){
+            break;
+        }
+
+        int c = 0;                   // 进位值
+        int times = 0;               // 进位次数
+        int len1 = accountDigit(a);  // 第一个数的位数
+        int len2 = accountDigit(b);  // 第二个数的位数
+
+        // 分别从两数的最大数位算起，游标每次前移一位，只要有其中一个游标遍历完对应数字，则结束循环
+        for(int i = len1-1, j = len2-1; i >= 0 && j >= 0; --i, --j){
+            // 判断是否应该进位
+            c = (a%10 + b%10 + c) > 9 ? 1 : 0;
+            // 如果有进位则次数加1，无进位则加0
+            times += c;
+            // 去除最末尾的数字后继续判断
+            a /= 10; b /= 10;
+        }
+        printf("%d\n", times);
+    }
+
+    return 0;
+}  // main
+
+// 计算整数的位数
+int
+accountDigit(int num){
+    int digit = 0;
+
+    while(num > 0){
+        ++digit;
+        num /= 10;
+    }
+
+    return digit;
+}  // accountDigit
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-20
+----

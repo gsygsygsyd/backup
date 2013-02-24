@@ -1,0 +1,4 @@
+%title 第 2 部分
+
+[[../../../index|首页]] - [[../../index|Works]] - [[../index|Memory]]
+==第 2 部分==

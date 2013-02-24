@@ -1,0 +1,71 @@
+﻿%title 菜单栏GtkMenuBar
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==菜单栏GtkMenuBar==
+----
+===层次结构===
+
+`GTK+`菜单栏的层次结构如下：
+
+菜单栏 `-->` 根菜单项 `-->` 菜单 `-->` 菜单项
+
+菜单项最常用的信号是：`activate`
+----
+===建立顺序===
+
+# 创建一个快捷键集（`GtkAccelGroup`），并将其绑定到窗口
+# 创建菜单栏（`GtkMenuBar`），将菜单栏加入高层容器（如`GtkBox`）
+# 创建根菜单项，将根菜单项加入菜单栏
+# 创建菜单（`GtkMenu`），将菜单加入根菜单项
+# 创建菜单项（`GtkMenuItem`），将菜单项加入菜单
+
+根菜单项和菜单项是一样的，只是一个位于菜单栏，一个位于菜单条
+----
+===新建快捷键集===
+
+`gtk_accel_group_new()`：新建快捷键集
+
+`gtk_window_add_accel_group(GTK_WINDOW(window), 快捷键集)`：绑定快捷键集到窗口
+----
+===新建菜单栏===
+
+`gtk_menu_bar_new()`：新建菜单栏
+
+`gtk_box_pack_start(GTK_BOX(box), 菜单栏, 是否扩展, 是否填充, 控件间隔)`：将菜单栏加入高层容器（这里是加入`GtkBox`）
+----
+===新建根菜单项===
+
+`gtk_menu_item_new_with_label("根菜单项名")`：新建根菜单项
+
+`gtk_menu_shell_append(GTK_MENU_SHELL(菜单栏), 根菜单项)`：绑定根菜单项到菜单栏
+----
+===新建菜单===
+
+`gtk_menu_new()`：新建菜单
+
+`gtk_menu_item_set_submenu(GTK_MENU_ITEM(根菜单项), 菜单)`：绑定菜单到根菜单项
+----
+===新建菜单项===
+
+`gtk_menu_item_new_with_label("菜单项名")`：新建只有文字的菜单项（与新建`根菜单项`使用的是同一个函数）
+
+`gtk_menu_item_new_with_mnemonic(快捷键集)`：新建带快捷键的菜单项
+
+`gtk_image_menu_item_new_from_stock(菜单类型, 快捷键集)`：从系统资源新建菜单项
+
+菜单类型包括`GTK_STOCK_NEW`、`GTK_STOCK_OPEN`、`GTK_STOCK_SAVE`、`GTK_STOCK_COPY`等
+
+`gtk_menu_shell_append(GTK_MENU_SHELL(菜单), 菜单项)`：绑定菜单项到菜单
+----
+===新建菜单项分隔条===
+
+`gtk_separator_menu_item_new()`：新建菜单项分隔条（横向实线）
+
+`gtk_tearoff_menu_item_new()`：新建菜单项分隔条（横向虚线）
+
+<red>Tips：</red>凡带有虚线菜单项的菜单都可从主菜单栏上撕扯下来
+
+`gtk_menu_shell_append(GTK_MENU_SHELL(菜单), 菜单项分隔条)`：绑定菜单项分隔条到菜单
+----
+<red>date</red> : 2011-08-03、2012-06-14
+----

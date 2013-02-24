@@ -1,0 +1,40 @@
+%title HTML5元素的改变
+
+[[../../../index|首页]] - [[../index|HTML5]] - [[index|Base]]
+==HTML5元素的改变==
+----
+===DOCTYPE===
+
+`<!DOCTYPE html>`
+----
+===字符集===
+
+`<meta charset="utf-8">`
+----
+===片段元素===
+
+# `header`：标记头部区域的内容
+# `footer`：标记脚部区域的内容
+# `section`：一块独立的区域
+# `article`：独立的文章内容
+# `aside`：相关内容或引文
+# `nav`：导航类辅助内容
+----
+===表单元素===
+
+# `tel`：电话号码
+# `email`：电子邮件地址文本框
+# `url`：网页的`URL`
+# `search`：搜索框
+# `range`：特定数值范围内的数值选择器，譬如滑动条
+# `number`：只能包含数值的文本框
+# `color`：颜色选择器
+# `datetime`：显示完整的日期和时间，包括时区
+# `datetime-local`：显示日期和时间，不包括时区
+# `time`：不含时区的时间选择器和指示器
+# `date`：日期选择器
+# `week`：某年中的周选择器
+# `monthl`：某年中的月选择器
+----
+<red>date</red> : 2012-03-13
+----

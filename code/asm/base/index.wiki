@@ -1,0 +1,13 @@
+﻿%title 汇编基础
+
+[[../../../index|首页]] - [[../index|Asm]]
+==汇编基础==
+----
+<center>
+[[hardware|硬件基础]]
+----
+[[register|寄存器]]
+----
+[[address|寻址方式]]
+</center>
+----

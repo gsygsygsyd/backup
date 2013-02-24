@@ -1,0 +1,19 @@
+%title 语言基础
+
+[[../../../index|首页]] - [[../index|Ruby]]
+==语言基础==
+----
+<center>
+[[vm|Ruby虚拟机]]
+----
+[[base|基础语法拾遗]]
+----
+[[ruby_marrow|Ruby精要]]
+----
+[[other_name_func|常用的几组别名方法]]
+----
+[[common_use_func|常用方法摘录]]
+----
+[[matz|《松本行宏的程序世界》]]
+</center>
+----

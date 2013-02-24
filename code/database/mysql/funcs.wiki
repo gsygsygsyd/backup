@@ -1,0 +1,28 @@
+%title 内建函数
+
+[[../../../index|首页]] - [[../index|DataBase]] - [[index|MySQL]]
+==内建函数==
+----
+===系统相关===
+
+* `select now();`：获取当前日期和时间，为了与`Orcale`兼容，`MySQL`也提供了`select now() from dual;`这样的写法
+* `select version();`：获取`MySQL`版本号
+* `select user();`：获取用户名
+* `select database();`：获取数据库名
+----
+===字段处理===
+
+* `concat(属性1, 属性2, ...)`：拼接字段，如 `concat('my email is ', email)`
+* `count(属性)`：统计总数
+* `year(属性)`：提取年份
+* `right(属性, 数值)`：提取目标属性数据的最后`N`个字符，如 `right(fed_id, 3)`
+----
+===文本处理===
+
+* `upper(属性)`：将目标属性包含的数据变成大写形式
+* `ltrim(属性)`：去掉左边边所有的空格
+* `rtrim(属性)`：去掉右边所有的空格
+* `trim(属性)`：去掉两侧所有的空格
+----
+<red>date</red> : 2012-12-05
+----

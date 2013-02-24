@@ -1,0 +1,9 @@
+﻿%title 编程体会
+
+[[../../../index|首页]] - [[../index|Haskell]]
+==编程体会==
+----
+<center>
+[[math_right_triangle|一个直角三角形的求解]]
+</center>
+----

@@ -1,0 +1,124 @@
+%title Zen Coding使用小记
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Vim]]
+==Zen Coding使用小记==
+----
+===基本概况===
+
+`Zen Coding`是横扫各大小编辑器的快速编码插件，其使用类`CSS`选择器的语法实现扩展性编码，确实够酷、够快
+
+`Vim`的编辑速度本就是其他编辑器望尘莫及的，常规情况下再加上`snipMate`，编辑网页时使用`Zen Coding`，有了这两大插件，可谓如虎添翼
+
+尽管`Zen Coding`善于编辑网页，但其应用范围并不仅限于网页，你可以自行修改以适用于其他标记类语言
+----
+===安装方法===
+
+安装非常简单，只需下载其`Vim`版本，解压后丢到`vimfiles`目录即可，这儿就不再赘述了
+
+`Zen Coding`在`Vim`下的默认触发键是`Ctrl + Y + ,`（注意，最后还有一个逗号）
+----
+===调用规则===
+
+`1`、单个元素：`div`
+{{{HTML
+<pre class="brush: html">
+<div></div>
+</pre>
+}}}
+
+`2`、带`id`的元素，使用`#`号：`div#name`
+{{{HTML
+<pre class="brush: html">
+<div id="name"></div>
+</pre>
+}}}
+
+`3`、带`class`的元素，使用点号（`.`）：`div.header`
+{{{HTML
+<pre class="brush: html">
+<div class="header"></div>
+</pre>
+}}}
+
+`4`、`id`与`class`是可以同时使用的，如果`class`名中含多个单词，可以使用点号（`.`）进行连接：`div#name.header.one`
+{{{HTML
+<pre class="brush: html">
+<div id="name" class="header one"></div>
+</pre>
+}}}
+
+`5`、子元素使用大于号（`>`），子元素的子元素可以连写：`div>p>h1`
+{{{HTML
+<pre class="brush: html">
+<div>
+	<p>
+		<h1></h1>
+	</p>
+</div>
+</pre>
+}}}
+
+`6`、同级兄弟元素使用加号（`+`），可以使用括号避免歧义：`div>p>(h1+h2)`
+{{{HTML
+<pre class="brush: html">
+<div>
+	<p>
+		<h1></h1>
+		<h2></h2>
+	</p>
+</div>
+</pre>
+}}}
+
+`7`、多项相同的元素，使用星号（`*`）：`ul>li*5`
+{{{HTML
+<pre class="brush: html">
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+</pre>
+}}}
+
+`8`、带有序号的元素，使用美元符（`$`），从`1`开始自动递增：`div>p#id$*5`
+{{{HTML
+<pre class="brush: html">
+<div>
+	<p id="id1"></p>
+	<p id="id2"></p>
+	<p id="id3"></p>
+	<p id="id4"></p>
+	<p id="id5"></p>
+</div>
+</pre>
+}}}
+
+`9`、如果需要指定序号的位数，只须多写几个美元符（`$`）即可：`div>p#id$$$*5`
+{{{HTML
+<pre class="brush: html">
+<div>
+	<p id="id001"></p>
+	<p id="id002"></p>
+	<p id="id003"></p>
+	<p id="id004"></p>
+	<p id="id005"></p>
+</div>
+</pre>
+}}}
+----
+===常用缩写===
+
+# `html:4t`：传统的`HTML4.01`模板
+# `html:5`：`HTML5`模板
+# `style`：样式标签
+# `script`：脚本标签
+# `link`：`link`标签
+# `a`：链接标签
+
+更多用法可以自行查看`/vimfiles/autoload/zencoding.vim`文件
+----
+<red>date</red> : 2012-03-14
+----

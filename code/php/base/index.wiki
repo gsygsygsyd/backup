@@ -1,0 +1,35 @@
+%title 语言基础
+
+[[../../../index|首页]] - [[../index|PHP]]
+==语言基础==
+----
+<center>
+[[character|PHP相比其他语言的特点]]
+----
+[[base|PHP基本语法]]
+----
+[[standard|PHP编码规范]]
+----
+[[superglobal|超全局变量]]
+----
+[[array|数组]]
+----
+[[string|字符串]]
+----
+[[func|函数]]
+----
+[[repeat_use|代码重用]]
+----
+[[oop|面向对象编程]]
+----
+[[oopdeepth|深入面向对象]]
+----
+[[namespace|命名空间]]
+----
+[[exception|异常处理]]
+----
+[[file|文件操作]]
+----
+[[funcs|常用函数]]
+</center>
+----

@@ -1,0 +1,46 @@
+﻿%title GTK+编程经验总结
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==GTK+编程经验总结==
+----
+===控件的书写顺序===
+
+`01`：新建（包括`窗口`、`容器`、`按钮`等）
+
+`02`：写回调函数
+
+`03`：添加到高层容器
+
+`04`：设置属性
+----
+===使用多文件组织GTK+程序===
+一般的思路是分作三个部分：`主控函数`、`界面设计`、`回调函数`
+
+# 主控函数：可分作`主控函数`和`主控函数头文件`
+# 界面设计：可分作`界面函数`和`界面函数头文件`
+# 回调函数：可分作`回调函数`和`回调函数头文件`
+
+根据需要可以再细分，比如某一个较复杂的界面组件可以放在单独的一个文件，某一个较复杂的回调函数也作为单独的一个文件
+
+多文件程序`Makefile`的书写示例：
+{{{Make
+GTK_FLAGS = $(shell pkg-config --libs --cflags gtk+-2.0)
+
+all : main.o callbacks.o interface.o
+	gcc -Wall -o app *.o ${GTK_FLAGS}
+
+main.o : main.c interface.h callbacks.h
+	gcc -Wall -c main.c ${GTK_FLAGS}
+
+interface.o : interface.c interface.h callbacks.h
+	gcc -Wall -c interface.c ${GTK_FLAGS}
+
+callbacks.o : callbacks.c callbacks.h
+	gcc -Wall -c callbacks.c ${GTK_FLAGS}
+
+clean :
+	rm -f *.o
+}}}
+----
+<red>date</red> : 2011-08-07
+----

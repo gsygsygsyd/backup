@@ -1,0 +1,15 @@
+﻿%title Linux命令行
+
+[[../../../index|首页]] - [[../index|Linux]]
+==Linux命令行==
+----
+<center>
+[[apt|apt包管理器]]
+----
+[[clis|重量级的几个常用命令]]
+----
+[[some_cli|命令拾遗]]
+----
+[[desktop|桌面相关]]
+</center>
+----

@@ -1,0 +1,17 @@
+﻿%title Django Framework
+
+[[../../../index|首页]] - [[../index|Python]]
+==Django Framework==
+----
+<center>
+[[base|命令选项]]
+----
+[[url|Urls]]
+----
+[[view|Views]]
+----
+[[model|Models]]
+----
+[[template|Templates]]
+</center>
+----

@@ -1,0 +1,30 @@
+﻿%title Servlet基础
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Java Web]]
+==Servlet基础==
+----
+`Servlet`程序最大的特点是没有`main`方法
+
+可以将`Servlet`看成嵌入了`HTML`代码的`Java`类，而`JSP`则是嵌入了`Java`代码的`HTML`页面
+----
+===Servlet的配置===
+
+以`Eclipse`为例，在`src`文件夹下创建一个个`Servlet`类，编译后的`.class`文件将自动转存到`WebRoot\WEB-INF\classes`目录下
+
+然后编辑`WEB-INF`目录下的`web.xml`文件，添加类似于下面的代码
+{{{XML
+<servlet>
+	<servlet-name>HelloWorld</servlet-name>
+	<servlet-class>com.ruchee.servlet.HelloWorldServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>HelloWorld</servlet-name>
+	<url-pattern>/HelloWorld</url-pattern>
+</servlet-mapping>
+}}}
+
+然后重启`Tomcat`，即可通过`http://127.0.0.1/test/HelloWorld`访问了（`test`是项目名）
+----
+<red>date</red> : 2012-02-21、2012-02-22
+----

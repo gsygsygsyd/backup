@@ -1,0 +1,102 @@
+%title 数据库连接
+
+[[../../../index|首页]] - [[../index|PHP]] - [[index|ThinkPHP]]
+==数据库连接==
+----
+===基本配置===
+
+在`config.php`配置文件中有以下配置项
+
+# `DB_TYPE`：指定所使用的数据库引擎，如`'DB_TYPE' => 'mysql',`
+# `DB_HOST`：数据库主机，如`'DB_HOST' => 'localhost',`
+# `DB_NAME`：数据库名，如`'DB_NAME' => 'bbs',`
+# `DB_USER`：数据库用户名，如`'DB_USER' => 'root',`
+# `DB_PWD`：数据库连接密码，如`'DB_PWD' => '123456',`
+# `DB_PORT`：端口号，MySQL默认为3306
+# `DB_PREFIX`：表前缀
+# `DB_CHARSET`：数据库默认字符集，如`'DB_CHARSET' => 'utf8',`
+
+`ThinkPHP`支持主从数据库和读写分离
+
+另一种常用的数据库连接方式是在`Model`类里面设置，如：
+
+{{{PHP
+<pre class='brush: php'>
+class IndexModel extends Model{
+	protected $connection = array(
+			'dbms' => 'mysql',           // 指定数据库引擎
+			'username' => 'root',        // 数据库用户名
+			'password' => '123456',      // 连接密码
+			'hostname' => 'localhost',   // 数据库主机
+			'hostport' => '3306',        // 端口号
+			'database' => 'bbs',         // 数据库名
+	);
+}
+</pre>
+}}}
+
+上面的设置可以简写为`DSN`连接格式：`protected $connection = "mysql://root:123456@localhost:3306/bbs";`
+----
+===实例化模型===
+
+其实就是返回对应的数据表对象
+
+1、实例化基础模型
+
+如果表前缀是`think_`，则`User`就代表`think_user`，`UserMessage`就代表`think_user_message`
+`M('User');`是上面这种操作的快捷方式
+
+2、实例化其他模型
+
+`$user = new BaseModel('User');`与`$user = M('User', 'BaseModel');`等价
+
+3、实例化自定义模型
+
+`$user = new UserModel();`与`$user = D('User');`等价
+
+4、实例化一个空模型类
+
+用这种方法可以直接使用SQL语句，如：
+
+{{{PHP
+$user = new Model();
+$user->query('select * from think_user');
+}}}
+
+定义空模型一定要写表前缀
+
+`M()`不经过自定义模型，只经过数据表
+
+`D()`会自动完成表的加载，并且可以在自定义Model那种写入自定义业务逻辑
+----
+===连贯操作===
+
+多个数据操作可以连续写在一个语句当中，如：`$list = $user->where('id >= 2')->limit(2)->order('id desc')->select();`
+
+从`$user`数据示例模型中获取ID大于等于2的数据，且只取符合条件的最前面两个数据项，最后将结果按ID反序排列
+
+手动写纯SQL语句时要严格保证各语句的顺序，但使用`ThinkPHP`封装好的操作方法就不再需要管顾顺序，但`增`、`删`、`改`、`查`的语句一定要写在整个连贯操作的最后面
+
+* `增`：`add()`
+* `删`：`delete()`
+* `改`：`save()`
+* `查`：`select()`
+
+向数据表中写入数据：
+
+{{{PHP
+<pre class='brush: php'>
+$user = M('User');
+$data['username'] = 'ruchee';
+$data['password'] = md5(123456);
+
+// 方法1
+$user -> data($data) -> add();
+
+// 方法2
+$user -> add($datal);
+</pre>
+}}}
+----
+<red>date</red> : 2012-06-24
+----

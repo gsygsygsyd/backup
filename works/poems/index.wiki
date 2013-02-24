@@ -1,0 +1,43 @@
+﻿%title 诗作集锦
+
+[[../../index|首页]] - [[../index|Works]]
+==诗作集锦==
+----
+<center>
+[[xia_tian|夏天的雨季]]
+----
+[[yan_lei|我不愿你看到我的眼泪]]
+----
+[[for_my_lover|The poem for my lover]]
+----
+[[2011_03_poems|2011年03月诗作]]
+----
+[[si_xiang|思乡随感]]
+----
+[[luo_po|落魄四首]]
+----
+[[yu_gu_ren|遇故人]]
+----
+[[xie_ge|我想为你写歌]]
+----
+[[zui_ren|罪人]]
+----
+[[xue_cang|雪藏]]
+----
+[[can_juan|五邑残卷]]
+----
+[[zhu|养猪场也会有春天？]]
+----
+[[ying_xiong|英雄气短]]
+----
+[[mei_ren|美人恩重]]
+----
+[[bu_ceng_yong_you|从来不曾拥有]]
+----
+[[mo_sheng_ren|不曾相识的那些陌生人]]
+----
+[[ni_ming|黎明前的清醒]]
+----
+[[zuo_chan|坐禅]]
+</center>
+----

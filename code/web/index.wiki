@@ -1,0 +1,11 @@
+%title Web笔记
+
+[[../../index|首页]]
+==Web笔记==
+----
+<center>
+[[html/index|HTML]]
+----
+[[css/index|CSS]]
+</center>
+----

@@ -1,0 +1,40 @@
+﻿%title 标签控件GtkLabel
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==标签控件GtkLabel==
+----
+===声明===
+`GtkWidget * label`
+----
+===新建===
+`gtk_label_new("标签里显示的文字")`
+----
+===标签文字对齐===
+`gtk_label_set_justify(GTK_LABEL(label), 对齐方式)`
+
+对齐方式（`GtkJustifaction`）：
+# `GTK_JUSTIFY_LEFT`：居左
+# `GTK_JUSTIFY_RIGHT`：居右
+# `GTK_JUSTIFY_CENTER`：居中
+# `GTK_JUSTIFY_FILL`：均匀分布
+----
+===标签文本格式化===
+`gtk_label_set_markup(GTK_LABEL(label), "标记语言")`
+
+标记语言类似`HTML`，每段文本都要用一对`< span >`和`< /span >`包围
+
+可使用的常用标签有：<br>
+`< i >`、`< b >`、`< big >`、`< small >`、`< sub >`、`< sup >`等
+
+例如：<br>
+{{{HTML
+<span foreground='red'>< big >< i >这是第三个标签，\n它被格式化成红色粗体字了< /i >< /big ></span>
+}}}
+----
+===标签文字自动换行===
+`gtk_label_set_line_wrap(GTK_LABEL(label), 是否自动换行)`
+
+只需将第二个参数设为`TRUE`即可实现自动换行
+----
+<red>date</red> : 2011-08-02
+----

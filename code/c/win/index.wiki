@@ -1,0 +1,15 @@
+﻿%title Windows程序设计
+
+[[../../../index|首页]] - [[../index|C/C++]]
+==Windows程序设计==
+----
+<center>
+[[base|基础知识]]
+----
+[[funcs|常用函数]]
+----
+[[gui|界面设计]]
+----
+[[tips|注意事项]]
+</center>
+----

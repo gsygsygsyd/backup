@@ -1,0 +1,25 @@
+%title MongoDB使用入门
+
+[[../../../index|首页]] - [[../index|DataBase]] - [[index|MongoDB]]
+==MongoDB使用入门==
+----
+===安装MongoDB===
+
+对于`Windows`而言，只需下载一个`zip`文件解压即可，最好是将其路径加入环境变量
+----
+===启动服务器===
+
+`MongoDB`默认的数据目录是`C:\data\db`，一般可以在当前工作目录下，手动建立`data\db`目录路径，然后使用下面的命令启动服务器
+
+`mongod run --dbpath=data/db`
+
+`MongoDB`服务器默认端口为`27017`，且默认情况下，`MongoDB`会监听比主端口号高`1000`的端口，所以可以通过访问`http://127.0.0.1:28017`获取数据库管理信息
+----
+===运行shell===
+
+`MongoDB`自带功能完备的`JavaScript shell`，可以运行任何`JavaScript`程序，允许调用`JS`标准库
+
+使用`JS shell`之前，先必须启动`MongoDB`服务器，只需执行命令`mongo`即可进入`shell`
+----
+<red>date</red> : 2012-03-26
+----

@@ -1,0 +1,36 @@
+%title 给Devhelp添加书籍的简易方法
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Other]]
+==给Devhelp添加书籍的简易方法==
+----
+首先需要准备好对应书籍的`HTML`文档，这儿以`cppreference`为例进行介绍
+
+<red>附注</red>：当然，如果真的是要安装`cppreference`的话，可以使用更便捷的方法，这儿只是为了演示如何实现为`devhelp`自行添加书籍。下面是通过命令行直接安装`cppreference`的步骤：
+# `sudo add-apt-repository ppa:p12/ppa`
+# `sudo apt-get update`
+# `sudo apt-get install cppreference-doc*`
+----
+# 上`cppreference`官方网站下载离线版的文档，然后复制到家目录，解压后得到一个名为`output`的目录
+# 使用命令`mv output cppreference`，将解压得到的文件夹重命名为合适的名字
+# 使用命令`cd /usr/share/devhelp/books`，转到`Devhelp`的`books`目录（如果没有`books`目录就自个新建一个）
+# 使用命令`sudo mkdir cppreference`，建立该书籍的索引目录
+# 使用命令`sudo vim cppreference/cppreference.devhelp2`，建立该书籍的索引文件，内容如下：
+{{{XML
+<pre class="brush: xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<book xmlns="http://www.devhelp.net/book" title="cppreference" name="cppreference" base="/home/ruchee/cppreference/en" link="index.html" version="2" language="c++">
+
+</book>
+</pre>
+}}}
+
+注意：请使用你自己本机的实际路径替换`/home/ruchee/cppreference/en`，且必须使用绝对路径，使用`~`来指代家目录是无效的
+
+然后重新打开`Devhelp`，应该就可以看到该书籍的条目了，其归属于`C++`语言类别
+----
+以上还只是简单地将书籍挂在`Devhelp`上，没有任何索引和查找功能，这个应该可以通过编写一个解析脚本实现
+
+暂时还没有精力研究，就这样吧
+----
+<red>date</red> : 2012-09-03、2012-09-17
+----

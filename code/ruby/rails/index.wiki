@@ -1,0 +1,15 @@
+%title Ruby on Rails
+
+[[../../../index|首页]] - [[../index|Ruby]]
+==Ruby on Rails==
+----
+<center>
+[[primer|Ruby on Rails编程入门]]
+----
+[[cmd|常用命令]]
+----
+[[ubuntu|Ubuntu下Ruby on Rails开发环境的安装]]
+----
+[[blog|一个博客的实现]]
+</center>
+----

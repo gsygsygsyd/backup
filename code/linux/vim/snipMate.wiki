@@ -1,0 +1,80 @@
+%title snipMate补全的相关设置
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Vim]]
+==snipMate补全的相关设置==
+----
+===snipMate简介===
+
+`snipMate`是`Vim`的一个`tab`补全插件，支持任意编程语言，是`Vim`快速编码的辅助利器
+
+安装方法这儿就不介绍了，很简单，下载其放置到`Vim`插件目录即可生效
+
+掌握`snipMate`的回报比是相当高的，一旦彻底熟悉，编码那就真的是一种享受了，别人需要敲`100`下键盘的代码，你也许`50`次按键都不需要
+
+这里有使用`snipMate`快速开发`GTK+`应用的演示：[[vim_gtk|点此进入演示地址]]
+----
+===snipMate设置===
+
+比如我想要添加`GTK+`的补全，但又不想被`C++`、`Obj-C`和`C#`继承，该怎么办呢？（因为默认`C++`、`Obj-C`和`C#`是继承`C`语言补全的）
+
+要实现`C语言`里补全`GTK+`，又不能让其他语言访问到`GTK+`的补全，要做到这种效果，首先需要明白的一个概念就是，`snipMate`的补全继承是只能继承一层的，也就是说，`A`继承`B`，`B`继承`C`，但`A`是继承不到`C`的，它只能直接继承，无法跨越
+
+另外需要注意的是，`snipMate`只支持单继承，也就是只能继承一个补全，无法继承多个
+
+我这里就是利用`snipMate`只能继承一层的特点来完成补全屏蔽的设置
+
+方法很简单，步骤如下：
+
+# 在`\vimfiles\snippets`目录（`Linux`下为`~/.vim/snippets`，下同）下新建`gtk.snippets`，并在该文件里面书写几个测试用的补全信息
+# 打开`\vimfiles\plugin`目录下的`snipMate.vim`文件，找到函数`GetSnippets`（大概在`100`行左右）
+# 在该函数里面照猫画虎，添加一个选择分支`elseif ft == 'c' call s:DefineSnips(a:dir, 'gtk', ft)`（这儿没有进行缩排）
+
+这样就`OK`了，试着新建一个`C语言`和`C++`源文件试试看，`GTK+`的补全将只在`.c`文件里有效，在`.cpp`中是无效的，这就实现了补全的屏蔽
+
+可以如此设置的常见组合有以下几类
+
+# `C/GTK+`
+# `PHP/HTML`
+# `Python/Django`
+# `eruby/Ruby`
+# `JavaScript/jQuery`
+# `HTML/JavaScript`
+
+这里只是列出了一些常见的组合，具体说来，那就是你想怎么整就怎么整，只要能加速自己的编码速度就`OK`
+
+下面是我`snipMate.vim`文件的关键部分：
+
+{{{Vim
+<pre class="brush: vim">
+let g:did_ft = {}
+fun! GetSnippets(dir, filetypes)
+	for ft in split(a:filetypes, '\.')
+		if has_key(g:did_ft, ft) | continue | endif
+		call s:DefineSnips(a:dir, ft, ft)
+		if ft == 'c'
+			call s:DefineSnips(a:dir, 'gtk', ft)
+		elseif ft == 'php'
+			call s:DefineSnips(a:dir, 'html', ft)
+		elseif ft == 'html'
+			call s:DefineSnips(a:dir, 'javascript', ft)
+		elseif ft == 'javascript'
+			call s:DefineSnips(a:dir, 'jquery', ft)
+		elseif ft == 'jquery'
+			call s:DefineSnips(a:dir, 'javascript', ft)
+		endif
+		let g:did_ft[ft] = 1
+	endfor
+endf
+</pre>
+}}}
+----
+===我的补全文件===
+
+下面提供我`snippets`目录下全部补全文件的打包，你可以借鉴使用
+
+下载地址：[[../../../download/snipMate_Ruchee.zip|http://www.ruchee.com/download/snipMate_Ruchee.zip]]（`2012-10-07`更新）
+
+上述补全文件会不定期更新，具体根据我自己的学习方向和学习进度而定 `^-^`
+----
+<red>date</red> : 2012-06-14、2012-06-15、2012-06-17、2012-06-27、2012-08-31、2012-09-02、2012-09-05
+----

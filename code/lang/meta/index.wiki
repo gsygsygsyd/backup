@@ -1,0 +1,9 @@
+%title Ruby元编程
+
+[[../../../index|首页]] - [[../index|Lang]]
+==Ruby元编程==
+----
+<center>
+[[ruby|Ruby精要]]
+</center>
+----

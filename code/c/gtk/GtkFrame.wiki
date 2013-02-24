@@ -1,0 +1,42 @@
+﻿%title 框架控件GtkFrame
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==框架控件GtkFrame==
+----
+`GtkFrame`只能容纳一个控件，不能像窗口一样直接显示出来，主要起美化窗口、修饰窗口、规范控件以及提示的作用
+----
+===声明===
+`GtkWidget * frame`
+----
+===新建===
+`frame = gtk_frame_new("位于左上角的框架标题")`
+----
+===设置框架的外观轮廓===
+`gtk_frame_set_shadow_type(GTK_FRAME(frame), 轮廓类型)`
+
+轮廓类型（`GtkShadowType`）：
+
+# `GTK_SHADOW_NONE`：无外框线
+# `GTK_SHADOW_IN`：内向型外框线
+# `GTK_SHADOW_OUT`：外向型外框线，看起来像个按钮
+# `GTK_SHADOW_ETCHED_IN`：向内凹
+# `GTK_SHADOW_ETCHED_OUT`：向外凸
+----
+===设置子控件位置===
+`gtk_frame_set_label_align(GTK_FRAME(frame), 横向位置, 纵向位置)`
+
+位置参数属于浮点数类型，是一个`0`到`1`之间的浮点数
+
+横向位置：`0.0`表示最左边，`1.0`表示最右边，默认取`0.0`
+
+纵向位置：`0.0`表示最下边，`1.0`表示最上边，默认取`0.5`
+
+取`0.0`到`1.0`之间的某个值意味着向哪一边偏斜多少比例，注意，这是一个浮点数，就算是可以取整也要写成小数的形式
+----
+===美化框架标题栏===
+`gtk_frame_set_label_widget(GTK_FRAME(frame), 标题)`
+
+标题可以是任何`GtkWidget *`类型的数据（比如：`GtkImage`），只要能够在框架顶部显示出来
+----
+<red>date</red> : 2011-08-02、2011-08-11
+----

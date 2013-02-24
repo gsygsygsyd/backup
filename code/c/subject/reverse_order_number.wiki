@@ -1,0 +1,42 @@
+%title 倒序输出数字
+
+[[../../../index|首页]] - [[../index|C]] - [[index|Subject]]
+==倒序输出数字==
+----
+===问题描述===
+
+输入任意一个整数，倒序输出该整数的各个数字
+----
+===算法求解===
+
+使用递归解决，代码如下：
+{{{Clang
+<pre class='brush: c'>
+void
+printNumber(int num){
+  // 在每次递归之前执行，最先输出数字的最低位
+  printf("%d", num%10);
+  if(num >= 10){
+      printNumber(num/10);
+  }
+}  // printNumber
+</pre>
+}}}
+
+将上面的其中一行代码换下位置就是正序输出了，代码如下：
+{{{Clang
+<pre class='brush: c'>
+void
+printNumber(int num){
+  if(num >= 10){
+      printNumber(num/10);
+  }
+  // 这行代码会等到递归到数字的最高位才会依次执行
+  // 所以最先输出的将是最高位数字
+  printf("%d", num%10);
+}  // printNumber
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-13、2012-10-12
+----

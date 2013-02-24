@@ -1,0 +1,25 @@
+﻿%title JSP标签
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Java Web]]
+==JSP标签==
+----
+===转向标签===
+
+将当前页面转向指定的其他页面，还可以同时向目标页面传递数据，转向后当前页面的其他代码不再执行
+{{{Java
+<jsp:forward page="forwardTo.jsp">
+	<jsp:param name="userName" value="Ruchee" />
+</jsp:forward>
+}}}
+----
+===包含标签===
+
+同样是用来复用其他文件，但同时还可以向被包含页面传递数据，然后将两个页面组合成的内容当作一个页面呈现给浏览器
+{{{Java
+<jsp:include page="included.jsp">
+	<jsp:param name="userName" value="Ruchee" />
+</jsp:include>
+}}}
+----
+<red>date</red> : 2012-02-24
+----

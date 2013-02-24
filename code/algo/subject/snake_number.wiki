@@ -1,0 +1,71 @@
+%title 蛇形填数
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Subject]]
+==蛇形填数==
+----
+===问题描述===
+
+将`1`到`n*n`个数依次填充到`n*n`的矩阵里，从右上角开始，按蛇形填充，如`n == 4`时的数值分布如下：
+{{{
+ 10 11 12  1
+  9 16 13  2
+  8 15 14  3
+  7  6  5  4
+}}}
+
+现输入`n`的值，要求输出`n*n`矩阵的蛇形排列
+----
+===算法求解===
+
+关键是要理解什么时候“`蛇头转向`”，理解起来有一定的难度
+
+转向的规则是：先下，后左，后上，后右。。后续继续按这个顺序循环，碰到边界或碰到已被填充的数据单元则转向
+
+代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+#include <string.h>
+
+int
+main(int argc, char *argv[]){
+    int n, x, y, number;
+
+    scanf("%d", &n);
+    int num[n][n];
+    // 数组元素置零
+    memset(num, 0, sizeof(num));
+    // 设定起始位置
+    number = num[x=0][y=n-1] = 1;
+
+    // 蛇形填充
+    while(number < n*n){
+        while(x+1 < n && !num[x+1][y]){
+            num[++x][y] = ++number;
+        }
+        while(y-1 >= 0 && !num[x][y-1]){
+            num[x][--y] = ++number;
+        }
+        while(x-1 >= 0 && !num[x-1][y]){
+            num[--x][y] = ++number;
+        }
+        while(y+1 < n && !num[x][y+1]){
+            num[x][++y] = ++number;
+        }
+    }
+
+    // 输出数据
+    for(int i = 0; i < n; ++i){
+        for(int j = 0; j < n; ++j){
+            printf("%4d", num[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}  // main
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-18
+----

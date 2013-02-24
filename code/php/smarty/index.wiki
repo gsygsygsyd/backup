@@ -1,0 +1,11 @@
+%title Smarty
+
+[[../../../index|首页]] - [[../index|PHP]]
+==Smarty==
+----
+<center>
+[[base|Smarty的基本配置和使用]]
+----
+[[template|模板语法]]
+</center>
+----

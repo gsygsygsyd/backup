@@ -1,0 +1,31 @@
+﻿%title Android环境配置及目录结构
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Android]]
+==Android环境配置及目录结构==
+----
+===开发环境的配置===
+
+`1`、首先需要下载好`Android SDK`、`Eclipse`以及`ADT`插件，将`SDK`目录下面的`tools`目录加入环境变量
+
+`2`、在`Eclipse`的`Android`选项中指定好`Android SDK`的安装主目录
+
+`3`、启动`AVD`管理器，根据需要创建相应版本的`Android`模拟器
+
+`4`、新建`Android Project`，编写代码
+
+`5`、以`Android Application`方式运行项目，`Eclipse`将自动启动`Android`模拟器并装载程序
+
+可以提前开好模拟器，程序运行完成后也无需将其关闭，这样可以大大节省启动时间
+----
+===Android程序目录结构===
+
+# `src`目录用来存放代码源文件
+# `gen`目录下的`R.java`文件由`Eclipse`自动处理，不要修改，它主要保存资源文件的`ID`
+# `assets`目录和`res`目录都用来放置资源文件，但放在`assets`中的资源不会自动生成`ID`
+# `res`下的三个`drawable`目录分别用来存放不同分辨率的图片
+# `res`下的`layout`目录存放的是布局文件，用来控制`activity`的位置
+# `res`下的`values`目录存放程序的键值对信息
+# `AndroidManifest.xml`是程序的全局配置文件
+----
+<red>date</red> : 2012-02-16
+----

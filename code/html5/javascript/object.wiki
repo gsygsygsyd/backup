@@ -1,0 +1,60 @@
+﻿%title JavaScript的对象编程
+
+[[../../../index|首页]] - [[../index|HTML5]] - [[index|JavaScript]]
+==JavaScript的对象编程==
+----
+`JS`的类实际上是通过函数来实现的，面向对象编程的其他特性都通过一些小技巧来解决
+----
+===类的声明===
+
+类的声明：
+{{{JavaScript
+function Class(){
+	this.p1 = "p1";
+	this.p2 = "p2";
+	this.f1 = function(){
+		alert("f1");
+	}
+	this.f2 = function(){
+		alert("f2");
+	}
+}
+}}}
+
+另一种基于`prototype`的声明类的方式：
+{{{JavaScript
+function Class(){}
+
+Class.prototype = {
+	p1 : "p1";
+	p2 : "p2";
+	f1 : function(){
+		alert("f1");
+	}
+	f2 : function(){
+		alert("f2");
+	}
+}
+}}}
+----
+===类的继承===
+
+继承：通过复制父类的代码来实现，相当原始，毕竟`JS`本身是不支持继承的
+
+但复制不是简单的粘贴，如果只是简单的粘贴，一旦父类发生了改动，子类将难以为继，所以使用`for ... in`来解决
+{{{JavaScript
+function SubClass(){}
+
+/* 复制父类代码 */
+for(p in Class.prototype){
+	SubClass.prototype[p] = Class.prototype[p];
+}
+
+/* 加入子类自己的属性和方法 */
+SubClass.prototype.newMethod = function(){
+	alert("newMethod");
+}
+}}}
+----
+<red>date</red> : 2012-02-20
+----

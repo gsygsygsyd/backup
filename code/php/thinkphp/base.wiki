@@ -1,0 +1,121 @@
+﻿%title ThinkPHP使用基础
+
+[[../../index|首页]] - [[index|PHP]]
+==ThinkPHP使用基础==
+----
+===文件组织规划===
+
+一个项目只能有一个统一的入口文件，主要功能：
+
+# 路径定义，项目定义
+# 额外参数
+# 载入框架入口文件
+# 实例化`App`应用
+
+`Admin`：主要放和管理操作有关的模板、控制器、模板
+----
+===项目初始化===
+
+# `THINK_PATH`：定义ThinkPHP框架的路径，一般是将其核心放到整个项目的根目录下，所以这一项一般填`./ThinkPHP/`，这个配置项的另一个功用是可以防止跳墙攻击
+# `APP_NAME`：定义App的名称，如：`admin`
+# `APP_PATH`：指定App路径，如：`./admin`
+
+然后加载框架的入口文件：`require(THINK_PATH."/ThinkPHP.php");`
+
+最后实例化这个App：`App::run();`
+----
+===目录结构===
+
+# `Common`：主要放置公用函数
+# `Conf`：放置配置文件
+# `Lang`：多语言支持文件存放处
+# `Lib/Action`：放置控制器
+# `Lib/Model`：主要放置模型
+# `Runtime/Cache`：主要放模板编译出来的文件
+# `Runtime/Data`：存放数据表对应的`PHP`类
+# `Runtime/Logs`：主要存放运行错误的日志文件
+# `Runtime/Temp`：主要存放临时文件和文件缓存
+# `Tpl`：放置模板文件，如果没有使用多模板，则默认都放在其下的`default`文件夹
+----
+===系统常量===
+
+# `__ROOT__`：网站根目录地址
+# `__APP__`：当前项目文件入口地址
+# `__URL__`：当前模块地址
+# `__ACTION__`：当前操作地址
+# `__SELF`：当前URL地址
+# `__CURRENT__`：当前模块对应的模板目录
+# `ACTION_NAME`：当前操作名
+# `APP_NAME`：当前项目名
+# `MODULE_NAME`：当前模块名称
+# `TEMPLATE_NAME`：当前模板名称
+# `APP_PATH`：当前项目目录
+# `TEMPLATE_PATH`：当前模板路径
+# `APP_TPML_PATH`：当前项目对应的模板目录
+# `HTML_PATH`：项目静态文件目录
+# `LIB_PATH`：项目类库目录
+# `VENDOR_PATH`：第三方类库目录
+# `WEB_PUBLIC_PATH`：网站公共目录
+# `MEMORY_LIMIT_ON`：是否有内存使用限制
+# `MAGIC_GUOTES_GPC`：是否开启了自动转义
+----
+===访问模式===
+
+# 普通访问模式
+# `PATHINFO`访问模式
+# `REWRITE`（伪静态或`URL`地址重写）
+# 混合模式（兼容模式）
+
+默认是`PATHINFO`模式
+
+可以修改`Conf`文件夹下的`config.php`文件，配置项`URL_MODEL`可设为0、1、2、3，依次对应普通模式、`PATHINFO`模式、`REWRITE`模式、兼容模式
+
+如果URL模式设置为`PATHINFO`模式，则普通模式地址会自动转换成`PATHINFO`地址，且不会对使用`_GET`获取参数值造成影响
+
+`1`、普通访问模式
+
+`http://127.0.0.1/videodemo/admin.php?m=模块名a=动作名&username=ruchee`
+
+`2`、`PATHINFO`模式
+
+`http://127.0.0.1/videodemo/admin.php/模块名/动作名/username/ruchee`
+
+在配置文件中可以有如下设置：
+
+# `URL_PATHINFO_MODEL=>1`：启动RUL智能模式
+# `URL_PATHINFO_DEPR=>'-'`：将RUL的分隔符自定义为“-”，默认是斜线，如果设为短横线，则上面的URL可以写为：`http://127.0.0.1/videodemo/admin.php/模块名-动作名-username-ruchee`
+
+`3`、`REWRITE`模式
+
+首先要开启`Apache`的`mod_rewrite`模块，然后在入口文件的同级目录下放置一个`.htaccess`文件，写入如下内容：
+
+{{{
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ admin.php/$1 [QSA,PT,L]
+
+</IfModule>
+}}}
+
+最后在配置文件`config.php`中将`URL_MODEL`设为2
+
+这样就可以在写URL地址时省略掉该入口文件名，如：`http://127.0.0.1/videodemo/模块名/动作名/username/ruchee`
+
+`4`、兼容模式
+
+`http://127.0.0.1/videodemo/admin.php?s=/模块名/动作名/username/ruchee`
+
+能够自动识别URL是普通模式还是PATHINFO模式
+
+`5`、调试模式
+
+在配置文件`config.php`中设置配置项`'APP_DEBUG' => true,`来开启调试模式，启用调试模式以后，系统将严格检测大小写，这有利于项目在`Unix/Linux`环境下的部署
+----
+<red>date</red> : 2011-05-12
+----

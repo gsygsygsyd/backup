@@ -1,0 +1,11 @@
+%title Erlang
+
+[[../../../index|首页]] - [[../index|Erlang]]
+==Erlang==
+----
+<center>
+[[vm|Erlang虚拟机]]
+----
+[[base|基础语法拾遗]]
+</center>
+----

@@ -1,0 +1,13 @@
+﻿%title JavaScript
+
+[[../../../index|首页]] - [[../index|HTML5]]
+==JavaScript==
+----
+<center>
+[[base|JavaScript基础语法]]
+----
+[[object|JavaScript的对象编程]]
+----
+[[capability|JS的性能与维护]]
+</center>
+----

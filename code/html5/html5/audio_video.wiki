@@ -1,0 +1,101 @@
+%title Audio and Video
+
+[[../../../index|首页]] - [[../index|HTML5]] - [[index|Base]]
+==Audio and Video==
+----
+===基本概念===
+
+不论`音频`文件还是`视频`文件，实际上都只是一个`容器`，类似于一个压缩了的`zip`文件
+
+主流的视频容器
+
+# `.avi`：Audio Video Interleave
+# `.flv`：Flash Video
+# `.mp4`：MPEG4
+# `.mkv`：Matroska
+# `.ogv`：Ogg
+
+常见的音频编解码器：`AAC`、`MPEG-3`、`Ogg Vorbis`
+
+常见的视频编解码器：`H.264`、`VP8`、`Ogg Theora`
+
+视频编解码器的格局还没有最终确定，因为这涉及到了太多利益纠纷，未来最有可能实现大一统的是`Google`新发布的`WebM`格式
+----
+===audio标签的使用===
+
+使用方法一：
+{{{HTML
+<pre class="brush: html">
+`<audio controls src="music.ogg">浏览器不支持audio标签时显示的内容</audio>`
+</pre>
+}}}
+
+必须加上`controls`参数，以向用户提供基本的播放器控制界面
+
+使用方法二：
+{{{HTML
+<pre class="brush: html">
+<audio controls>
+	<source src="music.ogg">
+	<source src="music.mp3">
+	浏览器不支持audio标签时显示的内容
+</audio>
+</pre>
+}}}
+
+可以借助`source`标签提供多个播放文件，以解决浏览器间文件格式不兼容的问题，浏览器只会选择其中效果最好的一个进行播放
+
+使用方法三：
+{{{HTML
+<pre class="brush: html">
+<audio controls>
+	<source src="music.ogg" type="audio/ogg; codecs=vorbis">
+	<source src="music.mp3" type="audio/mpeg">
+	浏览器不支持audio标签时显示的内容
+</audio>
+</pre>
+}}}
+
+浏览器是可以自己侦测媒体文件的格式的，但也可以使用`type`属性要求浏览器按指定的格式进行解码
+
+`audio`标签还有个`自动播放`和`循环播放`属性，媒体文件一旦加载完毕就会自动播放，但不推荐使用，除非是背景音乐：
+{{{HTML
+<pre class="brush: html">
+<audio autoplay loop>
+	<source src="music.ogg">
+	<source src="music.mp3">
+	浏览器不支持audio标签时显示的内容
+</audio>
+</pre>
+}}}
+
+既然是自动播放，也就不需要什么控制界面了，所以`controls`属性没必要再写
+----
+===video标签的使用===
+
+典型示例如下：
+{{{HTML
+<pre class="brush: html">
+<video id="movies" autoplay oncanplay="startVideo()" onended="stopTimeline()"
+autobuffer="true" width="400px" height="300px">
+	<source src="walk.ogv" type="video/ogg; codecs='theora, vorbis'">
+	<source src="walk.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'">
+</video>
+</pre>
+}}}
+
+视频加载完毕，在播放之前会自动调用`oncanplay`属性指定的函数，在视频播放完毕以后，也会自动触发`onended`属性指定的函数
+
+可以通过`onmouseover`和`onmouseout`属性很轻易地实现鼠标悬停播放功能，示例代码如下：
+{{{HTML
+<pre class="brush: html">
+<video id="movies" onmouseover="this.play()" onmouseout="this.pause()" 
+autobuffer="true" width="400px" height="300px">
+	<source src="walk.ogv" type="video/ogg; codecs='theora, vorbis'">
+	<source src="walk.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'">
+</video>
+</pre>
+}}}
+----
+<red>date</red> : 2012-03-15
+----

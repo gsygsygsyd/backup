@@ -1,0 +1,13 @@
+%title CoffeeScript
+
+[[../../../index|首页]] - [[../index|JS]]
+==CoffeeScript==
+----
+<center>
+[[install|安装和配置]]
+----
+[[cmd|命令选项]]
+----
+[[base|基础语法]]
+</center>
+----

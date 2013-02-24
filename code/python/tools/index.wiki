@@ -1,0 +1,11 @@
+﻿%title 辅助工具
+
+[[../../../index|首页]] - [[../index|Python]]
+==辅助工具==
+----
+<center>
+[[ipython|IPython]]
+----
+[[py2exe|py2exe]]
+</center>
+----

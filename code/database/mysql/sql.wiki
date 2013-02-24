@@ -1,0 +1,114 @@
+%title 基本的SQL语法
+
+[[../../../index|首页]] - [[../index|DataBase]] - [[index|MySQL]]
+==基本的SQL语法==
+----
+===表的定义===
+
+在一个宽泛的定义下，表存在三种类型：
+
+# `永久表`：使用`create table`创建
+# `临时表`：通过子查询返回
+# `虚拟表`：通过`create view`子句创建
+----
+===表格的创建===
+
+# 建表指令：`create table 表名`
+# 设置主键：`constraint 主键标识 primary key (person_id, food)`
+# 设置外键：`constraint 外键标识 foreign key (person_id) references person (person_id)`
+
+外键约束只在使用`InnoDB`存储引擎时才起作用
+----
+===表格的修改===
+
+典型的表格修改语句：`alter table 表名 modify 属性 对应的数据类型以及相关约束语句`
+
+添加属性类：`alter table 表名 add 属性 对应的数据类型以及相关约束语句`
+
+如果将某列设置成自增（`auto_increment`），则`MySQL`默认从数字`1`开始
+----
+===表格的删除===
+
+典型的表格删除语句：`drop table 表名`
+----
+===表间连接===
+
+进行多表连接查询时，一种方式是使用完整的表名称，如`employee.emp_id`；另一种方式是使用表别名，既可用空格的方法，也可使用`as`指定
+
+示例：`select e.emp_id, e.fname, e.lname, d.name dept_name from employee e inner join department d on e.dept_id = d.dept_id;`
+----
+===增加数据===
+
+典型的数据插入语句：`insert into 表名 (属性列) values (对应的数据列)`
+
+对于暂时不打算赋值或者不需要赋值的属性列，可以赋为`null`
+
+对于时间数据，除了按默认的格式赋值以外，还可以自定义格式：`birth_date = str_to_date('MAR-12-2012', '%b-%d-%Y')`
+----
+===删除数据===
+
+典型的数据删除语句：`delete from 表名 where 条件`
+
+省略`where`子句将会删除该表中所有的行
+----
+===修改数据===
+
+典型的数据修改语句：`update 表名 set 属性1 = 数据1, 属性2 = 数据2, ... where 条件`
+
+如果省略`where`子句，那么`update`将会修改该表的每一行
+----
+===查找数据===
+
+典型的数据查找语句：`select 属性列 from 表名 where 条件`
+
+`select`子句可以额外包含字符、字符串、数字、表达式、内建函数、用户自定义函数等，如 `select emp_id, 'ACTIVE', emp_id * 3.14159, UPPER(lname) from employee;`
+
+可以为每一列设置别名，只需在对应的属性名后空一个空格（或者显式以`as`指定），然后紧跟别名即可，如 `select 'ACTIVE' status from employee;`或`select 'ACTIVE' as status from employee;`
+
+在`select`的后面加上关键字`distinct`可以去除结果中重复的行（执行`distinct`时，系统会首先对数据进行排序，对于大数据集来说相当耗时，所以此关键字不要随便使用）
+
+在`select`语句的最后加上`limit 数字`可以限制返回的结果数，返回的记录条数将少于或等于该数值
+
+如果写成`limit xx,yy`或`limit yy offset xx`，则表示返回从第`xx+1`行开始的`yy`行（行数从`0`开始），譬如`limit 2,5`或`limit 5 offset 2`表示从第`3`行开始的`5`行
+----
+===数据排序===
+
+`order by`支持多重排序，也就是说可以跟多个属性名，如 `order by id, name`（按`id`和`name`进行排序）
+
+也可以借助内建函数提取部分数据进行排序，如 `order by right(fed_id, 3)`（按`fed_id`最后三个字符排序）
+
+还可以根据属性列的本身的序号进行排序，如 `order by 2, 5`（根据表的第`2`列和第`5`列排序）
+
+根据属性列序号进行排序的方法只适用于单独的查询语句，不应在程序中使用，因为一旦增加新的属性列就有可能导致错误
+
+排序默认是`升序`（`asc`），如想降序排列，只需在列名后面加上关键字`desc`即可（`asc`或`desc`只对其修饰的排序依据列生效，如果需要对每个依据列都应用，则需要在每个排序依据列的名字后面都加上该关键字，如 `order by id desc, name desc`）
+
+`order by`子句中排序依据的列不一定要是需要检索显示的列，只要该排序依据列存在于表中即可
+
+合理使用`order by`、`desc`、`limit`的组合就可以找出`最小`、`最大`、`最便宜`、`最贵`等信息
+----
+===数据过滤===
+
+常用的过滤语句是`where`，可以使用`and`、`or`、`not`、`is`、`null`（`is null`、`is not null`）、`between`（`between xx and yy`）、`in`（`in (xx, yy, ...)`）等关键字，`and`的优先级高于`or`
+
+`in ( ... )`与`or`的功能基本等同，但`in`最大的优点在于可以再包含其他`select`语句，而且其语法更清晰，执行速度更快
+
+`not`的用途就是否定它之后所跟的任何条件
+
+支持`()`、`=`、`!=`（`<>`）、`>`、`<`、`>=`、`<=`等符号
+
+`where`可以使用`like`通配符过滤，支持的通配符为：`%`（`>= 0`个的任意字符）、`_`（`== 1`个的任意字符）
+
+还可以使用`regexp`正则表达式过滤，写成`regexp binary`则表示不区分大小写
+
+`like`与`regexp`的区别在于，`like`需要完全匹配上才会返回，而`regexp`则只需要匹配词存在就会返回，也就是说，`like`是“匹配”，`regexp`是“搜索”
+----
+===语句的书写顺序===
+
+# `select`
+# `where`
+# `order by`
+# `limit`
+----
+<red>date</red> : 2012-03-12、2012-03-21、2012-12-03、2012-12-04
+----

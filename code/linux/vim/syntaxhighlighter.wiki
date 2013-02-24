@@ -1,0 +1,96 @@
+﻿%title 在Vimwiki中使用SyntaxHighlighter
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Vim]]
+==在Vimwiki中使用SyntaxHighlighter==
+----
+以前弄过一次，但没有成功，今天再次尝试终于`OK`了
+
+我使用的是鼎鼎大名的`SyntaxHighlighter`，下面是其在`Vimwiki`环境下的具体使用方法
+----
+===基本配置===
+
+`1`、上[http://alexgorbatchev.com/SyntaxHighlighter SyntaxHighlighter官网]下载最新版，当前最新为`3.0.83`
+
+`注`：本教程讲解的是`3.x`，但本博客实际使用的是`2.x`，两版本用法大同小异，从官网下载的安装包里面自带有简易的使用示例，参照改动即可
+
+`2`、解压下载到的压缩包，复制`scripts`和`styles`这两个文件夹到放置`HTML`文件的目录，也就是`Vimwiki`编译生成的`HTML`文件存放处
+
+`3`、在`Vimwiki`的头部模板的`head`标签中添加以下包含语句：（注意，为防止演示标签生效，这儿都故意加了空格，实际使用时不需要空格）
+{{{HTML
+<pre class="brush: html">
+< script type="text/javascript" src="%root_path%scripts/shCore.js"></ script >
+< link type="text/css" rel="stylesheet" href="%root_path%styles/shCoreDefault.css" />
+< script type="text/javascript">SyntaxHighlighter.all();</ script >
+</pre>
+}}}
+以上还只是加载了核心文件，至于想要高亮哪些编程语言还得另外指定包含文件，如要求高亮`JavaScript`则还需添加下面一条，其他依此类推：
+
+{{{HTML
+<pre class="brush: html">
+< script type="text/javascript" src="%root_path%scripts/shBrushJScript.js"></ script >
+</pre>
+}}}
+
+`4`、编辑`Vim`配置文件，在`Vimwiki`的`g:vimwiki_valid_html_tags`配置项中添加`pre`，例如我的配置为：
+
+{{{Vim
+<pre class="brush: vim">
+let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h4,h5,h6,pre,script'
+</pre>
+}}}
+
+完成以上步骤就算配置完成了，下面是使用方法
+----
+===使用方法===
+
+在需要贴程序代码的地方使用`pre`标签包围即可，具体如下：
+
+{{{
+< pre class="brush: js;">
+代码区域
+</ pre >
+}}}
+其中`brush`后的`js`代表高亮类型为`JavaScript`，可以任意指定为`SyntaxHighlighter`支持的语言
+
+`重要`：由于`Vimwiki`每按一次回车键会自动生成一个`< p >`标签，这样就破坏了代码，为此必须在`< pre >`最外面套上一层由三个大括号组成的“标签”，这样就不会因为回车的影响而破坏代码了
+
+`注意`：为阻止演示代码生效，我在`pre`标签前面加了空格，实际使用时不要有空格
+----
+===更换主题===
+
+在`styles`文件夹下有大量主题可供选用，要指定某个主题只需在头部模板文件中添加下面的语句，以`Django`主题为例：
+
+{{{HTML
+<pre class="brush: html">
+< link type="text/css" rel="Stylesheet" href="%root_path%styles/shThemeDjango.css" />
+</pre>
+}}}
+----
+===高亮示例===
+C/C++
+
+{{{C
+<pre class="brush: c;">
+#include <stdio.h>
+
+int
+main(void)
+{
+	printf("Hello, World!");
+
+	return 0;
+}
+</pre>
+}}}
+----
+===相关参考===
+下面两个文件分别是本页面的源文件以及本博客使用的模板，谨供参考
+
+为方便浏览器显示，我将两者的后缀都改成了`.txt`，使用时分别改为`.wiki`和`.html`即可
+
+`syntaxhighlighter.wiki`：[[syntaxhighlighter.txt|syntaxhighlighter.txt]]
+
+`header.html`：[[header.txt|header.txt]]
+----
+<red>date</red> : 2011-09-27、2011-10-17、2012-06-17、2012-06-19
+----

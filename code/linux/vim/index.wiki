@@ -1,0 +1,29 @@
+﻿%title Vim使用笔记
+
+[[../../../index|首页]] - [[../index|Linux]]
+==Vim使用笔记==
+----
+<center>
+[[my_vimrc|我的Vim配置文件]]
+----
+[[vim_one_year|使用Vim一周年纪念]]
+----
+[[vimwiki_primer|Vimwiki使用入门]]
+----
+[[vimwiki_tips|使用Vimwiki的建议]]
+----
+[[syntaxhighlighter|在Vimwiki中使用SyntaxHighlighter]]
+----
+[[zencoding|Zen Coding使用小记]]
+----
+[[snipMate|snipMate补全的相关设置]]
+----
+[[vim_gtk|使用Vim开发GTK+应用演示]]
+----
+[[vim_cmd|Vim命令拾遗]]
+----
+[[vims|Vim偶有所得]]
+----
+[[vimwiki_site|VimWiki站点收集]]
+</center>
+----

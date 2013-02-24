@@ -1,0 +1,134 @@
+snippet /       单行注释
+	// ${1}
+snippet //      多行注释
+	/* ${1}*/
+snippet -       分隔注释
+	// -------------------------------${1}
+snippet pa      包
+	package ${1}
+snippet pm      main包
+	package main${1}
+snippet im      导入单个包
+	import "${1}"
+snippet im.     导入多个包
+	import(
+	  "${1}"
+	  "${2}"${3}
+	)
+# 函数、复合结构
+snippet main    主函数
+	func main () {
+
+	  ${1}
+
+	}
+snippet f       函数
+	func ${1:f_name} (${2}) ${3} {
+
+	  ${4}
+
+	}
+snippet ff      匿名函数
+	func (${1}) ${2} {${3}}
+snippet str     结构体
+	type ${1:str_name} struct {
+	  ${2}
+	}
+# 流程控制
+snippet if      if
+	if ${1} {
+	  ${2}
+	}
+snippet elif    else if
+	else if ${1} {
+	  ${2}
+	}
+snippet el      else
+	else {
+	  ${1}
+	}
+snippet fo      for
+	for ${1} {
+	  ${2}
+	}
+snippet sw      switch
+	switch ${1} {
+	  ${2}
+	}
+snippet cs      case
+	case ${1}:
+	  ${2}
+snippet def     default
+	default:
+	  ${1}
+snippet fa      继续匹配
+	fallthrough${1}
+# 单个关键字
+snippet m       声明
+	make(${1})
+snippet re      返回
+	return ${1}
+snippet co      继续
+	continue${1}
+snippet br      中断
+	break ${1}
+snippet go      跳转
+	goto ${1}
+snippet ra      range
+	range ${1}
+snippet de      删除map中的元素
+	delete(${1}, ${2})
+snippet con     常量
+	const ${1}
+snippet con.    多个常量
+	const(
+	  ${1}
+	)
+# 数据类型
+snippet i8      int8
+	int8${1}
+snippet i16     int16
+	int16${1}
+snippet i32     int32
+	int32${1}
+snippet i64     int64
+	int64${1}
+snippet u8      uint8
+	uint8${1}
+snippet u16     uint16
+	uint16${1}
+snippet u32     uint32
+	uint32${1}
+snippet u64     uint64
+	uint64${1}
+snippet f32     float32
+	float32${1}
+snippet f64     float64
+	float64${1}
+snippet c64     complex64
+	complex64${1}
+snippet c128    complex128
+	complex128${1}
+snippet err     错误
+	error${1}
+# 输入输出
+snippet p       输出（不换行）
+	print(${1})
+snippet pl      输出（换行）
+	println(${1})
+snippet fp      Printf
+	fmt.Printf(${1})
+snippet fpl     Println
+	fmt.Println(${1})
+snippet fsp     Sprint
+	fmt.Sprint(${1})
+snippet ffp     Fprintf
+	fmt.Fprintf(${1})
+snippet v       定义单个变量
+	var ${1}
+snippet v.      定义多个变量
+	var(
+	  ${1}
+	)
+snippet .       :=
+	 := ${1}

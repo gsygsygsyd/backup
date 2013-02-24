@@ -1,0 +1,11 @@
+%title Emacs使用笔记
+
+[[../../../index|首页]] - [[../index|Linux]]
+==Emacs使用笔记==
+----
+<center>
+[[base|Emacs基本操作]]
+----
+[[mode|Emacs常用模式]] 
+</center>
+----

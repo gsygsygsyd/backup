@@ -1,0 +1,4 @@
+%title Awk
+
+[[../../../index|首页]] - [[../index|Bash]]
+==Awk==

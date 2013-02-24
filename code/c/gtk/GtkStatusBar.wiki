@@ -1,0 +1,76 @@
+﻿%title 状态栏GtkStatusBar
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==状态栏GtkStatusBar==
+----
+状态栏采用的是一种堆栈式的工作方式
+
+状态栏控件的指针需要在主函数外定义，而且要定义成静态的，方便其他函数调用和控制
+
+同时还需要在主函数外定义一个计数变量，用来控制表示状态栏中的信息数量
+
+通常还需要在主函数外定义三个辅助函数，分别是：
+
+# 进栈操作函数，比如：`On_Push_Clicked`
+# 出栈操作函数，比如：`On_Pop_Clicked`
+# 清零操作函数，比如：`On_Popped`
+
+状态栏自身拥有`text-popped`信号，在消息弹出时发生
+----
+===声明===
+`static GtkWidget * statusbar`
+
+`gint i = 0`
+----
+===新建===
+`statusbar = gtk_statusbar_new()`
+----
+===进栈操作函数===
+先定义一个字符数组充当消息缓冲区，然后调用状态栏的进堆函数处理消息缓冲区的内容
+
+每调用一次（亦即每压入一个消息），计数变量自加
+
+示例：
+{{{C
+void
+On_Push_Clicked(GtkButton * button, gpointer data)
+{
+	char message[1024];
+	i++;
+	sprintf(message, "第 %d 条消息", i);
+	gtk_statusbar_push(GTK_STATUSBAR(statusbar), i, message);
+}
+}}}
+----
+===出栈操作函数===
+每次执行前先检查状态栏堆栈中是否存在信息，只有存在时才调用状态栏的出栈函数处理状态栏堆栈中的内容
+
+每调用一次（亦即每弹出一个消息），计数变量自减
+
+示例：
+{{{C
+void
+On_Push_Clicked(GtkButton * button, gpointer data)
+{
+	if(i < 0) return;
+	gtk_statusbar_pop(GTK_STATUSBAR(statusbar), i);
+	i--;
+}
+}}}
+----
+===清零操作函数===
+本函数是用来给状态栏自身调用的回调函数，当状态栏堆栈中不存在消息时将计数变量清零
+
+示例：
+{{{C
+void
+On_Popped(GtkStatusbar * statusbar, guint id, const gchar * text)
+{
+	if(!statusbar->messages) i = 0;
+}
+}}}
+
+注意：`statusbar->`后面是`messages`，而不是`message`。这是`GTK+`状态栏结构体中定义好的一个属性
+----
+<red>date</red> : 2011-08-08
+----

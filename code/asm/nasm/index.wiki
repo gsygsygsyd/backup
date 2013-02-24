@@ -1,0 +1,4 @@
+%title Nasm汇编
+
+[[../../../index|首页]] - [[../index|Asm]]
+==Nasm汇编==

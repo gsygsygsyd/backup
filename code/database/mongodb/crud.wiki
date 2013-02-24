@@ -1,0 +1,47 @@
+%title 文档的增删改查
+
+[[../../../index|首页]] - [[../index|DataBase]] - [[index|MongoDB]]
+==文档的增删改查==
+----
+===文档的新建===
+
+单个插入：`db.foo.insert({"bar" : "baz"})`
+
+批量插入：一次批量插入只占单个的`TCP`请求，可以避免零碎请求带来的开销，减少插入时间
+
+如果在启动`MongoDB`服务器时加上`--objcheck`选项，则服务器就会在插入之前先检查文档结构的有效性（但这样做会牺牲性能）
+
+`MongoDB`在插入时并不会执行代码，所以传统的注入式攻击对`MongoDB`是无效的
+----
+===文档的删除===
+
+筛选删除：`db.foo.remove({"bar" : "baz"})`，后面的参数是筛选条件
+
+集合清空：`db.foo.remove()`，删除集合中所有的文档，但不删除集合本身，原有索引也将保留
+
+数据的删除是永久性的、不可逆的
+
+如果想加快删除速度，最好的办法是直接删除集合，然后再重建索引
+----
+===文档的更新===
+
+文档的更新操作是原子性的，若两更新同时执行，则先到达服务器的先执行，而最终结果以最后执行的那个更新操作为准
+
+常用的几个修改器
+# `$inc`：键值增加，键不存在则创建，只能用于整数、双精度浮点数等。如 `db.foo.update({"bar" : "baz"}, {"$inc" : {"num" : 1}})`
+# `$set`：键存在则修改，键不存在则创建。如 `db.foo.update({"bar" : "baz"}, {"$set" : {"name" : "Ruchee"}})`
+# `$unset`：删除键值对。如 `db.foo.update({"bar" : "baz"}, {"$unset" : {"name" : "Ruchee"}})`
+
+数组修改器
+# `$push`：键存在则向数组末尾插入元素，不存在则创建一个新的数组。如 `db.blog.posts.update({"title" : "A blog post"}, {$push : {"comments" : {"name" : "Ruchee", "email" : "my@ruchee.com"}}})`
+# `$addToSet`：避免重复添加。如 `db.user.update({"name" : "Ruchee"}, {"$addToSet" : {"emails" : "rucheecn@gmail.com"}})`
+# `$each`：与`$addToSet`结合，一次添加多个值。如 `db.user.update({"name" : "Ruchee"}, {"$addToSet" : {"emails" : {"$each" : ["my@ruchee.com", "rucheecn@gmail.com"]}}})`
+# `$pop`：从数组删除元素，`{$pop : {key : 1}}`是从末尾删除，而`{$pop : {key : -1}}}`是从头部删除
+# `$pull`：从数组中筛选性删除，凡匹配上的元素都将删掉
+
+特殊的`upsert`操作：只需给`update`的第三个参数赋值为`true`即表明这是个`upsert`操作
+
+`upsert`的特殊性在于，如果找到匹配项，则正常更新，如果找不到匹配项则把更新改为新建
+----
+<red>date</red> : 2012-03-30
+----

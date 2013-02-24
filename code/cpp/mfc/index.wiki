@@ -1,0 +1,4 @@
+%title MFC
+
+[[../../../index|首页]] - [[../index|C++]]
+==MFC==

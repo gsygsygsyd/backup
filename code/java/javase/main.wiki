@@ -1,0 +1,26 @@
+﻿%title main方法
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|JavaSE]]
+==main方法==
+----
+典型的`main`方法：
+{{{Java
+public class Hello{
+	public static void main(String[] args){
+		System.out.println("Hello, World!");
+	}
+}
+}}}
+----
+# `main`方法是在程序启动时由`JVM`调用的，所以要声明为`public`
+# `main`方法由`JVM`直接调用，没有生成类的任何实例，所以要声明为`static`
+# `main`方法在退出时，没有给出退出代码，所以返回类型要声明为`void`
+----
+事实上`main`方法并不是什么特殊的方法，只不过是其有符合`JVM`调用需要的修饰符，所以会在`JVM`启动时自动执行
+
+`main`方法一样可以重载，或者被其他函数调用，同时`main`方法还可以被子类继承
+
+总的说来，`main`方法除了会被`JVM`直接调用以外，它和其他普通方法没有区别
+----
+<red>date</red> : 2012-02-20
+----

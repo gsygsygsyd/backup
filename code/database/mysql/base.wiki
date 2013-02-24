@@ -1,0 +1,40 @@
+%title MySQL命令行操作
+
+[[../../../index|首页]] - [[../index|DataBase]] - [[index|MySQL]]
+==MySQL命令行操作==
+----
+===基本命令===
+
+数据库相关
+
+* `mysql -h 服务器主机名 -P 端口号 -u 用户名 -p`：使用密码登录数据库系统
+* `exit;`或`quit;`：退出本次登录
+* `show character set;`：查看`MySQL`支持的字符集
+* `show status;`：查看服务器状态信息
+* `show grants;`：显示授权用户的安全权限
+* `show errors;`：显示服务器错误
+* `show warning;`：显示服务器警告
+
+具体操作相关
+
+* `source ./xxx/yyy/zzz.sql;`：执行外部`SQL`文件
+* `show databases;`：显示所有数据库
+* `create database 数据库名;`：新建数据库
+* `use 数据库名;`：指定对某个数据库进行操作
+* `show tables;`：显示当前数据库所有的表格
+* `show columns from 表名;`：查看指定表的结构（简写法为 `describe 表名;`，更简单的写法为 `desc 表名;`）
+
+`-h localhost`相当于`--host=localhost`，`-u ruchee`相当于`--user=ruchee`，`-p`相当于`--password`
+
+如果在登录`MySQL`时加上了`--xml`选项，则查询数据时将输出为`XML`形式
+
+`MySQL`的每条语句和命令都必须以一个分号结束，命令和语句不区分大小写
+----
+===用户管理===
+
+* `create user 'myname'@'localhost' identified by 'mypasswd'`：创建用户`myname`，使用密码`mypasswd`
+* `grant all privileges on mydb.* to 'myname'@'localhost'`：将数据库`mydb`上的所有权限赋予`myname`
+* `grant all privileges on mydb.* to 'myname'@'localhost' identified by 'mypasswd'`：创建用户、赋予权限，一步到位
+----
+<red>date</red> : 2012-03-11、2012-03-12、2012-03-21、2012-06-22、2012-10-07、2012-12-03
+----

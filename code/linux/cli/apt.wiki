@@ -1,0 +1,24 @@
+%title apt包管理器
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|CLI]]
+==apt包管理器==
+----
+`apt-get`的常用选项
+
+* `update`：下载更新软件包列表
+* `install`：安装新的软件包
+* `remove`：卸载已安装的软件包
+* `autoremove`：删除系统没有用到的软件包
+* `clean`：清除硬盘里的缓冲存储
+* `autoclean`：清除缓冲存储里旧版本的软件包
+* `source`：下载源代码
+* `upgrade`：升级系统
+* `dist-upgrade`：将整个系统升级到一个新的发布版
+* `check`：检查系统的完整性
+
+`apt-cache search appname`：搜索软件包
+
+`apt`源配置文件的路径为`/etc/apt/sources.list`，下载的软件包缓存位置路径为`/var/cache/apt/archives`
+----
+<red>date</red> : 2012-04-29、2012-08-17
+----

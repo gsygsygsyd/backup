@@ -1,0 +1,9 @@
+%title 查找算法
+
+[[../../../index|首页]] - [[../index|Algo]]
+==查找算法==
+----
+<center>
+[[binary|二分查找]]
+</center>
+----

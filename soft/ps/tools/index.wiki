@@ -1,0 +1,9 @@
+﻿%title Photoshop工具箱
+
+[[../../../index|首页]] - [[../../index|Soft]] - [[../index|PS]]
+==Photoshop工具箱==
+----
+<center>
+[[paintbrush|画笔]]
+</center>
+----

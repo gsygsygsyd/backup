@@ -1,0 +1,207 @@
+﻿%title 输入输出
+
+[[../../../index|首页]] - [[../index|Perl]] - [[index|Base]]
+==输入输出==
+----
+`Perl`可谓简写高手，什么东西都喜欢简单化（呵呵，`Perl`之父`Larry`很强啊`^-^`）
+
+下面是一段获取标准输入并即时输出的代码，演示了一般写法和简写法：<br>
+{{{Perl
+<pre class='brush: perl'>
+# 一般写法
+while (defined($line = <STDIN>)){
+	print "You have inputed $line";
+}
+
+# 简写如下
+while (<STDIN>){
+	print "You have inputed $_";        # 又见“$_”
+}
+
+# 用foreach循环，这将会等待所有信息输入完毕后再一次性输出
+foreach (<STDIN>){
+	print "You have inputed $_";
+}
+</pre>
+}}}
+
+===钻石操作符===
+`<>`：很有意思哦，`Larry`的宝贝女儿命名的`^-^`
+
+下面是使用`<>`的标准形式以及简写形式：<br>
+{{{Perl
+<pre class='brush: perl'>
+# 标准形式
+while (defined($line = <>)){
+	chomp($line);               # 去掉行尾的换行符
+	print "$line\n";
+}
+
+# 简写形式
+while (<>){
+	chomp;
+	print "$_\n";
+}
+</pre>
+}}}
+假设上述程序代码命名为`app.pl`（标准形式和简写形式任取其一），则如果使用这样的格式执行：`perl app.pl abc.txt abc.cpp`，将输出`abc.txt`文件的全部内容，后面再继续输出`abc.cpp`文件的全部内容，参数个数是不限的
+
+`<>`会首先读取第一个参数指定的文件，读完以后自动跳到第二个参数指定的文件，直到读完所有指定文件为止，每个文件读取的间隙是没有空格的，也就是说是无缝读取的
+
+如果某个指定的文件不存在，`Perl`会输出警告信息，然后自动跳转到下一个文件继续执行
+
+`钻石操作符`事实上不会检查调用参数，它的参数来自`@ARGV`数组，如果得到的是一个空列表则自动改用标准输入流，否则就使用`@ARGV`数组里的文件列表，可以手动修改`@ARGV`数组的值
+
+===标准输出===
+一般说来，如果数组里的字符串包含换行符，那么直接使用`print @array;`<br>
+如果不包含换行符则使用`print "@array";`
+
+`print <>;`：基本相当于`Linux`的`cat`命令<br>
+`print sort <>;`：基本相当于`Linux`的`sort`命令
+
+几个容易混淆的地方<br>
+# `print (2 + 3);`：输出5，返回值为1，表示输出成功
+# `print (2 + 3) * 4;`：输出5，返回值为4（1乘以4）
+# `print ((2 + 3) * 4);`：输出20，返回值为1
+
+`print`不使用括号时是列表操作符，使用括号就成了函数调用
+
+`Perl`的“潜规则”：<red>如果看起来像函数调用，那它就是函数调用</red>
+
+===格式化输出===
+`printf`和C语言的printf使用类似，具体格式如下：<br>
+`printf "Hello, %s, you age is %d\n", $name, $age;`
+
+要输出百分号，可使用`\%`或`%%`（小骆驼书说只能使用`%%`，但我使用`\%`没发现异常）
+
+也可以借用数组来动态格式化输出数据：<br>
+{{{Perl
+<pre class='brush: perl'>
+# 第一种写法
+@items = qw! abc look me !;
+$format = "The items are : \n".("%s\n" x @items);   # 这儿的@items是标量，值为3
+
+printf $format, @items;
+
+# 第二种写法
+@items = qw! abc look me !;
+printf "The items are : \n".("%s\n" x @items), @items;
+
+# 上述两段代码都将输出以下内容
+# The items are :
+# abc
+# look
+# me
+</pre>
+}}}
+
+===文件句柄===
+建议全部大写，以免与保留字混淆<br>
+被`Perl`保留的六个特殊文件句柄：`STDIN`、`STDOUT`、`STDERR`、`DATA`、`ARGV`、`ARGVOUT`
+
+文件句柄的打开<br>
+# `open CONFIG, "abc.txt";`：第一个参数是自定义句柄名，第二个参数是所指向的文件名
+# `open CONFIG, "<abc.txt";`：小于号声明此文件只用于输入
+# `open BEDROCK, ">abc.txt";`：大于号声明此文件只用于输出
+# `open LOG, ">>logfile";`：两个大于号声明以追加方式写入
+
+`Perl 5.6`以后的版本支持三个参数的写法，如：`open CONFIG, "<", "abc.txt";`
+
+文件如果打开成功会返回真，失败则返回假，可以借用这个返回值来判断读写是否有误
+
+文件句柄的关闭：`close CONFIG;`
+
+多次打开同名文件句柄时，`Perl`会自动关闭原先的句柄，程序结束时，`Perl`也会自动关闭所有已打开的文件句柄
+
+可以使用`die`输出错误提示信息：<br>
+{{{Perl
+<pre class='brush: perl'>
+if(@ARGV < 2){
+	die "$0 参数不足\n";
+}
+</pre>
+}}}
+上述代码的含义是：如果运行此程序时没有带参数（程序名本身就是第一个参数，所以此处是`< 2`），那就中止程序的执行，并返回由`die`输出的提示信息，其中`$0`代表程序名。<br>
+另外，`$!`里会默认存放可读的系统出错信息<br>
+如果`die`输出行末尾没有加换行符`\n`，则错误提示信息里会有出错代码的行号；如果加了换行符，则不会提示出错行号
+
+`warn`使用方法和`die`类似，但它输出的是警告信息，且不会中止程序的执行
+
+===文件句柄的使用===
+以获取`Linux`密码文件内容为例：<br>
+{{{Perl
+<pre class='brush: perl'>
+if(!open PASSWD, "/etc/passwd"){
+	die "你登录了吗？($!)";
+}
+while(<PASSWD>){
+	...
+}
+</pre>
+}}}
+使用钻石运算符包含句柄名，这就会以行输入的模式读取文件句柄指定文件的内容
+
+下面是使用`print`和`printf`向文件句柄写入内容（只适用于写入模式和追加模式）：<br>
+{{{Perl
+<pre class='brush: perl'>
+# 使用print
+print NAME "My name is Ruchee\n";
+
+# 使用printf
+printf AGE "My age is %d\n", $age;
+</pre>
+}}}
+将句柄名直接加在`print`或`printf`的后面，其后不需要加逗号
+
+===改变默认文件输出句柄===
+使用`select`可以改变默认的输出句柄，示例如下：<br>
+{{{Perl
+<pre class='brush: perl'>
+open NAME, ">>name.txt";     # 以追加模式打开一个名为NAME的句柄，指向文件name.txt
+select NAME;                # 将默认的输出定位到NAME句柄
+
+print "My name is Ruchee\n";
+printf "My age is %d\n", $age;
+</pre>
+}}}
+这样，所有原先的标准输出就会被送入指定的文件<br>
+如果要恢复标准输出，则使用语句：`select STDOUT;`
+
+`$|`：将此特殊变量设为`1`会停用输出缓存，使得每一次输出都即时显示
+
+===复用标准文件句柄===
+可以通过复用标准句柄，将信息送往指定文件，如下面的代码就是把标准出错输出定位到了自己指定的文件：<br>
+{{{Perl
+<pre class='brush: perl'>
+if(!open STDERR, ">>/home/ruchee/.error_log"){
+	die "句柄创建失败：($!)";
+}
+</pre>
+}}}
+如果没能复用成功，`Perl`会自动帮你找回原先的默认句柄（在没有修改特殊变量`$^F`的前提下）
+
+===使用say进行输出===
+`say`函数是从开发中的`Perl 6`借用来的，使用时需要加上`use 5.010;`声明语句
+
+`say`和`print`基本上是一样的，只是它会在每一行输出的末尾自动加上一个换行符<br>
+{{{Perl
+<pre class='brush: perl'>
+$name = "Ruchee";
+
+# 以下三种写法等价
+print "$name\n";
+print $name, "\n";
+say $name;
+</pre>
+}}}
+
+===本章拾遗===
+用`Perl`实现一个`tac`工具（反序输出文件内容）只需要一条语句：<br>
+`print reverse <>;`
+
+输出语句中变量内插的方法：`printf "%${width}s\n", $string`，含义是以宽度为`width`的格式输出目标字符串<br>
+也可以写成：`printf "%".$width."s\n", $string;`<br>
+还可以借用C语言的格式：`printf "%*s\n", $width, $string;`
+----
+<red>date</red> : 2011-05-19、2011-05-21、2011-11-16
+----

@@ -1,0 +1,11 @@
+%title 其他语言和技术
+
+[[../../index|首页]]
+==其他语言和技术==
+----
+<center>
+<h2>
+[[regex/index|RegEx]]
+</h2>
+</center>
+----

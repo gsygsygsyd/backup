@@ -1,0 +1,17 @@
+﻿%title JavaSE
+
+[[../../../index|首页]] - [[../index|Java]]
+==JavaSE==
+----
+<center>
+[[base|Java基础拾遗]]
+----
+[[object|面向对象编程]]
+----
+[[main|main方法]]
+----
+[[error|Java易错点]]
+----
+[[javadoc|文档注释]]
+</center>
+----

@@ -1,0 +1,89 @@
+﻿%title Gas跨平台汇编的方法
+
+[[../../../index|首页]] - [[../index|Asm]] - [[index|Gas]]
+==Gas跨平台汇编的方法==
+----
+===环境综述===
+
+Windows下用的最多的汇编器是`MASM`，讲解汇编的教材也基本上都是介绍的这工具，但我就偏偏不愿意用`MASM`，一则不能跨平台，二则没有一个通用而强大的调试器
+
+考虑过`NASM`，但苦于只有手册没有教材，难于上手，好不容易在图书馆搜得一本《汇编语言程序设计》（机械工业出版社，Richard Blum著），欣喜若狂，因为该书讲述的就是`Gas` + `GDB`汇编，正合我意
+
+但这本书只介绍了在`Linux`下使用`Gas`的方法，没有说在Windows下怎么用，由于平时离不开Windows，而且还得老是开机关机选操作系统，太麻烦。特意安装了`Cygwin`，谁想其他`Linux`功能都正常，偏就书上的示例在这下面无法正常编译和运行
+
+哈哈，现在终于找到解决方法了
+
+首先确保机上安装了`MinGW`编译器，并设置好了`path`环境变量
+----
+===Gas在Win下语法的差异===
+
+`1`、`入口标志`：`Linux`下写成`main`，`Win`下要加下划线前缀，写成`_main`（为了图方便，我一般都直接用`GCC`命令进行编译的，没有显式使用`as`和`ld`命令了，所以这儿是`_main`而不是`_start`）
+
+`2`、`C库函数`：`Linux`下写成如`printf`，`Win`下要加下划线前缀，写成如`_printf`
+
+`3`、`退出指令`：`Linux`下一般依次使用`movl $0, %ebx`、`movl $1, %eax`、`int $0x80`这三条指令，`Win`下改写为`pushl $0`、`call _exit`就行了
+
+完整的示例程序如下，功能是查看CPU厂商ID字符串。首先是`Linux`下的写法：
+
+{{{Asm
+.section .data
+output:
+	.ascii "The processor Vendor ID is 'xxxxxxxxxxxx'\n"
+
+.section .text
+
+.globl main
+main:
+	movl $0, %eax
+	cpuid
+	movl $output, %edi
+	movl %ebx, 28(%edi)
+	movl %edx, 32(%edi)
+	movl %ecx, 36(%edi)
+	movl $4, %eax
+	movl $1, %ebx
+	movl $output, %ecx
+	movl $42, %edx
+	int $0x80
+
+	movl $1, %eax
+	movl $0, %ebx
+	int $0x80
+}}}
+
+`Win`下对应的写法为：
+
+{{{Asm
+.section .data
+output:
+	.ascii "The processor Vendor ID is 'xxxxxxxxxxxx'\n"
+
+.section .text
+
+.globl _main                # 修改main为_main
+_main:
+	movl $0, %eax
+	cpuid
+	movl $output, %edi
+	movl %ebx, 28(%edi)
+	movl %edx, 32(%edi)
+	movl %ecx, 36(%edi)
+
+	# movl $4, %eax         # 这儿注释掉了Linux原有的输出方法
+	# #movl $1, %ebx
+	# movl $output, %ecx
+	# movl $42, %edx
+	
+	pushl $output           # 把Linux的输出方法改成调用C库函数来输出
+	call _printf            # 调用库函数时前面要加下划线前缀
+
+	pushl $0                # 换成Win下的退出指令
+	call _exit
+}}}
+
+最后直接使用`GCC`命令进行编译，加`-gstabs`选项是给可执行文件加上调试信息：`gcc -gstabs -o app app.s`
+
+运行可执行文件：`Linux`下是`./app`，`Win`下是`app`
+----
+<red>date</red> : 2011-05-13、2012-06-19
+----

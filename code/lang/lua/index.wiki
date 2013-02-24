@@ -1,0 +1,11 @@
+%title Lua
+
+[[../../../index|首页]] - [[../index|Lang]]
+==Lua==
+----
+<center>
+[[vm|Lua虚拟机]]
+----
+[[base|基础语法拾遗]]
+</center>
+----

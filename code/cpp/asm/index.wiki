@@ -1,0 +1,4 @@
+%title Asm
+
+[[../../../index|首页]] - [[../index|C++]]
+==Asm==

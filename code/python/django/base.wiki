@@ -1,0 +1,31 @@
+﻿%title 命令选项
+
+[[../../../index|首页]] - [[../index|Python]] - [[index|Django]]
+==命令选项==
+----
+===Django架构===
+
+`Django`应用的运行主要依赖四个组成部分：
+
+# `urls`：指定什么样的`URL`关联什么样的视图函数
+# `models`：描述数据的组织结构
+# `templates`：描述页面如何显示
+# `views`：负责建立业务逻辑，组合数据和模板，然后返回给`urls`
+
+相对于传统的`MVC`模式，`Django`对应的是`MTV`模式。模型是不变的，但模板却充当了视图的角色，视图充当了控制器的角色
+----
+===Django命令===
+
+# `django-admin.py startproject projectname`：新建`Web`工程
+# `manage.py startapp appname`：新建`Django`应用
+# `manage.py runserver`：启动服务器，也可以在后面跟自定义的端口或`IP`地址，如：`8080`、`0.0.0.0:8080`
+# `manage.py shell`：在工程目录下启动交互式`shell`
+# `manage.py dbshell`：根据配置文件设置的数据库类型，自动选择合适的命令对当前项目的数据库进行操作
+
+# `manage.py validate`：验证模型是否有效
+# `manage.py sql appname`：查看该应用模型所对应的`SQL`语句
+# `manage.py sqlall appname`：查看更为完整的`SQL`语句
+# `manage.py syncdb`：向数据库写入数据模型。此命令只能对模型进行写入操作，不能修改和删除
+----
+<red>date</red> : 2011-07-23、2012-04-14、2012-04-15、2012-04-19、2012-04-28
+----

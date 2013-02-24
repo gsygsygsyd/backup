@@ -1,0 +1,62 @@
+%title 常用命令
+
+[[../../../index|首页]] - [[../index|Ruby]] - [[index|RoR]]
+==常用命令==
+----
+===rvm命令===
+
+# `rvm list known`：列出可以使用`rvm`安装的软件包
+# `rvm install 1.9.3`：安装指定版本的`Ruby`
+# `rvm use 1.9.3`：使用指定版本的`Ruby`
+# `rvm use 1.9.3 --default`：选定作为默认版本
+# `rvm list`：列出已安装的`Ruby`版本
+# `rvm remove 1.9.3`：卸载指定版本的`Ruby`
+----
+===gem命令===
+
+# `gem list`：列出所有已安裝的模块
+# `gem list rails`：列出所有已安装的`Rails`
+# `gem update --system`：升級`RubyGems`到最新版本
+# `gem update`：更新所有已安裝的`Gems`
+# `gem update gem_name`：更新指定模块到最新版本
+# `gem install gem_name`：安裝指定模块
+# `gem install gem_name --no-ri --no-rdoc`：安装模块时不安装对应的文档
+# `gem install rails --version 3.2.2`：安装指定版本的`Rails`
+# `gem uninstall gem_name`：反安裝模块
+----
+===rails命令===
+
+# `rails _3.2.2_ new demo`：使用指定版本的`Rails`创建项目
+# `rails new demo --skip-bundle`：创建项目时暂时不执行更新操作
+# `rails new demo -d=mysql`：创建`MySQL`版项目（不指定则默认使用`SQLite3`）
+# `rails server webrick`：使用指定服务器运行`Rails`项目
+# `rails console`：打开项目主控制台
+----
+===rails项目内命令===
+
+# `rails g scaffold product title:string description:text`：生成脚手架
+# `rails g controller say hello goodbye`：创建控制器
+# `rails g model product title:string description:text`：创建模型
+# `rails g migration mgt_name`：创建`Migration`档案
+----
+===rake命令===
+
+# `rake -T`：列出所有`rake`支持的命令
+# `rake db:migrate`：执行数据迁移
+# `rake db:rollback`：数据回滚
+# `rake test`：执行测试
+# `rake db:seed`：使用测试数据进行填充
+# `rake doc:rails`：创建自己的`Rails API`文档
+----
+===更换镜像===
+
+淘宝`RubyGems`镜像地址：`http://ruby.taobao.org/`，使用方式如下
+
+# `gem sources -a http://ruby.taobao.org/`：增加新镜像
+# `gem sources -r http://rubygems.org/`：移除原有镜像
+# `gem sources -l`；查看镜像列表（必须确保只有淘宝一个镜像地址）
+
+对于`Rails`应用，也可以将`Gemfile`的第一行改写为`source 'http://ruby.taobao.org/'`，然后执行`bundle install`进行更新
+----
+<red>date</red> : 2012-03-06、2012-03-09、2012-03-19、2012-03-20
+----

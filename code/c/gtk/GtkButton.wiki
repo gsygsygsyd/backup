@@ -1,0 +1,20 @@
+﻿%title 按钮控件GtkButton
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==按钮控件GtkButton==
+----
+===声明===
+`GtkWidget * button`
+----
+===新建===
+`gtk_button_new`：不显示内容的空按钮
+
+`gtk_button_new_with_label("按钮上显示的文字")`
+
+`gtk_button_new_with_mnenonic("按钮上显示的文字")`：其中在字母前面加上一个下划线则表示以该字母为快捷键
+
+`gtk_button_new_from_stock(资源选项)`：从系统自带资源项目中创建按钮<br>
+可选项有`GTK_STOCK_OK`、`GTK_STOCK_YES`、`GTK_STOCK_NO`、`GTK_STOCK_SAVE`等
+----
+<red>date</red> : 2011-08-02
+----

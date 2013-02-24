@@ -1,0 +1,29 @@
+﻿%title Haskell常用内置函数
+
+[[../../../index|首页]] - [[../index|Haskell]] - [[index|Base]]
+==Haskell常用内置函数==
+----
+`succ`：接受一个数字或一个字符，返回该参数的后面一个值。如 `succ 'b'`得`'c'`
+
+`pred`：和`succ`相反，返回的是目标参数的前面一个值。如 `pred 'b'`得`'a'`
+
+`mod`：取余函数，常用中缀形式。如 `mod 5 2`得`1`
+
+`odd`：判断是否为奇数，奇数返回`True`，偶数返回`False`。如 `odd 3`得`True`
+
+`even`：判断是否为偶数，偶数返回`True`，奇数返回`False`。如 `even 2`得`True`
+
+`compare`：比较两可以进行比较的参数，大于返回`GT`，小于返回`LT`，等于返回`EQ`。如 `compare 3 2`得`GT`
+
+`show`：接受一个参数，并将其返回为字符串。如 `show 2.5`得`"2.5"`
+
+`read`：与`show`相反，功能是从字符串中剥离出原始数据。如 `read "3" - 1`得`2`；如果只有一个参数，则需要加上类型注释，否则编译器将无法正确识别。如 `read "[1, 2, 3]"` `::` `[Float]`得`[1.0, 2.0, 3.0]`
+
+`maxBound`：返回目标参数的上限。如 `maxBound` `::` `Bool`得`True`
+
+`minBound`：返回目标参数的下限。如 `minBound` `::` `Bool`得`False`
+
+`fromIntegral`：接受一个整数做参数，返回一个更通用的数字，这多用于解决整数和浮点数的类型不匹配问题。如 `fromIntegral (length [1, 2, 3]) + 2.1`得`5.1`
+----
+<red>date</red> : 2012-01-19、2012-01-20
+----

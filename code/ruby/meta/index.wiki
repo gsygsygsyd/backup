@@ -1,0 +1,9 @@
+%title 元编程
+
+[[../../../index|首页]] - [[../index|Ruby]]
+==元编程==
+----
+<center>
+[[ruby|Ruby精要]]
+</center>
+----

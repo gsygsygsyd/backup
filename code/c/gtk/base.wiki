@@ -1,0 +1,79 @@
+﻿%title GTK+基本组件解说
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==GTK+基本组件解说==
+----
+===常见信号===
+# `key_press_event`：在按键时发生
+# `foucs`：在获得焦点时发生
+# `delete_event`：在窗口关闭时发生
+# `destroy`：销毁窗口时发生
+# `activate`：选中菜单项时发生
+# `changed`：切换菜单项时发生
+# `text-popped`：状态栏消息弹出时发生
+# `button_press_event`：几乎每一个继承自`GtkWidget`的控件都有此信号，其在鼠标按下时发生
+----
+===容器类型===
+# `只能容纳一个控件的容器`：窗口`GtkWindow`、框架`GtkFrame`、视区`GtkViewPort`、按钮`GtkButton`
+# `同时容纳多个控件的容器`：盒状容器`GtkBox`、格状容器`GtkTable`、按钮盒`GtkButtonBox`、分割面板`GtkPanel`、固定布局`GtkFixed`、工具栏`GtkToolbar`
+
+盒状容器又分：纵向盒状容器`GtkVBox`、横向盒状容器`GtkHBox`
+----
+===容器设置项===
+`gtk_container_add(GTK_CONTAINER(容器), 控件)`
+
+将某控件添加到目标容器中
+
+`gtk_container_set_border_width(GTK_CONTAINER(容器), 宽度)`
+
+设定目标容器边框的宽度
+----
+===元素的显示===
+`gtk_widget_show(容器或控件)`：显示单个容器或控件
+
+`gtk_widget_show_all(容器)`：显示目标容器里的所有元素
+----
+===图像控件===
+直接从图像文件创建`gtk_image_new_from_file`，只需唯一的一个参数：所调用图像的文件名，返回结果是该图像控件的指针
+
+示例：`image = gtk_image_new_from_file("ruchee.jpg");`
+----
+===g_signal_connect格式===
+此信号绑定函数有四个参数
+
+# `连接对象`：发出信号的控件的指针，需要用`G_OBJECT`宏转换
+# `信号名称`：指定连接对象上发生的信号名称，需要使用双引号引起来
+# `回调函数`：信号发生时调用的函数，需要用`G_CALLBACK`宏转换，只需写函数的名称
+# `传递参数`：类型为`gpointer`，只能传递一个参数，没有则为`NULL`，多个则需要预先定义为一个结构，然后将结构作为一个整体来传递
+----
+===回调函数格式===
+用户传递的参数必须为`gpointer`类型
+
+# `对象指针`：这是必须的第一个参数，指代使用此回调函数的控件指针
+# `事件类型`：这是可选的第二个参数，指代调用此回调函数时发生的事件类型
+# `用户参数`：用户传递的参数，可以有多个，必须为`gpointer`类型
+
+回调函数示例：<br>
+{{{C
+gboolean
+On_Delete_Event(GtkWidget * widget, GdkEvent * event, gpointer data){
+	gtk_main_quit();
+	return FALSE;
+}
+}}}
+调用示例：<br>
+{{{C
+g_signal_connect(G_OBJECT(window), "delete_event",
+		G_CALLBACK(On_Delete_Event), NULL);
+}}}
+
+回调函数返回值为`TRUE`表示不引发`destroy`信号，以使程序继续运行<br>
+回调函数返回值为`FALSE`表示要求引发`destroy`信号，终止程序的执行
+
+一个控件可以有多个回调函数，根据它们的连接次序依次执行
+
+宏`g_signal_connect_swapped`与`g_signal_connect`格式完全一样，不同之处在于：<br>
+`g_signal_connect_swapped`一般放在`g_signal_connect`之后，表示执行完前一回调函数后继续执行此回调函数
+----
+<red>date</red> : 2011-06-17、2011-08-01
+----

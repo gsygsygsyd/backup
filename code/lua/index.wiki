@@ -1,0 +1,13 @@
+%title Lua笔记
+
+[[../../index|首页]]
+==Lua笔记==
+----
+<center>
+<h2>
+[[base/index|语言基础]]
+----
+[[c_lua/index|C混合编程]]
+</h2>
+</center>
+----

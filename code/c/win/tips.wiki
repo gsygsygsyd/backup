@@ -1,0 +1,9 @@
+﻿%title 注意事项
+
+[[../../../index|首页]] - [[../index|C/C++]] - [[index|Windows]]
+==注意事项==
+----
+`Windows`编程中，常用`TCHAR`代替`char`，用`wsprintf`代替`sprintf`，这多用于解决复杂的字符集问题
+----
+<red>date</red> : 2012-01-30
+----

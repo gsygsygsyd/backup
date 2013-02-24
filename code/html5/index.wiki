@@ -1,0 +1,11 @@
+﻿%title HTML5笔记
+
+[[../../index|首页]]
+==HTML5笔记==
+----
+<center>
+[[html5/index|HTML5元素]]
+----
+[[javascript/index|JavaScript]]
+</center>
+----

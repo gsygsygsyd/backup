@@ -1,0 +1,13 @@
+﻿%title Gas汇编
+
+[[../../../index|首页 ]] - [[../index|Asm]]
+==Gas汇编==
+----
+<center>
+[[across_os|Gas跨平台汇编的方法]]
+----
+[[tools|Gas汇编必备工具集]]
+----
+[[base|Gas汇编基础]]
+</center>
+----

@@ -1,0 +1,15 @@
+%title 专业课程
+
+[[../../index|首页]]
+==专业课程==
+----
+<center>
+[[data_structure/index|数据结构]]
+----
+[[compose/index|计算机组成]]
+----
+[[network/index|计算机网络]]
+----
+[[operating_system/index|操作系统]]
+</center>
+----

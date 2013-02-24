@@ -1,0 +1,35 @@
+﻿%title Eclipse & MyEclipse
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Tools]]
+==Eclipse & MyEclipse==
+----
+===常用快捷键===
+
+# `Alt + /`：完成单词
+# `Ctrl + Z`：反悔
+# `Ctrl + D`：删除当前行
+# `Ctrl + Shift + Delete`：删除至行末
+# `Shift + Home`：跳到行首
+# `Shift + End`：跳到行尾
+# `Ctrl + Alt + ↓`：复制当前行到下一行
+# `Ctrl + Alt + ↑`：复制当前行到上一行
+# `Alt + ↓`：将当前行下移
+# `Alt + ↑`：将当前行上移
+# `Ctrl + ↓`：向下滚屏
+# `Ctrl + ↑`：向上滚屏
+# `Ctrl + L`：定位到某行
+# `Ctrl + Enter`：在当前行的下一行插入空行
+# `Shift + Ctrl + Enter`：在当前行的上一行插入空行
+# `Ctrl + 单击`：跟踪变量的定义
+# `Shift + Ctrl + O`：自动导入包
+# `Shift + Ctrl + F`：代码格式化
+# `Shift + Ctrl + S`：保存全部文件
+----
+===代码重构===
+
+如果编码中途发现有很多相同的代码可以重用，千万不要去进行复制粘贴，使用`MyEclipse`提供的代码重构功能即可
+
+首先选中需要重用的代码，然后右键，选择`Refactor`，再选`Extract Method`，完成点`OK`即可实现重构
+----
+<red>date</red> : 2012-02-22、2012-02-27
+----

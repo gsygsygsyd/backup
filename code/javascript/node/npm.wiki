@@ -1,0 +1,26 @@
+%title npm包管理器
+
+[[../../../index|首页]] - [[../index|JS]] - [[index|Node]]
+==npm包管理器==
+----
+===环境设置===
+
+环境变量
+
+# `path`：`C:\Program Files\nodejs;C:\Documents and Settings\Ruchee\Application Data\npm`
+# `NODE_PATH`：`C:\Documents and Settings\Ruchee\Application Data\npm\node_modules`
+
+`npm-cache`储存有所有下载过的模块，在没联网的情况下，`npm`将使用这个目录已有的文件进行安装模块、获取依赖包等操作
+----
+===常用命令===
+
+# `npm install -g module_name`：安装全局模块
+# `npm install -g module_name@1.42`：安装指定版本号的模块
+# `npm install -l`：安装依赖
+# `npm ls -g`：查看所有安装的全局模块
+# `npm ls -gl`：查看更为详细的信息
+# `npm update -g`：升级所有模块
+# `npm uninstall -g module_name`：卸载模块
+----
+<red>date</red> : 2012-06-08
+----

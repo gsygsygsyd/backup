@@ -1,0 +1,4 @@
+%title IPython
+
+[[../../../index|首页]] - [[../index|Python]] - [[index|Tools]]
+==IPython==

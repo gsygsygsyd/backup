@@ -1,0 +1,18 @@
+%title Languages and Skills
+
+[[../index|首页]]
+==Languages and Skills==
+----
+<center>
+<h2>
+[[go/index|Go]]
+[[php/index|PHP]]
+[[javascript/index|JS]]
+----
+[[linux/index|Linux]]
+[[tools/index|Tools]]
+[[algo/index|Algo]]
+[[database/index|Database]]
+</h2>
+</center>
+----

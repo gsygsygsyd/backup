@@ -1,0 +1,13 @@
+%title 使用Vim开发GTK+应用演示
+
+[[../../../index|首页]] - [[../index|Tools]] - [[index|Vim]]
+==使用Vim开发GTK+应用演示==
+----
+图片有`800`多`KB`，请耐心等待加载 `^-^`
+----
+<center>
+[[vim_gtk.gif|vim_gtk.gif]]
+</center>
+----
+<red>date</red> : 2012-06-15
+----

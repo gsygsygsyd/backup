@@ -1,0 +1,81 @@
+%title 开发环境的搭建
+
+[[../../../index|首页]] - [[../index|PHP]] - [[index|Zend]]
+==开发环境的搭建==
+----
+===软件版本===
+
+这儿主要讲解的是`Windows`下使用`WampServer`套件搭建`ZendFramework`开发环境的过程，下面是具体的版本对照
+
+# 操作系统：`Win7 SP1`
+# `WampServer`版本：`2.2e`，搭载了`Apache 2.2.22`、`PHP 5.3.13`和`MySQL 5.5.24`
+# `ZendFramework`版本：`1.12.0`
+
+`WampServer`的安装这儿就不介绍了，这儿假设你安装到了`G:\WampServer`，装好后最好设置下`MySQL`管理员帐号的密码，并确保`WampServer`保持“服务器在线”状态，也就是说桌面右下角的标志要是绿色的
+----
+===步骤1 设置虚拟域名绑定===
+
+用任意编辑器打开`C:\Windows\System32\drivers\etc`目录下的`hots`文件，在文件最下边添加这么一行：`127.0.0.1  zend.edu`，这样访问域名`zend.edu`就会跳转到本地测试地址
+----
+===步骤2 添加虚拟主机===
+
+单击右下角`WampServer`的绿色图标，在`Apache` => `Apache模块`中，勾选`rewrite_module`
+
+用任意编辑器打开`G:\WampServer\bin\apache\apache2.2.22\conf`目录下的`httpd.conf`文件，找到`#Include conf/extra/httpd-vhosts.conf`这么一行，将最前面的`#`号删掉
+
+然后打开`G:\WampServer\bin\apache\apache2.2.22\conf\extra`目录下的`httpd-vhosts.conf`文件，在最后添加以下内容：
+{{{XML
+<pre class='brush: xml'>
+<VirtualHost *:80>
+    DocumentRoot "G:/WampServer/www/ZendFramework/zendedu/public"
+    ServerName zend.edu
+    ErrorLog "G:/WampServer/logs/zend.edu-error.log"
+    CustomLog "G:/WampServer/logs/zend.edu-access.log" common
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "G:/WampServer/www"
+    ServerName localhost
+    ErrorLog "G:/WampServer/logs/localhost-error.log"
+    CustomLog "G:/WampServer/logs/localhost-access.log" common
+</VirtualHost>
+</pre>
+}}}
+
+这添加的第一项是新建了一个`ZendFramework`的虚拟主机，我们做`Zend`开发时需要用到，第二项则是确保原来的`WampServer`主目录依然可用
+----
+===步骤3 框架的相关设置===
+
+在`G:\WampServer\www`目录下新建`ZendFramework`文件夹
+
+解压下载到的`ZendFramework-1.12.0.zip`文件，将其`library`目录和`bin`目录剪切到刚刚我们新建的`ZendFramework`文件夹下面，确保有这样的结构：`G:\WampServer\www\ZendFramework\library\Zend`、`G:\WampServer\www\ZendFramework\bin`
+
+修改系统的`path`环境变量，添加路径`G:\WampServer\bin\php\php5.3.13`和`G:\WampServer\www\ZendFramework\bin`（不知何为环境变量者，请`Google`）
+
+打开`G:\WampServer\bin\apache\apache2.2.22\bin`目录下的`php.ini`文件，找到以下语句：
+{{{
+; Windows: "\path1;\path2"
+;include_path = ".;c:\php\includes"
+}}}
+将其改为：
+{{{
+; Windows: "\path1;\path2"
+include_path = ".;G:\WampServer\www\ZendFramework\library"
+}}}
+
+单击桌面右下角的绿色图标，选择“`重新启动所有服务`”，重启服务器
+----
+===步骤4 环境的验证===
+
+打开`Dos命令行`，键入`g:`、回车，然后再键入`cd G:\WampServer\www\ZendFramework`、回车，转到`ZendFramework`文件夹上面
+
+执行命令：`zf create project zendedu`，然后回车（它很可能会提示没有安装`PHPUnit`，无需理会）
+
+打开浏览器，键入`zend.edu`，不出意外会显示出我们刚刚所建项目的主页
+
+这样，我们的`ZendFramework`开发环境就安装成功了
+----
+附注：本文主要参考了`欧雪冰`所著的《`诗意的边缘 PHP顶级框架ZendFramework实战`》
+----
+<red>date</red> : 2012-10-25
+----

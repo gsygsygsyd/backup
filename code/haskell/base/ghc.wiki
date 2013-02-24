@@ -1,0 +1,15 @@
+﻿%title GHC编译器
+
+[[../../../index|首页]] - [[../index|Haskell]] - [[index|Base]]
+==GHC编译器==
+----
+基本的编译命令：`ghc --make -o abc abc.hs`
+
+其中`abc.hs`中必须要包含一个名为`main`的函数才可生成可执行文件
+
+加载指定的包：`ghc -packsge packsge1 -packsge packsge2 ...`
+
+打开交互环境：`ghc --interactive`
+----
+<red>date</red> : 2011-10-30
+----

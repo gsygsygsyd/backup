@@ -1,0 +1,26 @@
+﻿%title 箭头控件GtkArrow
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==箭头控件GtkArrow==
+----
+===声明===
+`GtkWidget * arrow`
+----
+===新建===
+`gtk_arrow_new(箭头类型, 阴影类型)`
+
+箭头类型（`GtkArrowType`）：<br>
+# `GTK_ARROW_UP`：向上
+# `GTK_ARROW_DOWN`：向下
+# `GTK_ARROW_LEFT`：向左
+# `GTK_ARROW_RIGHT`：向右
+
+阴影类型（`GtkShadowType`）：<br>
+# `GTK_SHADOW_NONE`：无阴影
+# `GTK_SHADOW_IN`：阴影向内
+# `GTK_SHADOW_OUT`：阴影向外
+# `GTK_SHADOW_ETCHED_IN`：阴影向内凹进
+# `GTK_SHADOW_ETCHED_OUT`：阴影向外凸起
+----
+<red>date</red> : 2011-08-03
+----

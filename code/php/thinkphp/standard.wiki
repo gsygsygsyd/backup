@@ -1,0 +1,33 @@
+%title ThinkPHP命名规范
+
+[[../../../index|首页]] - [[../index|PHP]] - [[index|ThinkPHP]]
+==ThinkPHP命名规范==
+----
+`ThinkPHP`是大小写敏感的，不论使用的系统是`Windows`还是`Linux`
+
+`ThinkPHP`统一使用`UTF-8`编码，源文件保存时要确保保存为该格式
+
+文件的命名约定：
+
+# 类文件统一以`.class.php`为后缀，使用驼峰命名法，且首字母大写，如：`MyClass.class.php`，但对导入的第三方类文件不做要求
+# 控制器文件命名必须是控制器的名称再加上`Action`，如 `UserAction.class.php`
+# 模型文件命名要以`Model`结尾，如 `UserModel.class.php`
+
+类、函数（方法）、变量的命名约定：
+
+# 类名和文件名要确保一致
+# 函数命名使用小写字母和下划线的形式，如 `get_client_ip()`
+# 方法名遵循驼峰命名法，且首字母小写，如 `getUserName()`
+# 属性名也使用驼峰命名法，首字母小写，如 `tabName`
+# 常量以大写字母加下划线来命名，如 `HAS_ONE`
+# 语言变量以大写字母加下划线命名，如 `MY_LANG`
+# 数据表和字段采用小写字母加下划线的形式，如 `think_user`、`user_name`
+
+`ThinkPHP`系统自身变量的命名约定：
+
+# 以双下划线开头的方法作为`魔术方法`，如 `__call`
+# 以下划线开头的是系统语言变量，如 `_CLASS_NOT_EXIST`
+# 单字母大写函数是系统定义的快捷方式，如 `F`、`M`等
+----
+<red>date</red> : 2012-06-24
+----

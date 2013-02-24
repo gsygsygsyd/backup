@@ -1,0 +1,85 @@
+%title 韩信点兵
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Subject]]
+==韩信点兵==
+----
+===问题描述===
+
+士兵共有三种不同的排列队形，总人数固定不变（总人数 `>= 10` && 总人数 `<= 100`）
+
+一种是三人一排，一种是五人一排，还有一种是七人一排
+
+现在让士兵分别按三种队形排列一次，获得每种队形队尾的人数，韩信只根据这三个队尾数据就知道士兵至少有多少人
+
+要求编程实现韩信的计算方法，输入数据为三种队形的队尾人数，输出数据为总人数的最小值，如果没有最小值则输出`No answer`
+----
+===算法求解===
+
+先得到每一种队形可能的总人数，然后看三种队形中有没有相同的总人数数值，如果有，则选择第一个相同值输出
+
+代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+
+const int maxNumber = 100;
+
+void addSumNumber(int num, int other, int *n, int *sum);
+
+int
+main(int argc, char *argv[]){
+    int a, b, c;                 // 每种队列队尾的人数
+    int sumA[maxNumber/3+1];     // 3人一排队列的可能总人数
+    int sumB[maxNumber/5+1];     // 5人一排队列的可能总人数
+    int sumC[maxNumber/7+1];     // 7人一排队列的可能总人数
+    int an = 0, bn = 0, cn = 0;  // 队列的行数，也就是上面三个数组元素的个数
+    int flag = 0;                // 是否存在三个相同值的标志位
+
+    // 获取队尾人数
+    scanf("%d%d%d", &a, &b, &c);
+
+    // 获取所有可能的总人数数据并存储
+    addSumNumber(3, a, &an, sumA);
+    addSumNumber(5, b, &bn, sumB);
+    addSumNumber(7, c, &cn, sumC);
+
+    // 筛选三种队形中同时存在的数据项
+    for(int i = 0; i <= an; ++i){
+        for(int j = 0; j <= bn; ++j){
+            for(int k = 0; k <= cn; ++k){
+                if(sumA[i] == sumB[j] && sumB[j] == sumC[k]){
+                    printf("%d\n", sumA[i]);
+                    flag = 1;    // 已找到最小值则设置标志位为1
+                    break;       // 然后逐层退出循环（可使用goto代替）
+                }
+            }
+            if(flag) break;
+        }
+        if(flag) break;
+    }
+
+    // 没找到相同值则说明不存在
+    if(!flag){
+        printf("No answer\n");
+    }
+
+    return 0;
+}  // main
+
+// 获取队列所有可能的总人数数据并存储
+void
+addSumNumber(int num, int other, int *n, int *sum){
+    int temp;
+    for(int i = 0; i <= maxNumber/num; ++i){
+        temp = num*i + other;
+        if(temp >= 10 && temp <= 100){
+            *(sum+i) = temp;  // 存储数组元素值
+            ++(*n);           // 数组元素个数+1
+        }
+    }
+}  // addSumNumber
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-16
+----

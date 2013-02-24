@@ -1,0 +1,25 @@
+﻿%title 提示信息GtkToolTips
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==提示信息GtkToolTips==
+----
+使用此控件可以实现当鼠标移到某控件上时显示提示信息
+
+此控件本身不可见，且不需要放入高层容器，它只和指定的控件关联
+----
+===声明===
+`GtkTooltips * button_tips`
+----
+===新建===
+`button_tips = gtk_tooltips_new()`
+----
+===关联控件===
+`gtk_tooltips_set_tip(GTK_TOOLTIPS(button_tips), 控件, "按钮可用时的提示信息", "按钮不可用时的提示信息")`
+
+示例：
+{{{C
+gtk_tooltips_set_tip(GTK_TOOLTIPS(button_tips), button, "新建文件", "Save");
+}}}
+----
+<red>date</red> : 2011-08-08
+----

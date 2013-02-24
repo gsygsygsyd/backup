@@ -1,0 +1,18 @@
+%title Python
+
+[[../../../index|首页]] - [[../index|Lang]]
+==Python==
+----
+<center>
+[[vm|Python虚拟机]]
+----
+[[base|基础语法拾遗]]
+----
+[[list|列表]]
+[[tuple|元组]]
+[[dict|字典]]
+[[re|正则]]
+----
+[[style|编码规范]]
+</center>
+----

@@ -1,0 +1,9 @@
+﻿%title 工具软件
+
+[[../index|首页]]
+==工具软件==
+----
+<center>
+[[ps/index|Photoshop]]
+</center>
+----

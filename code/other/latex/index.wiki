@@ -1,0 +1,9 @@
+%title LaTeX笔记
+
+[[../../../index|首页]] - [[../index|Linux]]
+==LaTeX笔记==
+----
+<center>
+[[latex_cmd|环境的安装及常用编译命令]]
+</center>
+----

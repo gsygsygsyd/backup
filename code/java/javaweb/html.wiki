@@ -1,0 +1,116 @@
+﻿%title HTML4拾遗
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Java Web]]
+==HTML4拾遗==
+----
+===常用标签===
+
+基本标签：`< html > 页面内容 </ html >`、`< head > 头部内容 </ head >`、`< body > 主体内容 </ body >`
+
+标题标签：`< title > 页面标题 </ title >`
+
+链接标签：`< a href="http://www.baidu.com" > 链接文字 </ a >`
+
+图片标签：`< img src="ruchee.jpg" >`
+
+文字标签：`< font > 约束文字 </ font >`
+
+字体标签：`< h1 > 约束文字 </ h1 >`、`< h2 > 约束文字 </ h2 >`...
+
+表格标签：<br>
+{{{HTML
+<table>
+	<tr>  < !-- 第1行 -->
+		<th>小学</th>  < !-- 第1列表头 -->
+		<th>中学</th>  < !-- 第2列表头 -->
+		<th>大学</th>  < !-- 第3列表头 -->
+	</tr>
+	<tr>  < !-- 第2行 -->
+		<td>6年</td>   < !-- 第1列内容 -->
+		<td>6年</td>   < !-- 第2列内容 -->
+		<td>4年</td>   < !-- 第3列内容 -->
+	</tr>
+	<tr>  < !-- 第3行 -->
+		<td>良好</td>  < !-- 第1列内容 -->
+		<td>优秀</td>  < !-- 第2列内容 -->
+		<td>很差</td>  < !-- 第3列内容 -->
+	</tr>
+</table>
+}}}
+
+表单标签：<br>
+{{{HTML
+<form>
+	< !-- 普通的文本输入框，可以通过value属性指定默认文字 -->
+	用户名：
+	<input type="text" value="你好">
+
+	< !-- 密码输入框 -->
+	密码：
+	<input type="password">
+
+	< !-- 单选按钮，需要通过name属性将其设定为同一组方可实现互斥单选 -->
+	性别：
+	男<input type="radio" name="xb">
+	女<input type="radio" name="xb">
+
+	< !-- 多选按钮 -->
+	兴趣：
+	学习<input type="checkbox">
+	旅游<input type="checkbox">
+
+	< !-- 下拉列表 -->
+	学历：
+	<select>
+		<option>小学</option>
+		<option>中学</option>
+		<option>大学</option>
+	</select>
+
+	< !-- 多行文本输入框 -->
+	个人宣言：
+	<textarea>
+	</textarea>
+
+	< !-- 文件上传标签 -->
+	附件上传：
+	<input type="file">
+
+	< !-- 将整个表单内容提交到指定的处理页面 -->
+	<input type="submit" value="提交">
+
+	< !-- 重置表单内容到原始状态 -->
+	<input type="reset" value="重置">
+
+	< !-- 普通按钮，通常绑定一段JS代码来触发 -->
+	<input type="button" value="按钮" onclick="javascript:alert('弹出文字');">
+</form>
+
+}}}
+----
+===常见属性===
+
+位置属性：`align`，可取值有`left`、`center`、`right`
+
+颜色属性：`color`
+
+厚度属性：`border`
+
+宽度属性：`width`，可取数值或百分比
+
+高度属性：`height`，同`width`类似
+
+标签属性：`type`，多见于表单标签
+
+默认文字：`value`，多见于表单标签
+
+文件路径：`src`，多用于图片标签
+
+触发代码：`onclick`，多用于绑定一段`JS`代码
+
+标签标识：`id`
+
+标签类别：`class`，`id`和`class`的命名都不能以数字开头
+----
+<red>date</red> : 2012-01-31
+----

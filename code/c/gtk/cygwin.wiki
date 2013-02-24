@@ -1,0 +1,37 @@
+﻿%title Cygwin运行GTK+程序出错的解决方法
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==Cygwin运行GTK+程序出错的解决方法==
+----
+在`Cygwin`的终端界面运行编译好的`GTK+`程序出现下面这样的出错信息：
+
+`Gtk-WARNING **: cannot open display`
+----
+解决办法：
+
+`1`、启动`X Server`（一定要确保安装了所有的`X packages`）
+
+如果是完整安装`Cygwin`，则会有一个菜单项名字叫“`XWin Server`”，点击即可启动`X Server`
+
+或者在终端执行这条命令：`run bash -c -l "(xwin -multiwindow -clipboard -silent-dup-error)"`
+
+`2`、另起一个终端，执行命令：`DISPLAY=:0.0 export DISPLAY`
+----
+如果不想每次都这么麻烦，可以在`.bashrc`文件中加上以下语句：<br>
+{{{
+<pre class="brush: bash;">
+if [[ -z "$DISPLAY" ]]
+then
+    DISPLAY=":0"
+    export DISPLAY
+fi
+
+# 在终端运行时启动X Server
+run bash -c -l "(xwin -multiwindow -clipboard -silent-dup-error)"
+</pre>
+}}}
+
+如此就可顺利执行`GTK+`程序了
+----
+<red>date</red> : 2011-06-14
+----

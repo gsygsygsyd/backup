@@ -1,0 +1,20 @@
+%title 内建函数
+
+[[../../../index|首页]] - [[../index|Go]] - [[index|Base]]
+==内建函数==
+----
+内建函数有以下几个，不需要导入任何包就可以使用：
+
+`close`、`delete`、`len`、`cap`、`new`、`make`、`append`、`copy`、`panic`、`recover`、`print`、`println`、`complex`、`real`、`imag`
+
+* `close`：用于关闭`channel`通讯
+* `delete`：用于在`map`中删除实例
+* `len`、`cap`：用于复合数据结构，`len`测得的是实际大小，`cap`测得的是最大容量
+* `new`、`make`：用于内存分配
+* `copy`、`append`：用于`slice`
+* `panic`、`recover`：用于异常处理
+* `print`、`println`：内建的打印函数
+* `complex`、`real`、`imag`：用于处理复数
+----
+<red>date</red> : 2012-06-17、2012-11-15
+----

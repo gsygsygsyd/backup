@@ -1,0 +1,26 @@
+﻿%title Gas汇编基础
+
+[[../../../index|首页]] - [[../index|Asm]] - [[index|Gas]]
+==Gas汇编基础==
+----
+`Gas`汇编需要以下三个常用段，其中文本段是必须的
+
+* 数据段：`.section .data`
+* bss段：`.section .bss`
+* 文本段：`.section .text`
+
+基本的汇编模板：
+
+{{{Asm
+.section .data
+	...
+.section .bss
+	...
+.section .text
+.globl _start
+_start:
+	...
+}}}
+----
+<red>date</red> : 2011-06-07
+----

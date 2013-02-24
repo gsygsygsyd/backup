@@ -1,0 +1,36 @@
+# 基本框架
+snippet q_in 基本头文件
+	#include <QApplication>${1}
+snippet q_it 初始化
+	QApplication app(argc, argv);${1}
+snippet q_re Qt版返回语句
+	return app.exec();${1}
+snippet q_main Qt版主函数
+	int main(int argc, char *argv[]){
+	    QApplication app(argc, argv);
+	    ${1}
+	    
+	    return app.exec();
+	}  // main
+snippet q_con 信号&槽绑定
+	QObject::connect(${1}, SIGNAL(${2}),
+	        ${3}, SLOT(${4}));${5}
+# 数据类型
+snippet q_ap 应用
+	QApplication${1}
+snippet q_wi 组件
+	QWidget *${1}
+snippet q_hbxl 水平布局
+	QHBoxLayout *${1}
+snippet q_vbxl 垂直布局
+	QVBoxLayout *${1}
+snippet q_grl 排列网格
+	QGridLayout *${1}
+snippet q_lb 标签
+	QLabel *${1}
+snippet q_pbt 按钮
+	QPushButton *${1}
+snippet q_sl 滑块
+	QSlider *${1}
+snippet q_sbx 微调框
+	QSpinBox *${1}

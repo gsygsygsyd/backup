@@ -1,0 +1,156 @@
+﻿%title 使用Eclipse进行GTK+编程
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==使用Eclipse进行GTK+编程==
+----
+===Eclipse综述===
+
+`Eclipse`是一款优秀的开源`IDE`，现在已经发展成为一个万能开发平台，支持所有主流编程语言，`Windows`、`Linux`都可以使用
+
+其主要特色在于能在编码过程中给出代码提示，对于虚拟机语言还能及时检错，是开发`Java`、`Python`和`Ruby`的利器，同时也是进行`Web`开发不可多得的工具
+
+`Eclipse`同样可以用来开发`C/C++`应用，只要安装一个`CDT`插件即可
+
+下面讲解使用`Eclipse`开发`GTK+`程序的配置过程
+----
+===工具版本===
+
+本文假设你已经安装好了`Eclipse`以及`CDT`插件，并搭建好了`GTK+`开发环境（`GTK+`开发环境的搭建，请查阅《[[primer|GTK+程序设计入门]]》）
+
+下面是我使用的工具和版本，以作对照：
+
+# `OS`：Windows XP
+# `Eclipse`：3.7.0
+# `GCC`：4.5.2（`MinGW`）
+# `GTK+`：2.16.2（`glade3-3.6.7-with-GTK+`）
+----
+===Step 01===
+
+打开`Dos`命令行，依次执行下面这三条命令
+{{{
+d:
+}}}
+{{{
+pkg-config --cflags gtk+-2.0 > include.txt
+}}}
+{{{
+pkg-config --libs gtk+-2.0 > libs.txt
+}}}
+在你的`D`盘根目录下面会生成两个`.txt`文件，现在先不管， 我们待会会用到它们
+----
+===Step 02===
+
+启动`Eclipse`，新建一个`C Project`，命名为`GTK+`（具体名字自定）
+----
+===Step 03===
+
+在新建好的这个`GTK+`项目上面右击，在所弹出选项的最下面有一个名叫`Properties`的选项，点击选中
+----
+===Step 04===
+
+`Eclipse`会弹出这个项目的设置窗口，点选最左侧的`C/C++ General`，再点选`Paths and Symbols`
+-----
+===Step 05===
+
+在右侧的`Includes`选项条下面点选`GNU C`，然后点最右侧的`Add...`按钮逐个添加`GTK+`的包含文件路径
+
+注意：每次添加都要勾上`Add to all configurations`选项 
+
+路径怎么填呢？打开我们在第`1`步生成的`include.txt`文件，里面就包含了所有我们所需的路径，共有如下几个（具体路径随你的`GTK+`安装路径而定）
+
+# `C:/GTK/include/gtk-2.0`
+# `C:/GTK/lib/gtk-2.0/include`
+# `C:/GTK/include/atk-1.0`
+# `C:/GTK/include/cairo`
+# `C:/GTK/include/pango-1.0`
+# `C:/GTK/include/glib-2.0`
+# `C:/GTK/lib/glib-2.0/include`
+# `C:/GTK/include/libpng12`
+
+好了，包含文件路径设置完成，下面设置链接库路径
+----
+===Step 06===
+
+还是在刚才的`Paths and Symbols`窗口，点选中部的`Library Paths`，然后点最右侧的`Add...`按钮添加`GTK+`的链接库路径
+
+添加时同样需要勾上`Add to all configurations`选项
+
+你应该已经猜到路径信息该怎么找了。没错，打开第`1`步生成的`libs.txt`文件，对照着添加以下路径信息（只有一条）
+
+# `C:/GTK/lib`
+
+这一步还只完成了链接库路径的指定，但还没有指定具体的链接库名字
+----
+===Step 07===
+
+在`Paths and Symbols`窗口，点选中部的`Libraries`，然后点最右侧的`Add...`按钮逐个添加`GTK+`链接库
+
+同样的，添加时不要忘了勾上`Add to all configurations`选项哦
+
+打开第`1`步生成的`libs.txt`文件，逐个添加以下库名
+
+# `gtk-win32-2.0`
+# `gdk-win32-2.0`
+# `atk-1.0`
+# `gio-2.0`
+# `gdk_pixbuf-2.0`
+# `pangowin32-1.0`
+# `gdi32`
+# `pangocairo-1.0`
+# `pango-1.0`
+# `cairo`
+# `gobject-2.0`
+# `gmodule-2.0`
+# `glib-2.0`
+# `intl`
+
+到这儿设置告一段落，下面进行编译选项的设置
+----
+===Step 08===
+
+点选最左侧的`C/C++ Build`选项，再点选`Settings`
+----
+===Step 09===
+
+将最上面的`Configuration`项选成`Debug`，然后选中下面的`Tool Settings`选项条
+----
+===Step 10===
+
+选中`Tool Settings`选项条下左侧的`GCC C Compiler`，然后将其右侧的`Command`选中改填为`gcc -mms-bitfields`
+----
+===Step 11===
+
+将最上面的`Configuration`项选成`Release`，然后重复第`10`步的设置，完成后点击最下面的`OK`按钮确定并退出设置
+
+至此，整个`Eclipse`的`GTK+`开发环境就配置完成了
+----
+===配置总结===
+
+整个过程看起来似乎很复杂，其实一点都不复杂，下面用简约的方式复述下配置步骤:
+
+# 使用`pkg-config`命令得到`GTK+`的路径信息
+# 打开工程的设置窗口
+# 添加`GTK+`的包含文件路径、链接库路径、链接库
+# 针对`Debug`和`Release`两个不同的模式分别设置`GCC`的编译选项
+----
+===后记===
+
+推荐使用 `GCC` + `Make` + `Vim` 的方式开发`GTK+`应用（这也是我的开发方式）
+
+但如果用惯了`IDE`，或者不习惯使用命令行，那就可以考虑`GCC` + `Eclipse`
+
+下面提供一个编译`GTK+ 2.x`的通用`Makefile`，`3.x`只需将`gtk+-2.0`换成`gtk+-3.0`即可
+
+{{{Make
+<pre class="brush: vim">
+GTK_FLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
+
+all:
+	gcc -Wall -std=c99 -o app *.c ${GTK_FLAGS}
+</pre>
+}}}
+
+注意，`Makefile`直接从网页复制将可能无法正常执行，所以你最好是照着自己敲出来，`all:`下面那一行最前面的空白是一个`Tab`，而不是空格
+----
+<red>date</red> : 2011-08-07、2012-06-17
+----

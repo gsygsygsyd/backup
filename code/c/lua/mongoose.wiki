@@ -1,0 +1,152 @@
+﻿%title 使用Mongoose和Lua搭建简易的Web环境
+
+[[../../../index|首页]] - [[../index|C/C++]] - [[index|Lua]]
+==使用Mongoose和Lua搭建简易的Web环境==
+----
+===Mongoose简介===
+
+`Mongoose`是一款轻巧的开源`Web`服务器，其前身是`shttpd`，其主要特色有：
+
+# 体积小，跨平台，不依赖于其他任何服务，可以嵌入现有应用程序
+# 支持多种语言：`C/C++`、`C#`、`Lua`、`PHP`、`Python`、`Ruby`等
+
+官方网站：[http://code.google.com/p/mongoose http://code.google.com/p/mongoose]，当前最新版本是`3.1`
+----
+===使用方法===
+
+我使用的是`Windows XP SP3`、`mongoose-3.1.exe`和`Lua 5.2.1`，下面是具体的使用流程
+
+`1`、在`D`盘根目录新建一个文件夹，命名为`Web`（具体路径自定）
+
+`2`、将下载到的`mongoose-3.1.exe`复制到该目录
+
+`3`、双击`mongoose-3.1.exe`，系统防火墙会弹出安全警报，单击解除阻止即可，不出意外右下角会出现一个黑色的`m`图标
+
+`4`、在右下角的`m`图标上右击，选择`Edit config file`编辑配置文件，或者也可以自己手动在该目录下建立一个名为`mongoose.conf`的文件
+
+`5`、打开配置文件，编辑以下下选项：（`#`号起注释作用，想要某条配置起作用就必须去掉最前面的那个`#`号）
+
+# `cgi_pattern`：指定`Mongoose`支持的语言后缀，如`.cgi`、`.lua`、`.php`
+# `cgi_interpreter`：指定`CGI`解释器，我们使用的是`Lua`，所以就指定`Lua`的路径，如`C:\Lua\5.2\lua.exe`；如果`lua.exe`已经加入了环境变量，则此简写为`lua`即可
+# `access_log_file`：指定服务器访问日志，可写为`access_log_file.txt`
+# `error_log_file`：指定错误日志，可写为`error_log_file.txt`
+# `index_files`：指定`Mongoose`默认的主页文件，如`index.html`、`index.cgi`
+# `listening_ports`：指定`Mongoose`服务器的端口，默认为`8080`
+# `document_root`：指定服务器网站根目录，这儿我们填写为`.`，默认就是当前目录
+
+下面是整个配置文件的内容，具体视你`Lua`的安装路径和`mongoose`放置目录的不同而不同：
+
+{{{Bash
+<pre class='brush: bash'>
+cgi_pattern **.cgi$|**.pl$|**.php$|**.lua$
+# cgi_environment php
+# put_delete_passwords_file <value>
+cgi_interpreter lua
+# protect_uri <value>
+# authentication_domain mydomain.com
+# ssi_pattern **.shtml$|**.shtm$
+access_log_file access_log_file.txt
+# ssl_chain_file <value>
+# enable_directory_listing yes
+error_log_file error_log_file.txt
+# global_passwords_file <value>
+index_files index.html,index.htm,index.cgi,index.php,index.lua
+# enable_keep_alive no
+# access_control_list <value>
+# max_request_size 16384
+# extra_mime_types <value>
+listening_ports 8080
+document_root .
+# ssl_certificate <value>
+# num_threads 10
+# run_as_user <value>
+# url_rewrite_patterns <value>
+</pre>
+}}}
+
+`6`、在`Web`文件夹下新建文件：`hello.lua`，下面是该文件的具体内容：
+
+`hello.lua`
+{{{Lua
+<pre class="brush: lua;">
+-- hello.lua
+print [[
+Contenttype:text/html
+
+<html>
+<head><title> hello world </title></head>
+<body>
+    Hello, this is your first Lua CGI page!
+</body>
+</html>
+]]
+</pre>
+}}}
+
+`7`：在浏览器中键入`http://127.0.0.1:8080/hello.lua`或`http://localhost:8080/hello.lua`，不出意外你将看到`hello.lua`执行的结果（如果没能如期显示，可以尝试重启`Mongoose`）
+----
+===后记===
+
+如果要访问的是`CGI`程序，则配置如下（这儿以`C语言`为例）：
+
+`1`：将`mongoose.conf`文件的`cgi_interpreter`项注释掉
+
+`2`：将`cgi_environment`项打开，并设置为`cgi`
+
+`3`：编写`C语言`源文件，将编译后的`.exe`文件改名为`.cgi`
+
+`4`：用浏览器访问该`.cgi`文件，如 `http://127.0.0.1:8080/hello.cgi`
+
+下面是`mongoose.conf`和`hello.c`的具体内容：
+
+`mongoose.conf`
+{{{Bash
+<pre class='brush: bash'>
+cgi_pattern **.cgi$|**.pl$|**.php$|**.lua$
+cgi_environment cgi
+# put_delete_passwords_file <value>
+# cgi_interpreter lua
+# protect_uri <value>
+# authentication_domain mydomain.com
+# ssi_pattern **.shtml$|**.shtm$
+access_log_file access_log_file.txt
+# ssl_chain_file <value>
+# enable_directory_listing yes
+error_log_file error_log_file.txt
+# global_passwords_file <value>
+index_files index.html,index.htm,index.cgi,index.php,index.lua
+# enable_keep_alive no
+# access_control_list <value>
+# max_request_size 16384
+# extra_mime_types <value>
+listening_ports 8080
+document_root .
+# ssl_certificate <value>
+# num_threads 10
+# run_as_user <value>
+# url_rewrite_patterns <value>
+</pre>
+}}}
+
+`hello.c`
+{{{C
+<pre class='brush: c'>
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+	printf("Contenttype:text/html\n\n");
+	printf("<html>\n");
+	printf("<head><title> hello world </title></head>\n");
+	printf("<body>\n");
+	printf("    Hello, this is your first CGI page!\n");
+	printf("</body>\n");
+	printf("</html>\n");
+
+	return 0;
+}
+</pre>
+}}}
+----
+<red>date</red> : 2011-09-28、2012-07-06
+----

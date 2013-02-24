@@ -1,0 +1,9 @@
+%title 常用的几组别名方法
+
+[[../../../index|首页]] - [[../index|Ruby]] - [[index|Base]]
+==常用的几组别名方法==
+----
+* `to_s` and `inspect`：转换成字符串（`inspect`是检查、视察的意思）
+----
+<red>date</red> : 2013-02-23
+----

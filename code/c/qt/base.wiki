@@ -1,0 +1,74 @@
+%title Qt程序设计入门
+
+[[../../../index|首页]] - [[../index|C/C++]] - [[index|Qt]]
+==Qt程序设计入门==
+----
+===环境概述===
+
+诺基亚`Qt`官网提供了`SDK`的下载，但这儿不推荐使用，因为对于学习而言根本用不到这个庞然大物
+
+虽说`Qt`是跨平台的，诺基亚所提供的开发工具也跨平台，而且还有`Visual Studio`和`Eclipse`的插件，但我极不推荐在`Linux`、`Visual Studio`、`Eclipse`等平台和工具下进行开发和学习
+
+首先，就目前而言，`QtCreator`在`Windows`下运行最为流畅，操作和显示效果也最佳；其次，作为`Qt`程序员有必要掌握`QtCreator`这个核心开发工具，所以不推荐使用其他`IDE`；最后，也不推荐使用`Visual C++`编译器，用`GCC`（也就是`MinGW`）即可
+----
+===开发环境的搭建===
+
+你只需下载以下两个文件即可（这儿列出的是我当前使用的版本，你应该下载最新版）
+# `qt-creator-win-opensource-2.4.1.exe`
+# `qt-win-opensource-4.7.4-mingw.exe`
+
+首先安装`QtCreator`，这儿我安装到了`G:\QtSDK\QtCreator`
+
+然后安装`Qt`，这儿我安装到了`G:\QtSDK\Qt4.7.4`，中间它会询问你`MinGW`的路径，只需指定为`G:\QtSDK\QtCreator\mingw`即可（具体路径自定）
+
+最后添加环境变量
+# `QTDIR`：G:\QtSDK\Qt4.7.4
+# `QMAKESPEC`：G:\QtSDK\Qt4.7.4\mkspecs\win32-g++
+# `path`：G:\QtSDK\Qt4.7.4\bin;G:\QtSDK\QtCreator\mingw\bin
+----
+===Hello程序测试===
+
+`1`、在`D`盘根目录新建文件夹`hello`
+
+`2`、在`hello`文件夹下新建源文件`main.cpp`
+
+`3`、编辑`main.cpp`，内容如下
+{{{C++
+#include <QApplication>
+#include <QLabel>
+
+int main(int argc, char **argv)
+{
+	QApplication app(argc, argv);
+	QLabel *label = new QLabel("Hello World!");
+	label->show();
+
+	return app.exec();
+}
+}}}
+
+`4`、在`hello`文件夹上打开`命令行窗口`，依次执行以下命令
+# `qmake -project`
+# `qmake hello.pro`
+# `make`
+
+`5`、不出意外，在`hello/debug`目录下会生成`hello.exe`，双击即可运行
+
+`6`、如果要使用`QtCreator`，那还得执行以下步骤完成`Qt`库的配置：
+
+打开`QtCreator`，在`工具`->`选项`->`构建和运行`->`Qt版本`中，点击`添加`，指定`G:\QtSDK\Qt4.7.4\bin\qmake.exe`路径，然后`确定`重启`QtCreator`
+----
+===注意事项===
+
+`main`函数的第二个参数应该写成`char **argv`或`char *argv[]`，不要在前面加`const`，如`const char **argv`
+
+每个`Qt`工程都有两个版本的生成文件，`debug`版和`release`版
+
+执行`make`默认生成`debug`版，如需生成`release`版本，只需执行`make -f Makefile.Release`
+
+学习阶段推荐使用命令行的方式，可以加深理解，对于命令行的开发方式而言，推荐使用`gVim`编辑器
+
+如果实在用不惯命令行，也可以直接使用`QtCreator`
+----
+<red>date</red> : 2012-03-26、2012-04-05
+----

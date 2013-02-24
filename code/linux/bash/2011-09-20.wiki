@@ -1,0 +1,26 @@
+﻿%title Bash编程基础3
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Bash]]
+==Bash编程基础3==
+----
+===通配符===
+`*`号用于匹配大于等于零次的情况，但对于`.`号和`\`号则必须显式匹配
+
+如：匹配`.EXtest`不能用`*test`，必须用`.EX*`<br>
+匹配`/home/ruchee`不能用`*ruchee`，必须用`/*/ruchee`
+----
+===数组===
+声明：`name=(Tom David Ruchee)`
+
+赋值：`name[0]=Ruchee`
+
+取值：`${name[0]}`
+
+全体：`${name[*]}`或`${name[@]}`
+
+清除某个元素：`unset name[0]`
+
+清除全体元素：`unset name[*]`或`unset name[@]`
+----
+<red>date</red> : 2011-09-20
+----

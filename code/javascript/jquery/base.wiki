@@ -1,0 +1,4 @@
+%title 基本使用方法
+
+[[../../../index|首页]] - [[../index|JavaScript]] - [[index|jQuery]]
+==基本使用方法==

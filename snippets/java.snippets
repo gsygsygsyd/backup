@@ -1,0 +1,92 @@
+snippet /       单行注释
+	//  ${1}
+snippet //      多行注释
+	/* ${1}*/
+snippet pa      包
+	package ${1}
+snippet im      导入包
+	import ${1}
+# 类、函数
+snippet cl      类定义
+	class ${1:cl_name} {
+
+	  ${2}
+
+	}  // class
+snippet f       方法定义
+	${1:f_name} (${2}) {
+	  ${3}
+	}  // function
+snippet main    主函数
+	public static void main (String[] args) {
+	  ${1}
+	}  // main
+# 流程控制
+snippet if      if
+	if (${1}) {
+	  ${2}
+	}
+snippet elif    else if
+	else if (${1}) {
+	  ${2}
+	}
+snippet el      else
+	else {
+	  ${1}
+	}
+snippet wh      while循环
+	while (${1}) {
+	  ${2}
+	}  // while
+snippet fo      for循环
+	for (${1}) {
+	  ${2}
+	}  // for
+snippet sw      switch
+	switch (${1}) {
+	  ${2}
+	}
+snippet cs      case
+	case ${1}:
+	  ${2}
+snippet def     default
+	default:
+	  ${1}
+# 异常处理
+snippet try     try
+	try {
+	  ${1}
+	}
+snippet thr     抛出异常
+	throw ${1}
+snippet cat     捕获异常
+	catch (${1}) {
+	  ${2}
+	}
+snippet fin     善后处理
+	finally {
+	  ${1}
+	}
+# 单个关键字
+snippet pu      公共
+	public ${1}
+snippet po      保护
+	protected ${1}
+snippet pr      私有
+	private ${1}
+snippet st      静态变量
+	static ${1}
+snippet fi      final
+	final ${1}
+snippet ab      抽象
+	abstract ${1}
+snippet re      返回
+	return ${1}
+snippet co      继续
+	continue;${1}
+snippet br      中断
+	break;${1}
+snippet bo      布尔型
+	boolean ${1}
+snippet p       常用输出
+	System.out.println(${1});

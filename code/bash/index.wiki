@@ -1,0 +1,14 @@
+%title Bash笔记
+
+[[../../index|首页]]
+==Bash笔记==
+----
+<center>
+<h2>
+[[base/index|语言基础]]
+----
+[[awk/index|Awk]]
+[[sed/index|Sed]]
+</h2>
+</center>
+----

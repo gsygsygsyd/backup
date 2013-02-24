@@ -1,0 +1,59 @@
+%title 编译器的使用及环境的配置
+
+[[../../../index|首页]] - [[../index|Go]] - [[index|Base]]
+==编译器的使用及环境的配置==
+----
+===Windows下Go语言环境的配置===
+
+上官网下载最新的安装包安装即可，它会自动设置好所需的环境
+
+如果下载的是可执行文件的压缩包，则需要手动添加下面几个环境变量（这儿假定已经解压到了`G:\Go`）
+
+# `GOROOT`：`G:\Go`
+# `GOBIN`：`G:\Go\bin`
+# `bin`：`G:\Go\bin`
+
+`Go\misc`目录是一些常用开发工具的`Go`语言插件，如果使用的是`Vim`，只需将`Go\misc\vim`目录下的全部文件拷贝到你的配置文件夹即可
+----
+===Ubuntu下Go语言环境的配置===
+
+`Linux`下有两种编译器可供选择，一种是官方的`golang`，另一种是`GNU`的`gccgo`
+
+`gccgo`默认是以动态共享库的形式进行编译的，产生的可执行文件体积较小，且其使用方法和`gcc/g++`一样
+
+`golang`则默认以静态方式编译，产生的可执行文件体积很大
+
+下面是这两者的安装方法
+
+# `golang`：`sudo apt-get install golang`
+# `gccgo`：`sudo apt-get install gccgo`
+
+如果使用的是`golang`，则还需要在`.bashrc`中添加上下面几个环境变量，然后使用命令`source ~/.bashrc`使其生效：
+{{{Bash
+<pre class='brush: bash'>
+export GOROOT=/usr/lib/go
+export GOARCH=386
+export GOOS=linux
+export GOBIN=$GOROOT/bin
+export PATH=$PATH:$GOBIN
+</pre>
+}}}
+
+推荐把`golang`和`gccgo`都装上，我就是这么干的（`^-^`）
+----
+===golang常用命令===
+
+不同于其他如`gcc`、`javac`等命令，`go`命令的参数前面不需要加 `-`，下面是几个常用的参数
+
+* `go build abc.go`：编译源文件
+* `go run abc.go`：直接运行（会先编译，但不会保存编译出的可执行文件，所以看起来像没有编译一样）
+* `go fmt abc.go`：格式化源文件
+* `go env`：打印`Go`环境变量
+* `go version`：显示`Go`语言版本信息
+* `go help`：显示命令的帮助信息
+* `go doc 包名`：打印某个指定包的文档
+* `go doc 包名/子包名`：打印某个子包的文档
+* `godoc -http=localhost:8000`：启动本地文档服务器，可通过`http://127.0.0.1:8000`访问
+----
+<red>date</red> : 2012-06-16、2012-06-17、2012-09-05、2012-11-13
+----

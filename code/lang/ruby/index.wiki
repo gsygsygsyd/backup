@@ -1,0 +1,13 @@
+%title Ruby
+
+[[../../../index|首页]] - [[../index|Lang]]
+==Ruby==
+----
+<center>
+[[vm|Ruby虚拟机]]
+----
+[[base|基础语法拾遗]]
+----
+[[matz|《松本行宏的程序世界》]]
+</center>
+----

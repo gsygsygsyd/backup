@@ -1,0 +1,18 @@
+%title Ruby笔记
+
+[[../../index|首页]]
+==Ruby笔记==
+----
+<center>
+<h2>
+[[base/index|语言基础]]
+----
+[[rails/index|Rails]]
+[[sinatra/index|Sinatra]]
+[[tips/index|Tips]]
+----
+[[coffeescript/index|Coffee]]
+[[jquery/index|jQuery]]
+</h2>
+</center>
+----

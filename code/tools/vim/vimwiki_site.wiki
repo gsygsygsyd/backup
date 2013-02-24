@@ -1,0 +1,27 @@
+%title VimWiki站点收集
+
+[[../../../index|首页]] - [[../index|Tools]] - [[index|Vim]]
+==VimWiki站点收集==
+----
+<center>
+[http://wiki.ktmud.com/ 丘迟的维基世界]
+----
+[http://wiki.hotoo.me/ 闲耘™. Wiki]
+----
+[http://www.zhaozhenhai.tk 赵振海的小黑账本]
+----
+[http://www.berlinix.com/ 波黎克斯]
+----
+[http://ray-x.me/ XRfind的个人wiki]
+----
+[http://zwiki.sinaapp.com/ 拾墨.Wiki]
+----
+[http://chenxianmin.com/wiki/ 贤民的wiki]
+----
+[http://phpstone.com/wiki/ frePerl's Wiki Notes]
+----
+[http://yishanhe.net/wiki/ YISH]
+</center>
+----
+<red>date</red> : 2012-04-25
+----

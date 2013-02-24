@@ -1,0 +1,34 @@
+%title 输出可控精度的浮点数
+
+[[../../../index|首页]] - [[../index|C]] - [[index|Subject]]
+==输出可控精度的浮点数==
+----
+===问题描述===
+
+输入正整数`a`、`b`、`c`，要求输出`a/b`的小数形式，并精确到小数点后`c`位
+----
+===算法求解===
+
+关键是精度是在程序运行时由用户控制的，这是解题的难点
+
+使用`sprintf`函数解决，代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+
+int
+main(int argc, char *argv[]){
+    int a, b, c;
+    char str[10];
+
+    scanf("%d%d%d", &a, &b, &c);
+    sprintf(str, "%%.%df\n", c);       // 将精度写入格式化字符串
+    printf(str, (double)a/(double)b);  // 注意两数相除时要先转为浮点数格式
+
+    return 0;
+}  // main
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-17
+----

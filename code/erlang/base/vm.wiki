@@ -1,0 +1,17 @@
+%title Erlang虚拟机
+
+[[../../../index|首页]] - [[../index|Erlang]] - [[index|Base]]
+==Erlang虚拟机==
+----
+===基本使用===
+
+每一个语句都必须以`.`号结束
+
+退出交互界面，使用`q().`或`halt().`
+----
+===模块编译===
+
+使用`c(module_name).`的形式编译模块文件，编译后生成`module_name.beam`文件
+----
+<red>date</red> : 2012-04-17
+----

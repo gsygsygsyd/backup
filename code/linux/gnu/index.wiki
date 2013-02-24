@@ -1,0 +1,15 @@
+﻿%title GNU系列开发工具
+
+[[../../../index|首页]] - [[../index|Linux]]
+==GNU系列开发工具==
+----
+<center>
+[[gcc|GCC编译器]]
+----
+[[gdb|GDB调试器]]
+----
+[[make|Make自动编译]]
+----
+[[automake|Automake自动化构建工具]]
+</center>
+----

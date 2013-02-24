@@ -1,0 +1,12 @@
+%title Emacs常用模式
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|Emacs]]
+==Emacs常用模式==
+----
+===c-mode && c++-mode===
+
+# `C-c C-c`：将选定的代码进行注释，`c-mode`是`/* */`，`c++-mode`是`//`
+# `C-c C-a`：开启自动模式，编辑过程中只要遇到分号就自动跳行。再按`C-c C-a`可取消自动
+----
+<red>date</red> : 2012-06-06
+----

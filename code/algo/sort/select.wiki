@@ -1,0 +1,41 @@
+%title 选择排序
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Sort]]
+==选择排序==
+----
+===算法描述===
+
+首先找到数组中最小的元素，将它替换到数组的最前面
+
+然后除去数组最前面已经排序过的元素，将剩下的元素当成新的数组，再次执行“`查找最小元素，然后替换到最前面`”的操作
+
+这样最终执行完成以后，数组元素值就是从小到大依次排列的了
+----
+===算法实现===
+
+`Ruby`
+{{{Ruby
+<pre class="brush: ruby">
+def select_sort! (arr)
+
+  len = arr.length  # 获取数组长度
+  0.upto(len-1) do |i|
+    min = i         # 保存最小元素的索引值
+    (i+1).upto(len-1) do |j|  # 在剩余元素中迭代
+      # 只要有更小的元素值，就保存其索引，并用它进行余下的比较
+      min = j if arr[j] < arr[min]
+    end  # do
+    arr[i], arr[min] = arr[min], arr[i]  # 每轮迭代都将“最小值”移动到数组“最前面”
+  end  # do
+
+end  # function
+
+# 测试
+arr = [2, 4, 5, 6, 10, 9, 7, 8, 1, 3]
+select_sort! arr
+p arr
+</pre>
+}}}
+----
+<red>date</red> : 2013-02-21
+----

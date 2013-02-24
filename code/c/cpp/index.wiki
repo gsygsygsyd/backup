@@ -1,0 +1,27 @@
+﻿%title 标准C++
+
+[[../../../index|首页]] - [[../index|C/C++]]
+==标准C++==
+----
+<center>
+[[base|基础语法拾遗]]
+----
+[[head_file|头文件]]
+----
+[[format|C++的格式化]]
+----
+[[reference|引用（reference）]]
+----
+[[array_pointer|数组和指针]]
+----
+[[class|类（class）]]
+----
+[[map|映射（字典或哈希）]]
+----
+[[string|string标准库]]
+----
+[[vector|vector标准库]]
+----
+[[bitset|bitset标准库]]
+</center>
+----

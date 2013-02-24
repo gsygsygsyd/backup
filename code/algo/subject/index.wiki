@@ -1,0 +1,33 @@
+%title 小题集锦
+
+[[../../../index|首页]] - [[../index|Algo]]
+==小题集锦==
+----
+<center>
+[[reverse_order_number|倒序输出数字]]
+----
+[[replace_two_number|交换两变量的值]]
+----
+[[7744|7744问题]]
+----
+[[flower|水仙花数的求解]]
+----
+[[hanxin|韩信点兵]]
+----
+[[float_number|输出可控精度的浮点数]]
+----
+[[lamp|开灯问题]]
+----
+[[snake_number|蛇形填数]]
+----
+[[upright_number|竖式表达式问题]]
+----
+[[tex_quote|Tex引号转换]]
+----
+[[cycle_string|周期字符串问题]]
+----
+[[carry_number|判断两数相加的进位次数]]
+----
+[[high_precision_factorial|高精度阶乘]]
+</center>
+----

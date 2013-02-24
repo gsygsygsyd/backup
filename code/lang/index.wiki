@@ -1,0 +1,19 @@
+%title Programming Languages
+
+[[../../index|首页]]
+==Programming Languages==
+----
+<center>
+<h2>
+[[lua/index|Lua]]
+[[python/index|Python]]
+[[ruby/index|Ruby]]
+[[erlang/index|Erlang]]
+[[commonlisp/index|Lisp]]
+----
+[[meta/index|Ruby元编程]]
+----
+[[ror/index|Ruby on Rails]]
+</h2>
+</center>
+----

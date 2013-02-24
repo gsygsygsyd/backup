@@ -1,0 +1,51 @@
+﻿%title 工具栏GtkToolBar
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==工具栏GtkToolBar==
+----
+===声明===
+
+`GtkWidget * toolbar`（工具栏）
+
+`GtkToolItem * save`（工具）
+----
+===新建===
+
+`toolbar = gtk_toolbar_new()`
+----
+===属性设置===
+
+`gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), 工具样式)`
+
+设置工具栏工具的显示样式，可选值有：
+
+# `GTK_TOOLBAR_ICONS`：只显示图标
+# `GTK_TOOLBAR_TEXT`：只显示文字
+# `GTK_TOOLBAR_BOTH`：两者都显示，文字在图标的下面（默认值）
+# `GTK_TOOLBAR_BOTH_HORIZ`：两者都显示，文字在图标的后面
+
+`gtk_toolbar_set_icon_size(GTK_TOOLBAR(toolbar), 图标大小)`
+
+设置图标显示的尺寸，可选值有：
+
+# `GTK_ICON_SIZE_LARGE_TOOLBAR`：大图标
+# `GTK_ICON_SIZE_SMALL_TOOLBAR`：小图标
+----
+===从系统资源新建工具按钮===
+
+`gtk_tool_button_new_from_stock(资源选项)`
+
+资源选项可选值有：`GTK_STOCK_NEW`、`GTK_STOCK_OPEN`、`GTK_STOCK_SAVE`、`GTK_STOCK_QUIT`等
+----
+===新建竖线分隔线===
+
+`gtk_separator_tool_item_new()`
+----
+===向工具栏添加工具===
+
+`gtk_toolbar_insert(GTK_TOOLBAR(toolbar), 工具, 放置位置)`
+
+放置位置：如果是负数（一般取`-1`）则表示总是放置在已有工具的最后，`NULL`则表示放置在最前
+----
+<red>date</red> : 2011-08-08、2012-06-15
+----

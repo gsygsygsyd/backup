@@ -1,0 +1,12 @@
+snippet gtk     for GTK+
+	FLAGS = $(shell pkg-config --cflags --libs gtk+-3.0)
+	
+	all:
+		gcc -Wall -std=c99 -o app *.c ${FLAGS}${1}
+snippet all
+	all:
+		${1}
+snippet cl      清除
+	.PHONY: clean
+	clean:
+		${1}

@@ -1,0 +1,123 @@
+﻿%title Templates
+
+[[../../../index|首页]] - [[../index|Python]] - [[index|Django]]
+==Templates==
+----
+===模板系统===
+
+`Django`默认的模板系统只是`Python`的一个库，并非仅仅只可用于`Django`环境
+
+为阻止某些方法被模板系统执行，只需将该方法的`alters_data`属性设为`True`即可，如`delete.alters_data = True`
+
+对于无效的变量，`Django`模板系统会把其当成`空字符串`，不会引发任何错误或异常
+----
+===模板标签===
+
+`1`、变量
+
+使用两对大括号包围，如`{{ name }}`
+
+`2`、标签
+
+使用一对大括号和一对百分号包围，如`{% for %}`
+
+`3`、逻辑判断
+
+`{% if %}`、`{% elif %}`、`{% else %}`、`{% endif %}`
+
+不支持圆括号的组合判断，多重判断可以使用`{% elif %}`来实现，每个`{% if %}`都要用一个`{% endif %}`关闭，允许使用`and`、`or`、`not`关键字
+
+其中`{% elif %}`标签是`1.4`版本新增的
+
+`4`、循环迭代
+
+`{% for %}`、`{% endfor %}`
+
+不支持退出循环的操作，不支持`continue`语句
+
+正迭代如：`{% for name in names %}`，反向迭代加上`reversed`即可，如：`{% for name in names reversed %}`
+
+`{% for %}`支持一个可选的`{% empty %}`分句，当所迭代的列表或字典为空时执行
+
+`Django`内置了一个特殊的`forloop`模板变量
+
+# `forloop.counter`：表示当前循环的次数，从`1`开始计数；而`forloop.counter0`则从`0`开始计数<br>
+# `forloop.revcounter`：表示循环中剩余项的个数，循环开始时为循环项总数，最后一次循环置`1`；而`forloop.revcounter0`在循环开始时为循环项总数减`1`，最后一次循环置`0`
+# `forloop.first`：布尔值，执行第一次循环时为`True`
+# `forloop.last`：布尔值，执行最后一次循环时为`True`
+# `forloop.parentloop`：引用上一层循环的对象
+
+`forloop`变量仅能在循环中使用，一旦脱离`{% endfor %}`标签就不可访问了
+
+`5`、快速比较
+
+`{% ifequal %}`、`{% ifnotequal %}`、`{% endifequal %}`
+
+支持`{% else %}`标签，每个比较标签需要跟两个参数，参数类型只支持模板变量、字符串、整数、小数，如：`{% ifequal name "Ruchee" %}`
+
+`6`、模板注释
+
+`{# This is a comment #}`
+
+这种形式只支持单行注释，不能跨行
+
+也可以使用`{% comment %}`和`{% endcomment %}`标签对，这样就可以写多行注释了
+----
+===模板继承===
+
+`{% include %}`：导入其他模板，功用相当于`C`语言的`#include`，只是简单的复制，参数可以是模板名，也可以是变量，支持多层导入，如`{% include 'bbs/base.html' %}`
+
+`{% block %}`：标识支持重载的部分，以便子模板有选择地覆盖
+
+`{% extends %}`：加载父模板，位置必须是子模板的最前面，支持多重继承，参数可以是变量
+
+`{{ block.super }}`：获取父模板中代码块的内容
+----
+===过滤器===
+
+过滤器的使用与`Unix`的管道类似，可嵌套、可串联、可带参数，参数使用双引号标识
+
+常用的重要过滤器：
+
+# `addslashes`：添加反斜杠到反斜杠、单引号或双引号前面，常用于处理包含`JavaScript`的文本
+# `date`：按指定的格式格式化`date`或`datetime`对象
+# `escape`：转义`&`、引号、小于、大于等符号，以用户提交的数据是有效的`XML`或·`XHTML`
+# `length`：返回可以测量长度的变量的长度
+----
+===模板渲染引擎===
+
+# `Context`：传递数据
+# `render`：使用`Context`处理过的数据渲染目标模板
+
+典型用法：
+{{{Python
+from django.template import Template, Context
+
+t = Template("My name is {{ name }}.")
+c = Context({'name' : 'Ruchee'})
+t.render(c)
+}}}
+
+也可将`Context`传递数据的语句合并进去：
+{{{Python
+t = Template("My name is {{ name }}.")
+t.render(Context({'name' : 'Ruchee'}))
+}}}
+
+`Django`模板引擎异常强大，除了普通变量外，还可以访问字典的键值、属性、列表的索引以及对象的方法
+
+不能给方法传递参数，且只能调用无参方法；不能使用负数索引，形如`foo.-1`的写法会引发`TemplateSyntaxError`异常
+
+句点查找支持多级嵌套，如：`person.name.upper`
+
+当模板系统在变量名中遇到点号时（例如`foo.bar`），其处理顺序是：
+
+# 当成字典键值，如：`foo['bar']`
+# 当成对象属性，如：`foo.bar`
+# 当成方法调用，如：`foo.bar()`
+# 当成列表索引，如：`foo[bar]`
+
+这是一种短路逻辑，一旦有效匹配就不会再考虑其他情形
+----
+<red>date</red> : 2011-07-23、2012-04-25
+----

@@ -1,0 +1,15 @@
+%title 语言基础
+
+[[../../../index|首页]] - [[../index|Go]]
+==语言基础==
+----
+<center>
+[[compiler|编译器的使用及环境的配置]]
+----
+[[base|Go语言基础语法]]
+----
+[[complex_data_structure|复合数据结构]]
+----
+[[in_func|内建函数]]
+</center>
+----

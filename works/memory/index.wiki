@@ -1,0 +1,17 @@
+%title 逝去的记忆
+
+[[../../index|首页]] - [[../index|Works]]
+==逝去的记忆==
+----
+<center>
+[[note/index|写作笔记]]
+----
+[[part01/index|Part1 父辈的传奇]]
+----
+[[part02/index|Part2]]
+----
+[[part03/index|Part3]]
+----
+[[part04/index|Part4]]
+</center>
+----

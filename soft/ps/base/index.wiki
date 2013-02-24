@@ -1,0 +1,11 @@
+﻿%title Photoshop基础
+
+[[../../../index|首页]] - [[../../index|Soft]] - [[../index|PS]]
+==Photoshop基础==
+----
+<center>
+[[theory|Photoshop理论基础]]
+----
+[[base|Photoshop基本操作]]
+</center>
+----

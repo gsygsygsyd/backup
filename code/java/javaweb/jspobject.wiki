@@ -1,0 +1,102 @@
+﻿%title JSP内置对象
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Java Web]]
+==JSP内置对象==
+----
+`JSP`有`9`种内置对象
+
+# `request`：请求对象
+# `response`：响应对象
+# `out`：输出对象
+# `page`：页面对象
+# `pageContext`：页面上下文对象
+# `session`：会话对象
+# `config`：配置对象
+# `application`：应用程序对象
+# `exception`：异常对象
+
+最重要也最常用到的内置对象是以下三个
+
+# `request`：请求对象
+# `session`：会话对象
+# `application`：应用程序对象
+----
+===request对象===
+
+`request`所属类是`javax.servlet.ServletRequest`的子类
+
+`request`对象代表的是来自客户端的请求，例如表单信息
+
+常用方法有以下几个
+
+# `getParameter`：传入变量名字，获取请求传递过来的对应的数据
+# `getParameterNames`：获得请求中所有的变量名字
+# `getParameterValues`：传入变量名字，获得请求传递过来的该变量对应的所有数据
+# `setAttribute`
+# `getAttribute`
+
+`getParameter`是`getParameterValues`方法的特例，如果一个变量名对应多个值，则`getParameter`只取第一个
+
+`setAttribute`、`getAttribute`与`session`的`setAttribute`、`getAttribute`使用方法一模一样，但是作用不同
+----
+===response对象===
+
+`response`所属类是`javax.servlet.ServletResponse`的子类
+
+`response`对象代表的是对客户端的响应
+
+也可以通过`response`对象来组织发送到客户端的数据，但由于组织方式比较底层，不建议普通使用者使用
+
+需要向客户端发送文字时，可以直接使用`out`对象
+
+`response`一般用于文件下载，可以自行指定是直接在浏览器打开还是弹出文件下载框
+----
+===session对象===
+
+`session`所属类是`javax.servlet.http.HttpSession`的子类
+
+`session`对象代表服务器与客户端所建立的会话，在需要在不同的`JSP`页面中保留客户信息的情况下使用，譬如在线购物等场合
+
+需要存在`session`的原因在于`HTTP`是无状态的协议，且服务器对每一个客户端的请求都没有历史记忆，这个记忆任务就由`session`来完成
+
+常用方法
+
+# `setAttribute`：创建`session`
+# `getAttribute`：获得所创建的`session`
+----
+===application对象===
+
+`application`所属类是`javax.servlet.ServletContext`的子类
+
+`application`对象负责提供应用程序在服务器中运行时的一些全局信息
+----
+===out对象===
+
+`out`对象代表了向客户端发送数据的对象
+
+与`response`对象不同的是，通过`out`对象发送的内容将是浏览器需要显示的内容，是文本一级的
+
+`out`对象内部包含一个缓冲区，所以存在一些对缓冲区进行操作的方法，如`clear`、`flush`、`clearBuffer`、`getBufferSize`、`getRemaining`等
+
+常用方法有`print`、`println`等
+----
+===config对象===
+
+`config`对象提供一些配置信息，使用方法`getInitParameter`、`getInitParameterNames`等获得`Servlet`初始化时的参数
+
+常用于`Servlet`中，`JSP`很少用
+----
+===page对象===
+
+`page`对象代表正在运行的由`JSP`文件产生的类对象，不建议一般使用者使用
+----
+===exception对象===
+
+`exception`对象代表`JSP`文件运行时所产生的异常对象
+
+此对象不能在一般的`JSP`文件中直接使用，只有当前页面有`<%@ page isErrorPage="true" %>`标签时才可以使用
+
+`exception`对象很少使用
+----
+<red>date</red> : 2012-02-24、2012-02-27
+----

@@ -1,0 +1,52 @@
+﻿%title 窗口控件GtkWindow
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==窗口控件GtkWindow==
+----
+===声明===
+
+`GtkWidget * window`
+----
+===新建===
+
+`gtk_window_new(窗口类型)`
+
+窗口类型：
+
+# `GTK_WINDOW_TOPLEVEL`：最上层的主窗口
+# `GTK_WINDOW_POPUP`：弹出式无边框的窗口
+----
+===设置窗口标题===
+
+`gtk_window_set_title(GTK_WINDOW(window), "窗口标题")`
+----
+===设置窗口的默认尺寸===
+
+`gtk_window_set_default_size(GTK_WINDOW(window), 长，高)`
+----
+===设置窗口图标===
+
+`gtk_window_set_icon(GTK_WINDOW(window), gdk_pixbuf_new_from_file("图片文件路径", NULL))`
+
+图标会出现在窗口左上角和任务栏，不设置将默认使用`GTK+`的`LOGO`图案
+----
+===设置窗口默认出现的位置===
+
+`gtk_window_set_position(GTK_WINDOW(window), 窗口位置)`
+
+窗口位置：
+
+# `GTK_WIN_POS_CENTER`：居中
+# `GTK_WIN_POS_MOUSE`：出现在鼠标位置
+# `GTK_WIN_POS_NONE`：不固定
+# `GTK_WIN_POS_CENTER_ALWAYS`：始终居中
+# `GTK_WIN_POS_CENTER_ON_PARENT`：相对父窗口居中
+----
+===设置窗口边框的宽度===
+
+`gtk_container_set_border_width(GTK_CONTAINER(window), 宽度)`
+
+这是一个公用设置项，适用于所有容器类型的控件
+----
+<red>date</red> : 2011-08-02、2012-06-14
+----

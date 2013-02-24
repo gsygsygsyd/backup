@@ -1,0 +1,112 @@
+%title 基础语法
+
+[[../../../index|首页]] - [[../index|JS]] - [[index|Base]]
+==基础语法==
+----
+===语法基础===
+
+`JavaScript`中的一切标识符都是区分大小写的
+
+标识符的第一个字符必须是`字母`、`下划线`或`美元符号`，其他字符还可以是`数字`
+
+语句结束的分号是可选的，但最好是任何时候都不要省略，一则可以避免错误，二则便于代码压缩，三则可以加快解析器的解析速度
+----
+===严格模式===
+
+`严格模式`是`ECMAScript 5`引入的，对于某些不安全的操作会抛出错误，其语法是一句 `"use strict";`
+
+可以在脚本顶部使用这一标志，应用到整个脚本；也可以单独放到某个函数内部的最上方，只应用到该函数
+----
+===变量===
+
+使用`var`操作符定义的变量是局部变量，没有`var`修饰的变量则为全局变量
+----
+===数据类型===
+
+`ECMAScript`定义有`6`种数据类型：`Undefined`、`Null`、`Boolean`、`Number`、`String`以及`Object`
+
+`JavaScript`提供了一个检测变量类型的操作符 `typeof`，需要注意的是，`typeof`是操作符而非函数
+
+`typeof`可能的返回值有以下几个
+
+# `undefined`：未定义或未初始化
+# `boolean`：布尔值
+# `string`：字符串
+# `number`：数值
+# `object`：对象或`null`
+# `function`：函数
+----
+===Undefined===
+
+`Undefined`类型只有一个值，即特殊的`undefined`
+----
+===Null===
+
+`Null`类型也只有一个值，即`null`。从逻辑角度来说，`null`值表示的是一个空对象指针，所以`typeof`检测时会返回`object`
+
+由于`undefined`值实际上是派生自`null`的，所以对`null`和`undefined`做相等性测试将返回`true`
+----
+===Boolean===
+
+`Boolean`类型只有两个值，`true`和`false`。需要注意的是，`true`和`false`是全小写的，诸如`True`和`False`等是错误的写法
+
+在`JavaScript`中，判断为假的有这么几个值：`空字符串`、`0`、`NaN`、`null`、`undefined`
+----
+===Number===
+
+`Number`类型支持`十进制`、`八进制`（`0`）、`十六进制`（`0x`），同时还支持科学计数法，`八进制`在严格模式下无效
+
+可以用`Number.MIN_VALUE`和`Number.MAX_VALUE`获得`JavaScript`可以表示的最小值和最大值
+
+超出数值范围的数会自动转换为特殊的`Infinity`值（负数为`-Infinity`），`Number.POSITIVE_INFINITY`和`Number.NEGATIVE_INFINITY`分别保存了正负`Infinity`值
+
+可以用`isFinite()`函数检测是否位于数值范围以内，在范围内则返回`true`，超出范围则返回`false`
+
+`Number`类型还有一个特殊的`NaN`值，表示一切非数值的值，任何数除以`0`都将得到`NaN`，任何涉及`NaN`的计算也都将返回`NaN`
+
+`NaN`与任何值都不相等，包括`NaN`本身，所以`ECMAScript`提供了`isNaN()`函数以检测是否为非数值
+----
+===与Number相关的常用函数===
+
+常用的有三个：`Number()`、`parseInt()`和`parseFloat()`
+
+`JavaScript`中，数值的转换规则如下：
+
+* 对于`Boolean`类型，`true`和`false`分别转换为`1`和`0`
+* `Null`值转换为`0`
+* `undefined`返回`NaN`
+* 空字符串转换为`0`
+* 如果字符串含有除数字以及用来表示数值的字符以外的任何其他字符，`Number()`的处理是一律返回`NaN`，而其他两个函数的处理则宽松许多，所以更常用的是后两个函数
+* 对于一般字符串，`Number()`可以识别`十进制`、`十六进制`、`整数`和`浮点数`，`八进制`无法识别（因为`Number()`会忽略前导`0`，但`十六进制`的前导`0x`例外）
+* `parseInt()`可以识别`整数`、`十进制`、`八进制`和`十六进制`（但在`ECMAScript 5`标准中，`parseInt()`失去了对`八进制`的识别能力），`parseInt()`还有可选的第二个参数，可以指定转换进制，如`parseInt(str, 16)`
+* `parseFloat()`只可以识别`十进制`、`整数`和`浮点数`，所以没有第二个可选参数，如果识别到的是整数会直接返回整数
+* 对于`Object`类型，默认调用该对象的`valueOf()`方法，然后按上述规则进行转换；如果转换后的结果为`NaN`，则再调用该对象的`toString()`方法，然后再按上述规则转换得到的字符串
+----
+===String===
+
+`JavaScript`中，单引号与双引号没有差别，且`JavaScript`的字符串是不可变字符串，对字符串的操作实质上是在复制的副本进行操作
+
+任何字符串的长度，也就是字符个数，都可以通过访问其`length`属性获得，如 `str.length`
+
+除了`null`和`undefined`，其他任意值都有一个`toString()`方法，可以将其转换为字符串，同时该方法还有可选的参数可以用来指定转换进制
+
+另外还有一个`String()`函数，其处理方式与`toString()`毫无二致，只是对于`null`和`undefined`会分别转换为字符串`"null"`和`"undefined"`
+----
+===Object===
+
+`ECMAScript`中的对象实质上就是一组数据和功能的集合，对象通过`new`来创建，如 `var o = new Object();`
+
+在`ECMAScript`中，`Object`是所有对象的基础
+
+`Object`的每个实例都具有以下属性和方法
+
+# `Constructor`：保存用于创建当前对象的函数
+# `hasOwnProperty()`：检查指定属性是否存在于当前对象实例中
+# `isPrototypeOf()`：检查传入的对象是否是当前对象的原型
+# `propertyIsEnumerable()`：检测指定属性是否支持`for-in`语句
+# `toLocaleString()`：返回对象的字符串表示，该字符串与执行环境所在地区相对应
+# `toString()`：返回对象的字符串表示
+# `valueOf()`：返回对象的字符串、数值或布尔值表示，通常与`toString()`方法返回的结果相同
+----
+<red>date</red> : 2012-06-03、2012-07-31
+----

@@ -1,0 +1,11 @@
+﻿%title Photoshop笔记
+
+[[../../index|首页]] - [[../index|Soft]]
+==Photoshop笔记==
+----
+<center>
+[[base/index|Photoshop基础]]
+----
+[[tools/index|Photoshop工具箱]]
+</center>
+----

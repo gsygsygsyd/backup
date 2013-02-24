@@ -1,0 +1,25 @@
+﻿%title py2exe
+
+[[../../../index|首页]] - [[../index|Python]] - [[index|Tools]]
+==py2exe==
+----
+使用`py2exe`可以将`Python`程序加工成可在`Windows`下运行的`.exe`文件，其基本步骤有：
+# 编写`Python`程序
+# 编辑构建脚本`setup.py`
+# 启动`py2exe`构建可执行文件
+----
+`Hello World`程序构建示例：
+# 新建一个文件夹，命名为`hello`
+# 在`hello`文件夹下编写一个简单的`hello.py`文件，内容为：`print "Hello World!"`
+# 在`hello`文件夹下编写构建脚本`setup.py`
+# 在`hello`文件夹上执行命令：`python setup.py py2exe`
+其中`setup.py`文件的内容是：<br>
+{{{Python
+from distutils.core import setup
+import py2exe
+
+setup(console=['hello.py'])
+}}}
+----
+<red>date</red> : 2011-07-07
+----

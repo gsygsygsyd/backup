@@ -1,0 +1,11 @@
+%title Linux使用杂锦
+
+[[../../../index|首页]] - [[../index|Linux]]
+==Linux使用杂锦==
+----
+<center>
+[[TAOUP|《Unix编程艺术》大师语录]]
+----
+[[devhelp|给Devhelp添加书籍的简易方法]]
+</center>
+----

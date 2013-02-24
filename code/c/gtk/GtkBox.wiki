@@ -1,0 +1,35 @@
+﻿%title 盒状容器GtkBox
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==盒状容器GtkBox==
+----
+盒状容器分纵向盒状容器`GtkVBox`和横向盒状容器`GtkHBox`
+----
+===声明===
+
+`GtkWidget * box`
+----
+===新建===
+
+`gtk_vbox_new(子控件是否均匀排放, 控件间隔)`：新建纵向盒状容器
+
+`gtk_hbox_new(子控件是否均匀排放, 控件间隔)`：新建横向盒状容器
+----
+===设定控件之间的间隔空隙===
+
+`gtk_box_set_spacing(GTK_BOX(box), 间隔)`
+----
+===添加一个控件===
+
+`gtk_container_add(GTK_CONTAINER(box), 控件)`
+
+使用这种方法只能添加一个控件
+----
+===添加多个控件===
+
+`gtk_box_pack_start(GTK_BOX(box), 控件, 是否扩展, 是否填充, 控件间隔)`：从前到后排列
+
+`gtk_box_pack_end(GTK_BOX(box), 控件, 是否扩展, 是否填充, 控件间隔)`：从后到前排列
+----
+<red>date</red> : 2011-08-02、2012-06-15
+----

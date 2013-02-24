@@ -1,0 +1,110 @@
+# 命名空间、类
+snippet na 命名空间
+	namespace ${1:na_name}{
+	  ${2}
+	}
+snippet u 引用
+	using ${1};${2}
+snippet una 引用命名空间
+	using namespace ${1};${2}
+snippet us 引用标准命名空间
+	using namespace std;${1}
+snippet cl 类定义
+	class ${1:cl_name}
+	{
+	  ${2}
+	};  // class
+snippet fcn 构造函数
+	${1}${2:f_name}(${3})${4}
+	{${5}
+	}  // construct
+snippet fde 析构函数
+	${1}~${2:f_name}()
+	{${3}
+	}  // deconstruct
+snippet cf 类方法定义
+	${1:void}
+	${2:f_name}(${3})${4}
+	{
+	  ${5}
+	}  // function
+snippet fcnd 构造函数声明
+	${1}${2:f_name}(${3});${4}
+snippet fded 析构函数声明
+	~${1:f_name}();${2}
+snippet cfd 类方法声明
+	${1:void} ${2:f_name}(${3})${4};${5}
+# 异常处理
+snippet thr 抛出异常
+	throw ${1};${2}
+snippet try 捕获异常
+	try{
+	  ${1}
+	}
+snippet cat 处理异常
+	catch(${1}){
+	  ${2}
+	}
+snippet fin 善后处理
+	finally{
+	  ${1}
+	}
+# 单个关键字
+snippet pu
+	public${1}
+snippet po
+	protected${1}
+snippet pr
+	private${1}
+snippet fr 友元
+	friend ${1}
+snippet vi 虚函数
+	virtual ${1}
+snippet tpt 模板1
+	template<typename ${1}>${2}
+snippet tpc 模板2
+	template<class ${1}>${2}
+snippet de
+	delete ${1}
+snippet op
+	operator${1}
+snippet ve 向量
+	vector${1}
+snippet li 表
+	list${1}
+snippet it 迭代器
+	iterator${1}
+# Qt相关
+snippet inq 头文件包含
+	#include <QApplication>${1}
+snippet req 返回语句
+	return ${1:app}.exec();${2}
+snippet q_it 初始化
+	QApplication app(argc, argv);${1}
+snippet q_hbl QHBoxLayout
+	QHBoxLayout${1}
+snippet q_vbl QVBoxLayout
+	QVBoxLayout${1}
+snippet q_dl QDialog
+	QDialog${1}
+snippet q_cb QCheckBox
+	QCheckBox${1}
+snippet q_lb QLabel
+	QLabel${1}
+snippet q_le QLineEdit
+	QLineEdit${1}
+snippet q_pb QPushButton
+	QPushButton${1}
+# 宏、常量
+snippet q_obj Q_OBJECT
+	Q_OBJECT${1}
+snippet q_si SIGNAL
+	SIGNAL(${1})${2}
+snippet q_sl SLOT
+	SLOT(${1})${2}
+snippet q_cs CaseSensitive
+	CaseSensitive${1}
+snippet q_csy CaseSensitivity
+	CaseSensitivity${1}
+snippet q_ci CaseInsensitive
+	CaseInsensitive${1}

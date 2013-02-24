@@ -1,0 +1,44 @@
+%title 二分查找
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Search]]
+==二分查找==
+----
+===算法描述===
+
+本算法的`前提`：目标数组一定要是按序排列的，这儿假设为从小到大排列
+
+每次将数组平均分成两部分，将要查找的`关键字`与最中间的元素进行比较
+
+如果`关键字`小于中间元素，则说明这个`关键字`一定在数组的左边部分，所以将查找范围的上限移动到中间下标以左，然后在新的范围内开始下一轮`二分`
+
+如果`关键字`大于中间元素，则说明这个`关键字`一定在数组的右边部分，所以将查找范围的下限移动到中间下标以右，然后在新的范围内开始下一轮`二分`
+
+如果`关键字`等于中间元素，则返回该中间元素的下标值，查找结束
+----
+===算法实现===
+
+`Ruby`
+{{{Ruby
+<pre class="brush: ruby">
+def binary_search (key, arr)
+
+  lo, hi = 0, arr.length-1  # 设定初始范围
+  while lo <= hi
+    mid = lo + (hi-lo)/2    # 计算居中下标
+    hi = mid - 1 if key < arr[mid]  # 如果key小于居中元素，则范围上界调整到居中下标以左
+    lo = mid + 1 if key > arr[mid]  # 如果key大于居中元素，则范围下界调整到居中下标以右
+    return mid if key == arr[mid]   # 如果key刚好等于居中元素，则返回居中下标，结束查找
+  end  # while
+  -1  # 没找到，返回-1
+
+end  # function
+
+# 测试
+arr = %w{a b c d e f g h i j k l m n}
+i   = binary_search ?e, arr
+printf "%d => %s" % [i, arr[i]] unless i == -1
+</pre>
+}}}
+----
+<red>date</red> : 2013-02-21
+----

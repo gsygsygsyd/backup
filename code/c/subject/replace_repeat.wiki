@@ -1,0 +1,51 @@
+%title 将相邻重复字符清除为一个字符
+
+[[../../../index|首页]] - [[../index|C]] - [[index|Subject]]
+==将相邻重复字符清除为一个字符==
+----
+===问题描述===
+
+输入一个字符串，里面存在若干个相同字符相邻出现，要求将这些相同的相邻字符减少成只剩一个，然后输出
+
+例如：执行`app a`，然后输入`aaa bcd`，得到输出`a bcd`
+----
+===普适性解法===
+
+由用户控制对哪个字符消重，从命令行接收该控制信息，默认消重字符为`空格`
+
+{{{C
+<pre class='brush: c'>
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+	char c_get, c, c_out;
+	int nb = 0;                           // 统计重复字符个数
+
+	if(2 == argc){
+		c_get = argv[1][0];
+	}
+	else{
+		c_get = ' ';                      // 默认对空格消重
+	}
+
+	while((c = getchar()) != EOF){
+		if(c_get == c){
+			++nb;
+			c_out = c;                    // 保存该重复字符
+			continue;                     // 继续累加，直到再没连续的该字符为止
+		}
+		if(nb >= 1){
+			putchar(c_out);               // 输出一个该字符
+			nb = 0;                       // 统计清零
+		}
+		putchar(c);
+	}
+
+	return 0;
+}
+</pre>
+}}}
+----
+<red>date</red> : 2012-07-26
+----

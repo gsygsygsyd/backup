@@ -1,0 +1,11 @@
+﻿%title Album
+
+[[../index|首页]]
+==Album==
+----
+ ==[[me/index|Me]]==
+----
+ ==[[lover/index|Lover]]==
+----
+ ==[[family/index|Family]]==
+----

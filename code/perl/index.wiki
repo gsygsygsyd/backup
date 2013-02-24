@@ -1,0 +1,15 @@
+%title Perl笔记
+
+[[../../index|首页]]
+==Perl笔记==
+----
+<center>
+<h2>
+[[base/index|语言基础]]
+----
+[[regex/index|正则表达式]]
+----
+[[admin/index|系统管理]]
+</h2>
+</center>
+----

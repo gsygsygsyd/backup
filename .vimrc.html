@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Vim配置文件[适用于Linux和Cygwin] 2013-02-13更新</title>
+<meta name="Generator" content="Vim/7.3">
+<meta name="plugin-version" content="vim7.3_v6">
+<meta name="syntax" content="vim">
+<meta name="settings" content="use_css,number_lines">
+<style type="text/css">
+<!--
+pre { font-family: monospace; color: #a0ffa0; background-color: #000000; }
+body { font-family: monospace; color: #a0ffa0; background-color: #000000; }
+.lnr { color: #ffff00; }
+.Identifier { color: #00ffff; }
+.Special { color: #ff00ff; }
+.Constant { color: #ffffff; }
+.Type { color: #c0c0c0; }
+.PreProc { color: #f5deb3; }
+.Statement { color: #ffff00; }
+.Comment { color: #ffa500; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<span class="lnr">  1 </span><span class="Comment">&quot; -----------------   Author: Ruchee</span>
+<span class="lnr">  2 </span><span class="Comment">&quot; -----------------    Email: my@ruchee.com</span>
+<span class="lnr">  3 </span><span class="Comment">&quot; -----------------  WebSite: <a href="http://www.ruchee.com">http://www.ruchee.com</a></span>
+<span class="lnr">  4 </span><span class="Comment">&quot; -----------------     Date: 2013-02-13</span>
+<span class="lnr">  5 </span><span class="Comment">&quot; -----------------           For Linux and Cygwin</span>
+<span class="lnr">  6 </span><span class="Comment">&quot; -----------------     Tips: 欲复制本文件内容，请访问Github =&gt; <a href="https://raw.github.com/ruchee/vimrc/master/.vimrc">https://raw.github.com/ruchee/vimrc/master/.vimrc</a></span>
+<span class="lnr">  7 </span>
+<span class="lnr">  8 </span>
+<span class="lnr">  9 </span><span class="Comment">&quot; Ctrl + H                   --光标移当前行行首       [插入模式]</span>
+<span class="lnr"> 10 </span><span class="Comment">&quot; Ctrl + J                   --光标移下一行行首       [插入模式]</span>
+<span class="lnr"> 11 </span><span class="Comment">&quot; Ctrl + K                   --光标移上一行行尾       [插入模式]</span>
+<span class="lnr"> 12 </span><span class="Comment">&quot; Ctrl + L                   --光标移当前行行尾       [插入模式]</span>
+<span class="lnr"> 13 </span><span class="Comment">&quot; Ctrl + C                   --单源文件编译           [已配置 C]</span>
+<span class="lnr"> 14 </span><span class="Comment">&quot; Ctrl + R                   --单源文件运行           [已配置 C Ruby Coffee Bash]</span>
+<span class="lnr"> 15 </span><span class="Comment">&quot; Ctrl + ]                   --转到函数定义</span>
+<span class="lnr"> 16 </span><span class="Comment">&quot; Ctrl + T                   --返回调用函数</span>
+<span class="lnr"> 17 </span><span class="Comment">&quot; Ctrl + E                   --一步加载语法模板和作者、时间信息</span>
+<span class="lnr"> 18 </span><span class="Comment">&quot; ESC  + H                   --Normal模式下开启Devhelp查询功能</span>
+<span class="lnr"> 19 </span>
+<span class="lnr"> 20 </span><span class="Comment">&quot; &lt;C-P&gt;                      --关键字补全</span>
+<span class="lnr"> 21 </span><span class="Comment">&quot; &lt;C-X&gt;&lt;C-L&gt;                 --整行补全</span>
+<span class="lnr"> 22 </span><span class="Comment">&quot; &lt;C-X&gt;&lt;C-O&gt;                 --全能补全</span>
+<span class="lnr"> 23 </span><span class="Comment">&quot; Tab键                      --插入模式下语法结构补全 [snipMate插件]</span>
+<span class="lnr"> 24 </span><span class="Comment">&quot; Shift + Insert             --向Vim中粘贴从别处复制的内容</span>
+<span class="lnr"> 25 </span>
+<span class="lnr"> 26 </span><span class="Comment">&quot; u [小写]                   --单步复原               [非插入模式]</span>
+<span class="lnr"> 27 </span><span class="Comment">&quot; U [大写]                   --整行复原               [非插入模式]</span>
+<span class="lnr"> 28 </span>
+<span class="lnr"> 29 </span><span class="Comment">&quot; jj                         --保存文件并留在插入模式 [插入模式]</span>
+<span class="lnr"> 30 </span><span class="Comment">&quot; kk                         --返回Normal模式         [插入模式]</span>
+<span class="lnr"> 31 </span><span class="Comment">&quot; nt                         --打开NERDTree           [非插入模式]</span>
+<span class="lnr"> 32 </span><span class="Comment">&quot; tl                         --打开TagList            [非插入模式]</span>
+<span class="lnr"> 33 </span>
+<span class="lnr"> 34 </span><span class="Comment">&quot; za                         --打开或关闭当前折叠</span>
+<span class="lnr"> 35 </span><span class="Comment">&quot; zM                         --关闭所有折叠</span>
+<span class="lnr"> 36 </span><span class="Comment">&quot; zR                         --打开所有折叠</span>
+<span class="lnr"> 37 </span>
+<span class="lnr"> 38 </span><span class="Comment">&quot; :se ft=cpp                 --手动选择语法高亮       [:set filetype=cpp 或 :set syntax=cpp 亦可]</span>
+<span class="lnr"> 39 </span>
+<span class="lnr"> 40 </span><span class="Comment">&quot; :%!xxd                     --转储二进制文件，以十六进制形式显示</span>
+<span class="lnr"> 41 </span><span class="Comment">&quot; :%!xxd -r                  --还原二进制文件</span>
+<span class="lnr"> 42 </span>
+<span class="lnr"> 43 </span>
+<span class="lnr"> 44 </span><span class="Comment">&quot; ---------- 主要插件详细用法说明 ---------------------</span>
+<span class="lnr"> 45 </span>
+<span class="lnr"> 46 </span><span class="Comment">&quot; :Tlist                     --呼出变量和函数列表     [TagList插件]</span>
+<span class="lnr"> 47 </span><span class="Comment">&quot; :LoadTemplate              --呼出语法模板           [Load_Template插件]</span>
+<span class="lnr"> 48 </span><span class="Comment">&quot; :AuthorInfoDetect          --添加作者、时间等信息   [NERD_commenter &amp;&amp; authorinfo插件]</span>
+<span class="lnr"> 49 </span>
+<span class="lnr"> 50 </span><span class="Comment">&quot; ---------- snipMate [全局可用的补全关键字] ----------</span>
+<span class="lnr"> 51 </span><span class="Comment">&quot;</span>
+<span class="lnr"> 52 </span><span class="Comment">&quot; cprt                       --插入版权信息           [助记：copyright]</span>
+<span class="lnr"> 53 </span><span class="Comment">&quot; date                       --插入当前时间</span>
+<span class="lnr"> 54 </span><span class="Comment">&quot; fiok                       --插入文件的最后修改时间 [助记：file ok]</span>
+<span class="lnr"> 55 </span><span class="Comment">&quot; desc                       --插入文件描述           [助记：description]</span>
+<span class="lnr"> 56 </span><span class="Comment">&quot; 更多关键字可自行查看vimfiles/snippets下的各个文件   [Linux下为~/.vim/snippets]</span>
+<span class="lnr"> 57 </span>
+<span class="lnr"> 58 </span><span class="Comment">&quot; ---------- a.vim [自动切换C/C++同名头文件] ----------</span>
+<span class="lnr"> 59 </span><span class="Comment">&quot;</span>
+<span class="lnr"> 60 </span><span class="Comment">&quot; :A                         --切换同名头文件并独占整个屏幕</span>
+<span class="lnr"> 61 </span><span class="Comment">&quot; :AS                        --切换同名头文件并垂直分屏，头文件在上</span>
+<span class="lnr"> 62 </span><span class="Comment">&quot; :AV                        --切换同名头文件并水平分割，头文件在左</span>
+<span class="lnr"> 63 </span>
+<span class="lnr"> 64 </span><span class="Comment">&quot; ---------- NERDTree [智能文件浏览器] ----------------</span>
+<span class="lnr"> 65 </span><span class="Comment">&quot;</span>
+<span class="lnr"> 66 </span><span class="Comment">&quot; :NERDTree                  --启动NERDTree插件</span>
+<span class="lnr"> 67 </span><span class="Comment">&quot; o [小写]                   --切换当前文件或目录的打开、关闭状态</span>
+<span class="lnr"> 68 </span><span class="Comment">&quot; u                          --打开上层目录</span>
+<span class="lnr"> 69 </span><span class="Comment">&quot; p [小写]                   --返回上层目录</span>
+<span class="lnr"> 70 </span><span class="Comment">&quot; P [大写]                   --返回根目录</span>
+<span class="lnr"> 71 </span><span class="Comment">&quot; K                          --转到当前目录第一个节点</span>
+<span class="lnr"> 72 </span><span class="Comment">&quot; J                          --转到当前目录最后的节点</span>
+<span class="lnr"> 73 </span><span class="Comment">&quot; m                          --显示文件系统菜单       [增、删、移]</span>
+<span class="lnr"> 74 </span><span class="Comment">&quot; ?                          --弹出帮助菜单</span>
+<span class="lnr"> 75 </span><span class="Comment">&quot; q                          --退出该插件</span>
+<span class="lnr"> 76 </span>
+<span class="lnr"> 77 </span>
+<span class="lnr"> 78 </span><span class="Statement">colorscheme</span> elflord          <span class="Comment">&quot; 着色模式：黄色和粉红色为主</span>
+<span class="lnr"> 79 </span><span class="Statement">set</span> <span class="PreProc">guifont</span>=Monaco<span class="Statement">:</span>h11       <span class="Comment">&quot; 字体 &amp;&amp; 字号</span>
+<span class="lnr"> 80 </span><span class="Statement">set</span> <span class="PreProc">backspace</span>=2              <span class="Comment">&quot; 设置退格键可用</span>
+<span class="lnr"> 81 </span><span class="Statement">set</span> <span class="PreProc">autoindent</span>               <span class="Comment">&quot; 自动对齐</span>
+<span class="lnr"> 82 </span><span class="Statement">set</span> <span class="PreProc">ai</span><span class="PreProc">!</span>                      <span class="Comment">&quot; 设置自动缩进</span>
+<span class="lnr"> 83 </span><span class="Statement">set</span> <span class="PreProc">smartindent</span>              <span class="Comment">&quot; 智能自动缩进</span>
+<span class="lnr"> 84 </span><span class="Statement">set</span> <span class="PreProc">shiftwidth</span>=2             <span class="Comment">&quot; 换行时行间交错使用2空格</span>
+<span class="lnr"> 85 </span><span class="Statement">set</span> <span class="PreProc">cindent</span> <span class="PreProc">shiftwidth</span>=2     <span class="Comment">&quot; 自动缩进2空格</span>
+<span class="lnr"> 86 </span><span class="Statement">set</span> <span class="PreProc">nu</span><span class="PreProc">!</span>                      <span class="Comment">&quot; 显示行号</span>
+<span class="lnr"> 87 </span><span class="Statement">set</span> <span class="PreProc">mouse</span>=a                  <span class="Comment">&quot; 启用鼠标</span>
+<span class="lnr"> 88 </span><span class="Statement">set</span> <span class="PreProc">ruler</span>                    <span class="Comment">&quot; 右下角显示光标位置的状态行</span>
+<span class="lnr"> 89 </span><span class="Statement">set</span> <span class="PreProc">incsearch</span>                <span class="Comment">&quot; 开启实时搜索功能</span>
+<span class="lnr"> 90 </span><span class="Statement">set</span> <span class="PreProc">hlsearch</span>                 <span class="Comment">&quot; 开启高亮显示结果</span>
+<span class="lnr"> 91 </span><span class="Statement">set</span> <span class="PreProc">nowrapscan</span>               <span class="Comment">&quot; 搜索到文件两端时不重新搜索</span>
+<span class="lnr"> 92 </span><span class="Statement">set</span> <span class="PreProc">nocompatible</span>             <span class="Comment">&quot; 关闭兼容模式</span>
+<span class="lnr"> 93 </span><span class="Statement">set</span> <span class="PreProc">vb</span> <span class="PreProc">t_vb</span>=                 <span class="Comment">&quot; 关闭提示音 [会闪屏]</span>
+<span class="lnr"> 94 </span><span class="Statement">set</span> <span class="PreProc">hidden</span>                   <span class="Comment">&quot; 允许在有未保存的修改时切换缓冲区</span>
+<span class="lnr"> 95 </span><span class="Statement">set</span> <span class="PreProc">autochdir</span>                <span class="Comment">&quot; 设定文件浏览器目录为当前目录</span>
+<span class="lnr"> 96 </span><span class="Statement">set</span> <span class="PreProc">foldmethod</span>=syntax        <span class="Comment">&quot; 选择代码折叠类型</span>
+<span class="lnr"> 97 </span><span class="Statement">set</span> <span class="PreProc">foldlevel</span>=100            <span class="Comment">&quot; 禁止自动折叠</span>
+<span class="lnr"> 98 </span><span class="Statement">set</span> <span class="PreProc">laststatus</span>=2             <span class="Comment">&quot; 开启状态栏信息</span>
+<span class="lnr"> 99 </span><span class="Statement">set</span> <span class="PreProc">cmdheight</span>=2              <span class="Comment">&quot; 命令行的高度，默认为1，这里设为2</span>
+<span class="lnr">100 </span><span class="Comment">&quot;set showmatch               &quot; 显示括号配对情况</span>
+<span class="lnr">101 </span><span class="Comment">&quot;set cursorline              &quot; 突出显示当前行</span>
+<span class="lnr">102 </span><span class="Comment">&quot;set nowrap                  &quot; 设置不自动换行</span>
+<span class="lnr">103 </span><span class="Statement">set</span> <span class="PreProc">writebackup</span>              <span class="Comment">&quot; 设置无备份文件</span>
+<span class="lnr">104 </span><span class="Statement">set</span> <span class="PreProc">nobackup</span>
+<span class="lnr">105 </span><span class="Statement">set</span> <span class="PreProc">list</span>                     <span class="Comment">&quot; 显示Tab符，使用一高亮竖线代替</span>
+<span class="lnr">106 </span><span class="Statement">set</span> <span class="PreProc">listchars</span>=tab<span class="Statement">:</span>\|\ ,
+<span class="lnr">107 </span><span class="Statement">set</span> <span class="PreProc">tabstop</span>=2                <span class="Comment">&quot; 设置Tab键的宽度        [等同的空格个数]</span>
+<span class="lnr">108 </span><span class="Statement">set</span> <span class="PreProc">expandtab</span>                <span class="Comment">&quot; 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]</span>
+<span class="lnr">109 </span>
+<span class="lnr">110 </span><span class="Statement">syntax</span> <span class="Type">enable</span>                <span class="Comment">&quot; 打开语法高亮</span>
+<span class="lnr">111 </span><span class="Statement">syntax</span> <span class="Type">on</span>                    <span class="Comment">&quot; 开启文件类型侦测</span>
+<span class="lnr">112 </span><span class="Statement">filetype</span> <span class="Type">indent</span> <span class="Type">on</span>           <span class="Comment">&quot; 针对不同的文件类型采用不同的缩进格式</span>
+<span class="lnr">113 </span><span class="Statement">filetype</span> <span class="Type">plugin</span> <span class="Type">on</span>           <span class="Comment">&quot; 针对不同的文件类型加载对应的插件</span>
+<span class="lnr">114 </span><span class="Statement">filetype</span> <span class="Type">plugin</span> <span class="Type">indent</span> <span class="Type">on</span>    <span class="Comment">&quot; 启用自动补全</span>
+<span class="lnr">115 </span>
+<span class="lnr">116 </span><span class="Comment">&quot; 每行超过80个的字符用下划线标示</span>
+<span class="lnr">117 </span><span class="Statement">au</span> <span class="Type">BufRead</span>,<span class="Type">BufNewFile</span> *.c,*.h,*.rb,*.js,*.coffee,*.sql,*.sh,*.vim,*.css,*.html <span class="Constant">2</span>match Underlined <span class="Constant">/.\%81v/</span>
+<span class="lnr">118 </span>
+<span class="lnr">119 </span>
+<span class="lnr">120 </span><span class="Comment">&quot; 设置编码</span>
+<span class="lnr">121 </span><span class="Statement">set</span> <span class="PreProc">fenc</span>=utf-8
+<span class="lnr">122 </span><span class="Statement">set</span> <span class="PreProc">encoding</span>=utf-8
+<span class="lnr">123 </span><span class="Statement">set</span> <span class="PreProc">fileencodings</span>=utf-8<span class="Statement">,</span>gbk<span class="Statement">,</span>cp936<span class="Statement">,</span>latin-1
+<span class="lnr">124 </span>
+<span class="lnr">125 </span>
+<span class="lnr">126 </span><span class="Comment">&quot; ======= 引号 &amp;&amp; 括号自动匹配 ======= &quot;</span>
+<span class="lnr">127 </span>
+<span class="lnr">128 </span>:<span class="Statement">inoremap</span> ( ()<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">129 </span>
+<span class="lnr">130 </span>:<span class="Statement">inoremap</span> ) <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>=ClosePair(')')<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">131 </span>
+<span class="lnr">132 </span>:<span class="Statement">inoremap</span> { {}<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">133 </span>
+<span class="lnr">134 </span>:<span class="Statement">inoremap</span> } <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>=ClosePair('}')<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">135 </span>
+<span class="lnr">136 </span>:<span class="Statement">inoremap</span> [ []<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">137 </span>
+<span class="lnr">138 </span>:<span class="Statement">inoremap</span> ] <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span>=ClosePair(']')<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">139 </span>
+<span class="lnr">140 </span>:<span class="Statement">inoremap</span> &quot; &quot;&quot;<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">141 </span>
+<span class="lnr">142 </span>:<span class="Statement">inoremap</span> ' ''<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">143 </span>
+<span class="lnr">144 </span>:<span class="Statement">inoremap</span> ` ``<span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>i
+<span class="lnr">145 </span>
+<span class="lnr">146 </span><span class="Statement">function</span> ClosePair<span class="Special">(</span>char<span class="Special">)</span>
+<span class="lnr">147 </span>  <span class="Statement">if</span> <span class="Identifier">getline</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span>[<span class="Identifier">col</span><span class="Special">(</span><span class="Constant">'.'</span><span class="Special">)</span> <span class="Statement">-</span> <span class="Constant">1</span>] <span class="Statement">==</span> <span class="Identifier">a:char</span>
+<span class="lnr">148 </span>    <span class="Statement">return</span> <span class="Constant">&quot;\&lt;Right&gt;&quot;</span>
+<span class="lnr">149 </span>  <span class="Statement">else</span>
+<span class="lnr">150 </span>    <span class="Statement">return</span> <span class="Identifier">a:char</span>
+<span class="lnr">151 </span>  <span class="Statement">endif</span>
+<span class="lnr">152 </span><span class="Statement">endf</span>
+<span class="lnr">153 </span>
+<span class="lnr">154 </span>
+<span class="lnr">155 </span><span class="Comment">&quot; ESC + H             Normal模式下开启Devhelp查询功能</span>
+<span class="lnr">156 </span><span class="Statement">function</span>! DevHelpCurrentWord<span class="Special">()</span>
+<span class="lnr">157 </span>  <span class="Statement">let</span> word <span class="Statement">=</span> <span class="Identifier">expand</span><span class="Special">(</span><span class="Constant">&quot;&lt;cword&gt;&quot;</span><span class="Special">)</span>
+<span class="lnr">158 </span>  <span class="Statement">exe</span> <span class="Constant">&quot;!devhelp -s &quot;</span> <span class="Statement">.</span> word <span class="Statement">.</span> <span class="Constant">&quot; &amp;&quot;</span>
+<span class="lnr">159 </span><span class="Statement">endfunction</span>
+<span class="lnr">160 </span><span class="Statement">nmap</span> <span class="Special">&lt;</span><span class="Special">esc</span><span class="Special">&gt;</span>h :call DevHelpCurrentWord()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">161 </span>
+<span class="lnr">162 </span><span class="Comment">&quot; MiniBufExplorer     多个文件切换 可使用鼠标双击相应文件名进行切换</span>
+<span class="lnr">163 </span><span class="Statement">let</span> g:miniBufExplMapWindowNavVim<span class="Statement">=</span><span class="Constant">1</span>
+<span class="lnr">164 </span><span class="Statement">let</span> g:miniBufExplMapWindowNavArrows<span class="Statement">=</span><span class="Constant">1</span>
+<span class="lnr">165 </span><span class="Statement">let</span> g:miniBufExplMapCTabSwitchBufs<span class="Statement">=</span><span class="Constant">1</span>
+<span class="lnr">166 </span><span class="Statement">let</span> g:miniBufExplModSelTarget<span class="Statement">=</span><span class="Constant">1</span>
+<span class="lnr">167 </span>
+<span class="lnr">168 </span><span class="Comment">&quot; :Tlist              调用TagList</span>
+<span class="lnr">169 </span><span class="Statement">let</span> Tlist_Show_One_File<span class="Statement">=</span><span class="Constant">1</span>                    <span class="Comment">&quot; 只显示当前文件的tags</span>
+<span class="lnr">170 </span><span class="Statement">let</span> Tlist_Exit_OnlyWindow<span class="Statement">=</span><span class="Constant">1</span>                  <span class="Comment">&quot; 如果Taglist窗口是最后一个窗口则退出Vim</span>
+<span class="lnr">171 </span><span class="Statement">let</span> Tlist_Use_Right_Window<span class="Statement">=</span><span class="Constant">1</span>                 <span class="Comment">&quot; 在右侧窗口中显示</span>
+<span class="lnr">172 </span><span class="Statement">let</span> Tlist_File_Fold_Auto_Close<span class="Statement">=</span><span class="Constant">1</span>             <span class="Comment">&quot; 自动折叠</span>
+<span class="lnr">173 </span>
+<span class="lnr">174 </span><span class="Comment">&quot; :LoadTemplate       根据文件类型自动加载模板</span>
+<span class="lnr">175 </span><span class="Statement">let</span> g:template_path<span class="Statement">=</span><span class="Constant">'~/.vim/template/'</span>
+<span class="lnr">176 </span>
+<span class="lnr">177 </span><span class="Comment">&quot; snipMate            Tab智能补全</span>
+<span class="lnr">178 </span><span class="Statement">let</span> g:snips_author<span class="Statement">=</span><span class="Constant">'Ruchee'</span>
+<span class="lnr">179 </span>
+<span class="lnr">180 </span><span class="Comment">&quot; :AuthorInfoDetect   自动添加作者、时间等信息，本质是NERD_commenter &amp;&amp; authorinfo的结合</span>
+<span class="lnr">181 </span><span class="Statement">let</span> g:vimrc_author<span class="Statement">=</span><span class="Constant">'Ruchee'</span>
+<span class="lnr">182 </span><span class="Statement">let</span> g:vimrc_email<span class="Statement">=</span><span class="Constant">'my@ruchee.com'</span>
+<span class="lnr">183 </span><span class="Statement">let</span> g:vimrc_homepage<span class="Statement">=</span><span class="Constant">'<a href="http://www.ruchee.com">http://www.ruchee.com</a>'</span>
+<span class="lnr">184 </span>
+<span class="lnr">185 </span><span class="Comment">&quot; Ctrl + H            将光标移到当前行的行首</span>
+<span class="lnr">186 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-h</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>I
+<span class="lnr">187 </span>
+<span class="lnr">188 </span><span class="Comment">&quot; Ctrl + J            将光标移到下一行的行首</span>
+<span class="lnr">189 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-j</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>jI
+<span class="lnr">190 </span>
+<span class="lnr">191 </span><span class="Comment">&quot; Ctrl + K            将光标移到上一行的末尾</span>
+<span class="lnr">192 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-k</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>kA
+<span class="lnr">193 </span>
+<span class="lnr">194 </span><span class="Comment">&quot; Ctrl + L            将光标移到当前行的行尾</span>
+<span class="lnr">195 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-l</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>A
+<span class="lnr">196 </span>
+<span class="lnr">197 </span><span class="Comment">&quot; Ctrl + E            一步加载语法模板和作者、时间信息</span>
+<span class="lnr">198 </span><span class="Statement">map</span> <span class="Special">&lt;</span><span class="Special">c-e</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:LoadTemplate<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:AuthorInfoDetect<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>Gi
+<span class="lnr">199 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-e</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:LoadTemplate<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:AuthorInfoDetect<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>Gi
+<span class="lnr">200 </span><span class="Statement">vmap</span> <span class="Special">&lt;</span><span class="Special">c-e</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:LoadTemplate<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:AuthorInfoDetect<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>Gi
+<span class="lnr">201 </span>
+<span class="lnr">202 </span><span class="Comment">&quot; jj                  保存当前文件并留在插入模式      [插入模式]</span>
+<span class="lnr">203 </span><span class="Statement">imap</span> jj <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:w<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>li
+<span class="lnr">204 </span>
+<span class="lnr">205 </span><span class="Comment">&quot; kk                  返回Normal模式，不执行保存      [插入模式]</span>
+<span class="lnr">206 </span><span class="Statement">imap</span> kk <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>l
+<span class="lnr">207 </span>
+<span class="lnr">208 </span><span class="Comment">&quot; nt                  打开NERDTree窗口，在左侧栏显示  [非插入模式]</span>
+<span class="lnr">209 </span><span class="Statement">map</span> nt :NERDTree<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">210 </span>
+<span class="lnr">211 </span><span class="Comment">&quot; tl                  打开Taglist窗口，在右侧栏显示   [非插入模式]</span>
+<span class="lnr">212 </span><span class="Statement">map</span> tl :Tlist<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;&lt;</span><span class="Special">c-l</span><span class="Special">&gt;</span>
+<span class="lnr">213 </span>
+<span class="lnr">214 </span>
+<span class="lnr">215 </span><span class="Comment">&quot; ======= 编译 &amp;&amp; 运行 ======= &quot;</span>
+<span class="lnr">216 </span>
+<span class="lnr">217 </span><span class="Comment">&quot; 编译源文件</span>
+<span class="lnr">218 </span><span class="Statement">func</span>! CompileCode<span class="Special">()</span>
+<span class="lnr">219 </span>  <span class="Statement">exec</span> <span class="Constant">&quot;w&quot;</span>
+<span class="lnr">220 </span>  <span class="Statement">if</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;c&quot;</span>
+<span class="lnr">221 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!clang -Wall -std=c99 -o %&lt; %&lt;.c&quot;</span>
+<span class="lnr">222 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;ruby&quot;</span>
+<span class="lnr">223 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!ruby %&lt;.rb&quot;</span>
+<span class="lnr">224 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;coffee&quot;</span>
+<span class="lnr">225 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!coffee -c %&lt;.coffee&quot;</span>
+<span class="lnr">226 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;sh&quot;</span>
+<span class="lnr">227 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!bash %&lt;.sh&quot;</span>
+<span class="lnr">228 </span>  <span class="Statement">endif</span>
+<span class="lnr">229 </span><span class="Statement">endfunc</span>
+<span class="lnr">230 </span>
+<span class="lnr">231 </span><span class="Comment">&quot; 运行可执行文件</span>
+<span class="lnr">232 </span><span class="Statement">func</span>! RunCode<span class="Special">()</span>
+<span class="lnr">233 </span>  <span class="Statement">exec</span> <span class="Constant">&quot;w&quot;</span>
+<span class="lnr">234 </span>  <span class="Statement">if</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;c&quot;</span>
+<span class="lnr">235 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!./%&lt;&quot;</span>
+<span class="lnr">236 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;ruby&quot;</span>
+<span class="lnr">237 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!ruby %&lt;.rb&quot;</span>
+<span class="lnr">238 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;coffee&quot;</span>
+<span class="lnr">239 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!coffee %&lt;.coffee&quot;</span>
+<span class="lnr">240 </span>  <span class="Statement">elseif</span> &amp;<span class="Statement">filetype</span> <span class="Statement">==</span> <span class="Constant">&quot;sh&quot;</span>
+<span class="lnr">241 </span>    <span class="Statement">exec</span> <span class="Constant">&quot;!bash %&lt;.sh&quot;</span>
+<span class="lnr">242 </span>  <span class="Statement">endif</span>
+<span class="lnr">243 </span><span class="Statement">endfunc</span>
+<span class="lnr">244 </span>
+<span class="lnr">245 </span><span class="Comment">&quot; Ctrl + C 一键保存、编译</span>
+<span class="lnr">246 </span><span class="Statement">map</span> <span class="Special">&lt;</span><span class="Special">c-c</span><span class="Special">&gt;</span> :call CompileCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">247 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-c</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call CompileCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">248 </span><span class="Statement">vmap</span> <span class="Special">&lt;</span><span class="Special">c-c</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call CompileCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">249 </span>
+<span class="lnr">250 </span><span class="Comment">&quot; Ctrl + R 一键保存、运行</span>
+<span class="lnr">251 </span><span class="Statement">map</span> <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span> :call RunCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">252 </span><span class="Statement">imap</span> <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call RunCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">253 </span><span class="Statement">vmap</span> <span class="Special">&lt;</span><span class="Special">c-r</span><span class="Special">&gt;</span> <span class="Special">&lt;</span><span class="Special">ESC</span><span class="Special">&gt;</span>:call RunCode()<span class="Special">&lt;</span><span class="Special">CR</span><span class="Special">&gt;</span>
+<span class="lnr">254 </span>
+<span class="lnr">255 </span>
+<span class="lnr">256 </span><span class="Comment">&quot; ======= VimWiki ======= &quot;</span>
+<span class="lnr">257 </span>
+<span class="lnr">258 </span><span class="Comment">&quot; 设置编码</span>
+<span class="lnr">259 </span><span class="Statement">let</span> g:vimwiki_w32_dir_enc <span class="Statement">=</span> <span class="Constant">'utf-8'</span>
+<span class="lnr">260 </span>
+<span class="lnr">261 </span><span class="Comment">&quot; 使用鼠标映射</span>
+<span class="lnr">262 </span><span class="Statement">let</span> g:vimwiki_use_mouse <span class="Statement">=</span> <span class="Constant">1</span>
+<span class="lnr">263 </span>
+<span class="lnr">264 </span><span class="Comment">&quot; 不要将驼峰式词组作为 Wiki 词条</span>
+<span class="lnr">265 </span><span class="Statement">let</span> g:vimwiki_camel_case <span class="Statement">=</span> <span class="Constant">0</span>
+<span class="lnr">266 </span>
+<span class="lnr">267 </span><span class="Comment">&quot; 声明可以在wiki里面使用的HTML标签</span>
+<span class="lnr">268 </span><span class="Statement">let</span> g:vimwiki_valid_html_tags<span class="Statement">=</span><span class="Constant">'b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center,left,right,h2,h4,h5,h6,pre,script,style'</span>
+<span class="lnr">269 </span>
+<span class="lnr">270 </span><span class="Statement">let</span> g:vimwiki_list <span class="Statement">=</span> [{
+<span class="lnr">271 </span><span class="Special">\</span> <span class="Constant">'path'</span>: <span class="Constant">'~/mysite/wiki'</span>,
+<span class="lnr">272 </span><span class="Special">\</span> <span class="Constant">'path_html'</span>: <span class="Constant">'~/mysite/html/'</span>,
+<span class="lnr">273 </span><span class="Special">\</span> <span class="Constant">'html_header'</span>: <span class="Constant">'~/mysite/template/header.html'</span>,
+<span class="lnr">274 </span><span class="Special">\</span> <span class="Constant">'html_footer'</span>: <span class="Constant">'~/mysite/template/footer.html'</span>,
+<span class="lnr">275 </span><span class="Special">\</span> <span class="Constant">'auto_export'</span>: <span class="Constant">1</span>,
+<span class="lnr">276 </span><span class="Special">\</span> <span class="Constant">'nested_syntaxes'</span>: <span class="Special">{</span><span class="Constant">'Clang'</span>: <span class="Constant">'c'</span>, <span class="Constant">'Ruby'</span>: <span class="Constant">'ruby'</span>, <span class="Constant">'JS'</span>: <span class="Constant">'javascript'</span>, <span class="Constant">'Coffee'</span>: <span class="Constant">'coffee'</span>, <span class="Constant">'SQL'</span>: <span class="Constant">'sql'</span>, <span class="Constant">'Bash'</span>: <span class="Constant">'sh'</span>, <span class="Constant">'Vim'</span>: <span class="Constant">'vim'</span>, <span class="Constant">'CSS'</span>: <span class="Constant">'css'</span>, <span class="Constant">'HTML'</span>: <span class="Constant">'html'</span>, <span class="Constant">'XML'</span>: <span class="Constant">'xml'</span><span class="Special">}</span>,}]
+</pre>
+
+<!-- 量子统计代码 -->
+<script type="text/javascript" src="http://js.tongji.linezing.com/2785323/tongji.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿%title Java笔记
+
+[[../../index|首页]]
+==Java笔记==
+----
+<center>
+[[javase/index|JavaSE]]
+----
+[[javaweb/index|Java Web]]
+----
+[[android/index|Android]]
+----
+[[tools/index|工具软件]]
+</center>
+----

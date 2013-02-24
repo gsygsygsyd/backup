@@ -1,0 +1,9 @@
+%title 算法
+
+[[../../../index|首页]] - [[../index|Tools]]
+==算法==
+----
+<center>
+[[ojld|欧几里德算法]]
+</center>
+----

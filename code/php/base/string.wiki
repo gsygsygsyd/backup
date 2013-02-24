@@ -1,0 +1,12 @@
+%title 字符串
+
+[[../../../index|首页]] - [[../index|PHP]] - [[index|Base]]
+==字符串==
+----
+===字符串相关函数===
+
+# `explode()`：将字符串按指定的分隔符分离并存入数组，如 `$names = explode("\t", $str_names)`
+# `intval()`：将字符串转换成数字
+----
+<red>date</red> : 2012-06-22
+----

@@ -1,0 +1,43 @@
+%title Tex引号转换
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Subject]]
+==Tex引号转换==
+----
+===问题描述===
+
+`Tex`中，左双引号用``表示，右双引号用''表示
+
+现输入一段常规语句，要求将其中的双引号"转成`Tex`的形式并输出
+----
+===算法求解===
+
+求解的关键在于判断当前双引号是左引号还是右引号，可使用一个标志位标记完成
+
+代码如下：
+{{{Clang
+<pre class='brush: c'>
+#include <stdio.h>
+
+int
+main(int argc, char *argv[]){
+    int ch;
+    int flag = 1;  // 标志位，默认为左引号
+
+    while('\n' != (ch = getchar())){
+        // 只有当当前字符是引号时才做判断，其他字符原样输出
+        if('"' == ch){
+            printf("%s", flag ? "``" : "''");
+            // 每成功转换一次就将标志位置反
+            flag = !flag;
+        }else{
+            putchar(ch);
+        }
+    }
+
+    return 0;
+}  // main
+</pre>
+}}}
+----
+<red>date</red> : 2012-09-20
+----

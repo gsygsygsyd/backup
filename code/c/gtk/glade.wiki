@@ -1,0 +1,13 @@
+﻿%title Glade界面开发工具
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==Glade界面开发工具==
+----
+===Glade使用注意事项===
+保存`Glade`文件时，有两种格式可供选择
+
+# `GtkBuilder`：以此格式保存可直接在`C`源文件里面解析
+# `Libglade`：以此格式保存需要先使用`gtk-builder-convert`命令将其转成`hello.xml`（假设原文件为`hello.glade`），不然将编译出错
+----
+<red>date</red> : 2011-06-18
+----

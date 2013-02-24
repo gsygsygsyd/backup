@@ -1,0 +1,18 @@
+%title Ruchee的荒草园子
+<br>
+<br>
+<br>
+<center>
+ [[about.html|images/ruchee.jpg]]
+</center>
+<br>
+ ==[http://jiyi.ruchee.com 逝去的记忆]==
+ 
+ ==[[diary/2012/index|2012]]==
+ 
+ ==[[code/linux/vim/index|Vim]]==
+
+ ====[[msg/index.php|leave a message]]====
+<br>
+<br>
+<br>

@@ -1,0 +1,15 @@
+%title ThinkPHP
+
+[[../../../index|首页]] - [[../index|PHP]]
+==ThinkPHP==
+----
+<center>
+[[base|ThinkPHP使用基础]]
+----
+[[template|ThinkPHP模板系统]]
+----
+[[database|数据库连接]]
+----
+[[standard|ThinkPHP命名规范]]
+</center>
+----

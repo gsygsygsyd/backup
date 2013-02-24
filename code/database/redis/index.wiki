@@ -1,0 +1,4 @@
+%title Redis
+
+[[../../../index|首页]] - [[../index|DataBase]]
+==Redis==

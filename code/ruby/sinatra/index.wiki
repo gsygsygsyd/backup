@@ -1,0 +1,4 @@
+%title Sinatra
+
+[[../../../index|首页]] - [[../index|Ruby]]
+==Sinatra==

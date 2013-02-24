@@ -1,0 +1,17 @@
+﻿%title Linux笔记
+
+[[../../index|首页]]
+==Linux笔记==
+----
+<center>
+<h2>
+[[vim/index|Vim使用笔记]]
+----
+[[cli/index|Linux命令行]]
+----
+[[gnu/index|GNU系列开发工具]]
+----
+[[other/index|Linux使用杂锦]]
+</h2>
+</center>
+----

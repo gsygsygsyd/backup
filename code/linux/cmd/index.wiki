@@ -1,0 +1,23 @@
+﻿%title Linux常用命令
+
+[[../../../index|首页]] - [[../index|Linux]]
+==Linux常用命令==
+----
+<center>
+[[apt|apt包管理器]]
+----
+[[tar|tar：压缩、解压缩]]
+----
+[[cat|cat：读取文件内容]]
+----
+[[expand|expand：处理制表符]]
+----
+[[grep|grep：搜索字符串]]
+----
+[[find|find：查找文件]]
+----
+[[awk|awk：文件处理]]
+----
+[[sort|sort：文件排序]]
+</center>
+----

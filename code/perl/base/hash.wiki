@@ -1,0 +1,79 @@
+﻿%title Hash（哈希）
+
+[[../../../index|首页]] - [[../index|Perl]] - [[index|Base]]
+==Hash（哈希）==
+----
+`Perl`的哈希等同于`Python`的字典或者`PHP`的关联数组（事实上`Perl`的哈希原本就叫关联数组，而`PHP`也恰恰是在`Perl`的基础上发展而来的）
+
+哈希元素的引用方式：`$哈希名{$键名};`<br>
+哈希的键名不一定要是字符串或标量，它可以是任意的表达式
+
+哈希除了是用字符串做索引以外，其他特性和数组几乎一样，同样不限大小，同样可以动态生成元素
+
+引用整个哈希的方法：`%哈希名`<br>
+可以直接使用赋值符号把哈希转成列表，同样也可以把列表转成哈希<br>
+可以直接用某个哈希直接赋值给另一个哈希（这样做，`Perl`需要的工作量很大，一般不这么用）<br>
+
+可以使用`reverse`反转一个哈希表，将原先的键变成值，将原先的值变成键，如：`%new_hash = reverse %old_hash;`<br>
+但这种用法只在原哈希表的每一个值都唯一的情况下才能正常，因为原来的值会变成键，而键是不能同名的<br>
+对于存在同值的情况，`Perl`会采取新键覆盖旧键的策略，只是由于哈希没有顺序，所以这种覆盖是不确定的
+
+完整哈希赋值的写法：<br>
+{{{Perl
+<pre class='brush: perl'>
+# 第一种写法
+%example_hash = ("name", "Ruchee", "email", "my\@ruchee.com", "website", "www.ruchee.com");
+
+# 第二种写法
+%example_hash = ("name" => "Ruchee", "email" => "my\@ruchee.com", "website" => "www.ruchee.com",);
+
+# 第三种写法
+%example_hash = (name => Ruchee, email => "my\@ruchee.com", website => "www.ruchee.com",);
+</pre>
+}}}
+第一种写法是按键、值、键、值的顺序排列<br>
+第二种使用了`胖箭头`，一般习惯在最后一组键值对的后面加上一个逗号，以方便其他人再添加新的键值对<br>
+第三种写法是因为使用`胖箭头`时，键或值，只要是只包含字母、数字、下划线，且不以数字开头，那么引号就可以省略
+
+===hash的相关处理函数===
+`keys $哈希名`：该函数返回目标哈希表的键列表，如`@key = keys %example_hash;`<br>
+`values $哈希名`：该函数返回目标哈希表的值列表，如`@value = values %example_hash;`
+
+上述两函数的返回值都是目标哈希表中键值对的个数，获取方式如下：<br>
+`$count = keys %example_hash;`
+
+（这儿再次感觉到了`Perl`语境上下文的强大功力，很好的一个设计`^-^`）
+
+`each $哈希名`：该函数每次提取一个键值对，然后赋值给一个两元素的列表，再一次调用时又会自动提取下一个键值对<br>
+这个函数一般使用于`while`循环，示例如下：<br>
+{{{Perl
+<pre class='brush: perl'>
+while(($key, $value) = each %example_hash){
+	print "$key => $value\n";
+}
+</pre>
+}}}
+上述代码的输出结果是没有顺序的，如果需要顺序输出，则可以用以下写法：<br>
+{{{Perl
+<pre class='brush: perl'>
+foreach $key (sort keys %example_hash){
+	print "$key => $example_hash{$key}\n";
+}
+</pre>
+}}}
+上例是按键名进行的排序输出，同样也可以按值排序
+
+`exists $哈希名{键名}`：判断某个键名是否存在于目标哈希表，存在返回真，不存在返回假
+
+`delete $哈希名{键名}`：删除指定的键值对，如果删除成功则该哈希元素的值，不成功则返回空
+
+哈希表只支持单元素内插，不支持整体内插，所以想用`print "%example_hash";`来输出一个哈希表是无法实现的
+
+===%ENV哈希===
+使用这个特殊的哈希表，`Perl`可以获取其所在操作系统的一些系统信息<br>
+如获取可执行文件路径：`$ENV{PATH}`<br>
+获取include包含文件路径：`$ENV{include}`<br>
+获取Java主目录路径：`$ENV{JAVA_HOME}`
+----
+<red>date</red> : 2011-05-21
+----

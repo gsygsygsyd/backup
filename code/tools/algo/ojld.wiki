@@ -1,0 +1,60 @@
+%title 欧几里德算法
+
+[[../../../index|首页]] - [[../index|Tools]] - [[index|Algo]]
+==欧几里德算法==
+----
+===问题描述===
+
+有两非负整数`p`和`q`，求`p`和`q`的最大公约数
+----
+===问题求解===
+
+# 如果`q`等于`0`，则最大公约数就是`p`
+# 否则将`p`除以`q`得到余数`r`，`p`与`q`的最大公约数等于`q`与`r`的最大公约数
+----
+===C语言实现===
+
+{{{Clang
+<pre class="brush: c">
+#include <stdio.h>
+
+int gcd (int, int);
+
+int
+main (int argc, char *argv[]) {
+
+  int a = 10, b = 4;
+  int c = gcd(a, b);
+
+  printf("%d", c);
+
+  return 0;
+
+}  // main
+
+int
+gcd (int p, int q) {
+
+  if (q == 0) return p;
+  return gcd(q, p%q);
+
+}  // function
+</pre>
+}}}
+----
+===Ruby实现===
+
+{{{Ruby
+<pre class="brush: ruby">
+def gcd (p, q)
+  return p if q == 0
+  gcd(q, p%q)
+end  # function
+
+a, b = 10, 4
+puts gcd(a, b)
+</pre>
+}}}
+----
+<red>date</red> : 2013-02-16
+----

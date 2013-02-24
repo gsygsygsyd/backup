@@ -1,0 +1,15 @@
+%title 数据结构与算法
+
+[[../../index|首页]]
+==数据结构与算法==
+----
+<center>
+<h2>
+[[data_structure/index|数据结构]]
+----
+[[sort/index|排序]]
+[[search/index|查找]]
+[[string/index|字符串]]
+</h2>
+</center>
+----

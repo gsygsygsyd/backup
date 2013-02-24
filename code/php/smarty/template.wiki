@@ -1,0 +1,19 @@
+%title 模板语法
+
+[[../../../index|首页]] - [[../index|PHP]] - [[index|Smarty]]
+==模板语法==
+----
+`Smarty`默认使用 `{}` 来引用传给模板的变量，如 `{$my_name}`
+
+模板可以包含`子模板`，包含语法为：`{include file="子模板文件名"}`，还可以在后面向子模板传递变量，如 `{include file=$ch_page name="Ruchee" age=$age}`
+
+可以在模板中对传入的数据应用`PHP`内置函数，使用方法为：`{$变量名|函数名:"参数表列"}`，没参数可写为`{$变量名|函数名}`，竖线两侧不能有空格
+
+支持`if`选择语句：`{if 条件} {else} {/if}`
+
+支持`foreach`循环语句：`{foreach item=循环变量 from=遍历数组} {$循环变量} {/foreach}`
+
+提供`section`遍历语句：`{section name=循环索引 loop=遍历数组} {遍历数组[循环索引]} {/section}`
+----
+<red>date</red> : 2012-12-02
+----

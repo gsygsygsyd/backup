@@ -1,0 +1,67 @@
+﻿%title GCC编译器
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|GNU]]
+==GCC编译器==
+----
+===常用选项===
+`-E`：只进行预处理，不编译<br>
+`-S`：只编译，不汇编<br>
+`-c`：只编译、汇编，不链接<br>
+`-g`：包含调试信息<br>
+`-I`：指定include包含文件的搜索目录<br>
+`-o`：输出成指定文件名
+
+===高级选项===
+`-v`：详细输出编译过程中所采用的每一个选项<br>
+`-C`：预处理时保留注释信息<br>
+`-ggdb`：在可执行文件中包含可供`GDB`使用的调试信息<br>
+`-fverbose-asm`：在编译成汇编语言时，把C变量的名称作为汇编语言中的注释<br>
+`-save-temps`：自动输出预处理文件、汇编文件、对象文件，编译正常进行<br>
+`-fsyntax-only`：只测试源文件语法是否正确，不会进行任何编译操作<br>
+`-ffreestanding`：编译成独立程序，而非宿主程序
+
+===语言标准===
+`-ansi`：ANSI标准<br>
+`-std=c99`：C99标准<br>
+`-std=gnu89`：ISO/IEC 9899:1990 以及GNU扩充<br>
+`-std=gnu99`：ISO/IEC 9899:1999 以及GNU扩充<br>
+`-trigraphs`：支持ISO C三字符组
+
+===出错提示===
+`-w`：忽略所有警告<br>
+`-Werror`：不区分警告和错误，遇到任何警告都停止编译<br>
+`-Wall`：开启大部分警告提示<br>
+`-Wshadow`：某语句块作用域变量与更大作用域的另一变量同名时发出警告（此警告未包含在`-Wall`选项中，需单独开启）<br>
+`-Wextra`：对所有合法但值得怀疑的表达式发出警告
+
+===优化选项===
+`-O0`：关闭所有优化选项<br>
+`-O1`：第一级别优化，使用此选项可使可执行文件更小、运行更快，并不会增加太多编译时间，可以简写为`-O`<br>
+`-O2`：第二级别优化，采用了几乎所有的优化技术，使用此选项会延长编译时间<br>
+`-O3`：第三级别优化，在`-O2`的基础上增加了产生`inline`函数、使用寄存器等优化技术<br>
+`-Os`：此选项类似于`-O2`，作用是优化所占用的空间，但不会进行性能优化，常用于生成最终版本
+
+===自定义扩展名===
+`-x`：使用此选项可以指定自定义的源文件扩展名，类型有`c`、`c-header`、`cpp-output`、`assembler`、`assembler-with-cpp`、`none`
+
+凡`-x`后面所列的所有文件都会被视为其指定的类型，要想改变类型可以再一次使用`-x`选项，或者使用`-x none`回到默认设置
+
+示例：`gcc -o test test.c -x assembler test.asm -x c test2.c`
+
+===静态库的创建和使用===
+以创建静态库`static_lib.a`为例<br>
+# 编写C源文件`static_lib.c`，其中写入需要重复调用的函数，然后使用命令`gcc -c static_lib.c`生成目标文件`static_lib.o`
+# 使用`ar`工具创建静态库，命令格式：`ar rcs static_lib.a static_lib.o`
+# 编写C头文件`static_lib.h`，其中写入这些函数的原型声明
+# 编写主函数`app.c`，引入头文件`static_lib.h`，这样就可以正常使用那些自定义的可复用函数了
+# 使用命令`gcc app.c -static ./static_lib.a -o app`编译生成可执行文件`app`
+
+===动态库的创建和使用===
+以创建动态库`share_lib.so`为例<br>
+# 编写C源文件`share_lib.c`，写入需要重复调用的函数，然后使用命令`gcc -shared -fPIC -o share_lib.so share_lib.c`生成动态库文件`share_lib.so`
+# 编写C头文件`share_lib.h`，写入函数的原型声明
+# 编写主函数`app.c`，引入头文件`share_lib.h`，然后就可以调用在动态库中自定义的函数了
+# 使用命令`gcc app.c ./share_lib.so -o app`编译生成可执行文件`app`
+----
+<red>date</red> : 2011-05-08、2011-05-25
+----

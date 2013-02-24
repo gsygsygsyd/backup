@@ -1,0 +1,26 @@
+snippet / 单行注释
+	% ${1}
+# 模块指令
+snippet im 导入其他模块的函数
+	-import(${1:m_name}, [${2}]).${3}
+snippet inl
+	-include_lib("${1}").${2}
+snippet df 定义宏
+	-define(${1}, ${2}).${3}
+snippet mo 标注模块的名字
+	-module(`Filename()`).${1}
+snippet ex 指定导出函数列表
+	-export([${1}]).${2}
+snippet cm 编译阶段导出函数
+	-compile(${1:export_all}).${2}
+snippet re
+	-record(${1}, {${2}}).${3}
+# 函数
+snippet f 函数定义，同一行
+	${1:f_name}(${2}) -> ${3}
+snippet f. 函数定义，另起一行
+	${1:f_name}(${2}) ->
+	  ${3}
+# 单个关键字
+snippet .
+	->${1}

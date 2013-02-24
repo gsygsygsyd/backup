@@ -1,0 +1,9 @@
+﻿%title Me
+
+[[../../index|首页]] - [[../index|Album]]
+==Me==
+----
+<center>[[pic02.html|ruchee01.jpg]]</center>
+----
+<red>date</red> : 2009-11-23
+----

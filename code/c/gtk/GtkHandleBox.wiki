@@ -1,0 +1,19 @@
+﻿%title 浮动窗口GtkHandleBox
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==浮动窗口GtkHandleBox==
+----
+浮动窗口使得其里面的控件可以从窗口里面拉出来自由移动
+
+这个控件本身不可见，而且需要放置到高层容器（比如：`GtkWindow`、`GtkBox`）
+----
+===声明===
+`GtkWidget * handle`
+----
+===新建===
+`handle = gtk_handle_box_new()`
+----
+一般是先将`菜单栏`、`工具栏`放入`GtkHBox`横向容器，然后再将这个填充好的`HBox`放入浮动窗口
+----
+<red>date</red> : 2011-08-08
+----

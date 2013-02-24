@@ -1,0 +1,15 @@
+﻿%title 语言基础
+
+[[../../../index|首页]] - [[../index|Haskell]]
+==语言基础==
+----
+<center>
+[[ghc|GHC编译器]]
+----
+[[ghci|GHCi交互式解释器]]
+----
+[[base|Haskell基础语法]]
+----
+[[funcs|Haskell常用内置函数]]
+</center>
+----

@@ -1,0 +1,168 @@
+﻿%title GTK+程序设计入门
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==GTK+程序设计入门==
+----
+我是在`Windows XP`下学习`GTK+`的，下面是环境的配置以及基本的程序开发流程
+
+另外两种开发环境是：`Cygwin`和`Linux`，最佳开发环境是使用`Gnome`或`Xfce`桌面的`Linux`系统
+----
+===开发环境的配置===
+
+1、上[http://www.gtk.org http://www.gtk.org]下载`gtk+-bundle_xxxxxxx_win32.zip`（当前最新`gtk+-bundle_2.24.10-20120208_win32.zip`）<br>
+这个压缩包包含了开发所需的一切资源，包括运行环境和开发库；注意：这个文件的下载链接并没有醒目列出，而是夹杂在下载页的文字说明当中，如果有更新的版本就下载最新的
+
+2、解压该压缩包到`C:\GTK`<br>
+具体路径自定，这里我是放在`C盘`的`GTK`目录下面
+
+3、将`C:\GTK\bin`加入到`PATH`环境变量
+
+4、在命令行窗口中敲入`pkg-config --libs --cflags gtk+-2.0`，如果能够顺利执行并打印出一堆路径信息，则说明`GTK+`开发环境安装成功
+----
+另外一个简便方法是上[http://glade.gnome.org http://glade.gnome.org]下载`gladexxxx-with-GTK+.exe`（当前最新`glade3-3.6.7-with-GTK+.exe`），安装完成后会自动设置好环境变量
+----
+===基本程序开发流程===
+
+# 手动建立一个工程目录，比如`hello`
+# 在该目录下编写`C语言`源代码文件，比如`hello.c`
+# 编写`makefile`文件
+# 在该目录下面执行`make`命令
+
+以上就是最原始也最高效的`GTK+`程序开发方法，需要用到的工具有以下两个：
+
+# `Vim`：用来编辑`C`源文件和`makefile`文件（最好是安装一个`GTK+`语法高亮插件，这可以大大减少编码错误，加快编码速度）
+# `MinGW`：`Windows`下的`GCC`编译器
+----
+===空白窗体开发演示===
+
+1、手动建立一个文件夹，命名为`demo`
+
+2、新建`C语言`源文件`demo.c`，内容如下：
+{{{
+<pre class="brush: c;">
+#include <gtk/gtk.h>
+
+int main(int argc, char * argv[])
+{
+	GtkWidget * window;
+	gtk_init(&argc, &argv);
+
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+	gtk_widget_show(window);
+	gtk_main();
+
+	return 0;
+}
+</pre>
+}}}
+
+3、新建一个`makefile`文件，文件名就是`makefile`，内容如下：
+{{{Make
+GTK_FLAGS = $(shell pkg-config --libs --cflags gtk+-2.0)
+
+all:
+	gcc -Wall -o demo demo.c ${GTK_FLAGS}
+}}}
+`makefile`代码直接从网页复制将不能正常使用，最好是手动照着敲出来，`all:`下面那一行的最前面是一个`Tab`键，不是空格
+
+4、在`demo`目录下执行`make`命令，如果不出意外则会在`demo`目录下生成`demo.exe`可执行文件
+
+5、双击`demo.exe`就会弹出一个空白窗体（呵呵，还什么都没有哦`^-^`）
+----
+===GTK+程序的基本架构===
+下面以拥有两个标签和一条水平分割线的窗体程序来解释`GTK+`程序的基本架构
+
+本程序提供了一个`gif`格式的演示视频：[[../../linux/vim/vim_gtk|点此进入演示地址]]
+
+{{{C
+<pre class="brush: c;">
+/* 加载必须的头文件*/
+
+#include <gtk/gtk.h>
+
+/* 标准C语言主函数*/
+
+int main(int argc, char ** argv){
+
+	/* 窗体、标签、控件统一声明*/
+
+	GtkWidget * window;
+	GtkWidget * label1;
+	GtkWidget * label2;
+	GtkWidget * hseparator;
+	GtkWidget * vbox;
+
+	/* GTK+程序初始化*/
+
+	gtk_init(&argc, &argv);
+
+	/* 新建窗体并进行相关设置*/
+
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+	gtk_window_set_title(GTK_WINDOW(window), "GtkHSeparator");
+	gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
+	gtk_container_set_border_width(GTK_CONTAINER(window), 20);
+
+	/* 新建容器并进行相关设置*/
+
+	vbox = gtk_vbox_new(FALSE, 10);
+
+	/* 将容器嵌入窗体*/
+
+	gtk_container_add(GTK_CONTAINER(window), vbox);
+	
+	/* 新建控件并进行相关设置*/
+
+	label1 = gtk_label_new("Zinc is a moderately reactive, blue gray metal that tarnishes\n");
+	gtk_label_set_line_wrap(GTK_LABEL(label1), TRUE);
+	label2 = gtk_label_new("Copper is an essential trace nutrient to all high plants and animals");
+	gtk_label_set_line_wrap(GTK_LABEL(label2), TRUE);
+	hseparator = gtk_hseparator_new();
+
+	/* 将控件嵌入容器*/
+
+	gtk_box_pack_start(GTK_BOX(vbox), label1, FALSE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), hseparator, FALSE, TRUE, 10);
+	gtk_box_pack_start(GTK_BOX(vbox), label2, FALSE, TRUE, 0);
+
+	/* 进行信号绑定*/
+
+	g_signal_connect_swapped(G_OBJECT(window), "destroy",
+			G_CALLBACK(gtk_main_quit), G_OBJECT(window));
+
+	/* 显示窗体*/
+
+	gtk_widget_show_all(window);
+
+	/* 书写GTK+主函数*/
+
+	gtk_main();
+
+	return 0;
+}
+</pre>
+}}}
+上述架构简述如下：
+
+# 包含头文件
+# 声明窗体元素
+# 初始化`GTK+`程序
+# 新建并设置窗体
+# 新建并设置容器
+# 将容器嵌入窗体
+# 新建并设置控件
+# 将控件嵌入容器
+# 进行信号绑定
+# 显示窗体
+# 进入`GTK+`主函数
+
+如果有自定义函数，则统一写在`main`函数之前，或者分开写到另外的文件，然后编写头文件进行包含
+----
+以上就是标准的`GTK+`程序开发流程，更大型的程序也都可以这么做
+
+更复杂的界面可以借助`Glade`可视化界面设计工具
+----
+<red>date</red> : 2011-06-07、2011-06-15、2012-06-15、2012-08-13
+----

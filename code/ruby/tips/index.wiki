@@ -1,0 +1,11 @@
+%title 问题处理
+
+[[../../../index|首页]] - [[../index|Ruby]]
+==问题处理==
+----
+<center>
+[[rake_error|Rake错误]]
+----
+[[gem|安装Gem包时阻止自动安装文档]]
+</center>
+----

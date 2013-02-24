@@ -1,0 +1,47 @@
+﻿%title Tomcat服务器
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|Java Web]]
+==Tomcat服务器==
+----
+`Tomcat`是一个`Servlet`容器，同时也是一个基本的`HTTP`服务器，但其在静态页面的处理上不如`Apache`
+
+解压放置好安装包后，需要添加环境变量：`CATALINA_HOME=D:\Apps\Tomcat`
+----
+# `startup.bat`：启动`Tomcat`
+# `shutdown.bat`：关闭`Tomcat`
+# `service.bat install`：将`Tomcat`服务安装到`Windows`系统
+# `net start Tomcat6`：启动`Tomcat`
+# `net stop Tomcat6`：关闭`Tomcat`
+# `service.bat remove`：删除`Tomcat`服务
+----
+修改端口号，编辑`conf`目录下的`server.xml`文件即可
+
+设置管理员，编辑`conf`目录下的`tomcat-users.xml`文件
+{{{XML
+<tomcat-users>
+	<role rolename="mansger" />
+	<user username="root" password="root" roles="mansger" />
+</tomcat-users>
+}}}
+----
+===Web项目的部署===
+
+`No.1`
+
+只需在`server.xml`文件的`<Host>`与`</Host>`中添加类似下面的一行即可：
+{{{XML
+<Context path="/hello" docBase="D:\Backup\workspace\hello\WebRoot" reloadable="true" />
+}}}
+
+然后重启`Tomcat`，用浏览器访问`http://127.0.0.1:8080/hello/index.jsp`即可访问这个`web`项目
+
+`No.2`
+
+可以将项目的`WebRoot`文件夹直接拷贝到`webapps`目录，改为合适的名字，然后就可以通过浏览器进行访问了
+
+`No.3`
+
+也可以借助`IDE`将`WebRoot`文件夹打包成`.war`格式，然后拷贝到`webapps`目录，这是一种最终的产品级部署方式
+----
+<red>date</red> : 2012-02-21
+----

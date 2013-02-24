@@ -1,0 +1,22 @@
+%title 命令选项
+
+[[../../../index|首页]] - [[../index|Ruby]] - [[index|Coffee]]
+==命令选项==
+----
+===常用选项===
+
+# `-c`：编译成`.js`文件
+# `-p`：直接将编译后的`JavaScript`输出到命令行
+# `-o`：指定编译后文件的保存目录
+# `-w`：监听源文件的变更
+----
+===使用方法===
+
+# `coffee abc.coffee`：直接运行`.coffee`源文件
+# `coffee -p abc.coffee`：将`JavaScript`输出到命令行
+# `coffee -c abc.coffee`：编译`.coffee`源文件
+# `coffee -co output source`：将`source`目录下所有的`.coffee`源文件编译成`.js`，并将其存放到`output`目录下
+# `coffee -cwo output source`：将`source`目录下的所有源文件不断重新编译成`.js`，并存放到`output`目录
+----
+<red>date</red> : 2012-06-08
+----

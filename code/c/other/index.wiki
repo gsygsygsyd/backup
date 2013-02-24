@@ -1,0 +1,15 @@
+﻿%title 编程杂集
+
+[[../../../index|首页]] - [[../index|C]]
+==编程杂集==
+----
+<center>
+[[standard|C语言编码规范]]
+----
+[[error|错误拾遗]]
+----
+[[optimization|代码优化]]
+----
+[[competition|算法竞赛注意事项]]
+</center>
+----

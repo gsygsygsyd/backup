@@ -1,0 +1,13 @@
+%title 文件管理
+
+[[../../../index|首页]] - [[../index|C]] - [[index|Linux]]
+==文件管理==
+----
+每个进程按惯例会至少打开三个文件描述符
+
+# `0`：`STDIN_FILENO`，标准输入
+# `1`：`STDOUT_FILENO`，标准输出
+# `2`：`STDERR_FILENO`，标准出错
+----
+<red>date</red> : 2012-10-16
+----

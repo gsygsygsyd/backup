@@ -1,0 +1,10 @@
+%title apt包管理器
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|cmd]]
+==apt包管理器==
+----
+# `apt-cache search appname`：搜索软件包
+# `sudo apt-get install appname`：安装软件包
+----
+<red>date</red> : 2012-04-29
+----

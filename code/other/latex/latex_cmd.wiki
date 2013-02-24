@@ -1,0 +1,27 @@
+%title 编译命令
+
+[[../../../index|首页]] - [[../index|Linux]] - [[index|LaTeX]]
+==编译命令==
+----
+===环境的安装方法===
+
+如果使用的是`Windows`，那省事得很，直接下载`CTEX`的完整安装包即可，安装完即可使用
+
+如果是`Ubuntu`，则常规的安装方法通常都很繁琐，找到网友`Bachue`介绍的简易安装方法，相当不错，极其适合刚入门的选手使用
+
+只需键入下面这条安装命令，然后稍待片刻即可完成中文`LaTex`环境的配置：<br>
+`sudo apt-get install texlive-xetex latex-cjk-xcjk texlive-latex-recommended`
+
+以这种简易方式安装后得到的编译命令是`xelatex`，如 `xelatex abc.tex`
+----
+===常用的编译命令===
+
+# `latex abc.tex`：将`.tex`源文件编译为`.dvi`文件
+# `pdflatex abc.tex`：直接从`.tex`源文件生成`PDF`文档
+# `htlatex abc.tex`：从`.tex`源文件生成`HTML`文档
+# `tex4ht abc.tex`：作用和`htlatex`一样
+
+如果`.tex`源文件存在交叉引用、目录、导航书签等，则需要编译至少两遍
+----
+<red>date</red> : 2012-06-20、2012-09-07
+----

@@ -1,0 +1,31 @@
+﻿%title 文档注释
+
+[[../../../index|首页]] - [[../index|Java]] - [[index|JavaSE]]
+==文档注释==
+----
+===基本命令行===
+
+`javadoc -d Test -author -version Test.java`
+
+# `-d`：指定生成的`HTML`文件存放到哪个目录
+# `-package`：只显示默认的成成员（`public`和`protected`）
+# `-private`：显示所有成员，包括`private`
+# `-author`：指定输出作者信息
+# `-version`：指定输出版本信息
+----
+===文档标签使用方法===
+
+文档标签包括类标签、方法标签、变量标签等
+
+# `@author`：标识作者，如果有多个作者则以逗号和一个空格分隔。`@author Ruchee1, Ruchee2`
+# `@version`：指定版本号
+# `@since`：指明程序发行的最早版本
+# `@deprecated`：此标签指出被标记的`API`已经过时，不建议再使用，如果使用了被`@deprecated`标记的方法，则编译时会发出警告
+# `@param`：描述参数，前为参数名，后为参数的描述。`@param name Ruchee's name`
+# `@return`：说明返回值类型、值的取值范围等信息。`@return description`
+# `@throws`：前一个参数指出方法可能抛出异常类的全名，后一个参数描述异常产生的情况
+# `@exception`：等同于`@throws`标签
+# `@see`：分三种，一是`@see "string"`，这只是产生一个字符串说明文本，不会生成链接；二是`@see <a href="URL">label</a>`，指定要链接的位置；三是`@see package.class#member label`，同样是指定链接的位置，在不写`package`或`package.class`的情况下，默认为当前包或当前类
+----
+<red>date</red> : 2012-02-21
+----

@@ -1,0 +1,32 @@
+﻿%title 按钮盒GtkButtonBox
+
+[[../../../index|首页]] - [[../index|C]] - [[index|GTK+]]
+==按钮盒GtkButtonBox==
+----
+按钮盒是继承自`GtkBox`容器的，凡`GtkBox`的属性和方法它也都可以使用
+
+按钮盒同样分纵向（`GtkVButtonBox`）和横向（`GtkHButtonBox`）
+
+此控件用来容纳其他控件（譬如`GtkButton`），所以一般都先用自定义函数封装好，然后在主函数中调用这个自定义函数来一步创建
+----
+===声明===
+`GtkWidget * bbox`
+----
+===新建===
+`bbox = gtk_vbutton_box_new`：纵向按钮盒
+
+`bbox = gtk_hbutton_box_new`：横向按钮盒
+----
+===与GtkBox相比独有的函数===
+`gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), 按钮盒样式)`
+
+按钮盒样式：
+
+# `GTK_BUTTONBOX_DEFAULT_STYLE`：默认排列
+# `GTK_BUTTONBOX_SPREAD`：紧密排列
+# `GTK_BUTTONBOX_EDGE`：居中排列
+# `GTK_BUTTONBOX_START`：首对齐排列
+# `GTK_BUTTONBOX_END`：尾对齐排列
+----
+<red>date</red> : 2011-08-10
+----

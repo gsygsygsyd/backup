@@ -1,0 +1,37 @@
+﻿%title Views
+
+[[../../../index|首页]] - [[../index|Python]] - [[index|Django]]
+==Views==
+----
+===视图函数===
+
+每个视图都以一个`HttpRequest`对象为第一个参数，该参数通常命名为`request`
+
+每个视图函数都负责返回一个`HttpResponse`对象
+
+实现视图函数时，不应该将所接收的参数类型定死，这样就缺少了灵活性，不符合`松散耦合`
+
+可以在视图函数的任何一个位置放置语句`assert False`触发`Django`出错页面，以查看所有局部变量的值
+----
+===模板渲染===
+
+第一种方法
+
+# 导入所需模块：`from django.template.loader import get_template`、`from django.template import Context`、`from django.http import HttpResponse`
+# 加载模板：`t = get_template('time.html')`
+# 渲染模板：`html = t.render(Context({'time' : time}))`
+# 返回渲染后的模板：`return HttpResponse(html)`
+
+第二种方法
+
+# 导入所需模块：`from django.shortcuts import render_to_response`
+# 一步加载、渲染并返回：`return render_to_response('time.html', {'time' : time})`
+
+支持模板子目录，没有层数的限制 
+
+在`render_to_response`中使用内置的`locals()`方法可以自动将当前方法中所有的局部变量传入目标模板，包括隐含的`request`
+
+如`return render_to_response('time.html', locals())`，这种方法有利有弊，利在可以少敲几个字符，弊在将不需要的变量也传了进去
+----
+<red>date</red> : 2011-07-23、2012-04-25
+----

@@ -1,0 +1,50 @@
+%title Canvas
+
+[[../../../index|首页]] - [[../index|HTML5]] - [[index|Base]]
+==Canvas==
+----
+===基本概念===
+
+`Canvas`的概念最早出自苹果公司，现在是`HTML5`标准的绘图`API`
+
+主流浏览器都已支持`Canvas`，苹果也已经开放了`Canvas`的专利使用权
+
+`Canvas`的坐标原点在浏览器屏幕的左上角，横向为`X轴`，纵向为`Y轴`，坐标值分别向右和向下增长
+
+绘图任务主要由`JavaScript`操纵`canvas`标签来完成，绘图之前首先要获取`canvas`的上下文，且每个`canvas`标签都必须设置`id`属性
+
+凡涉及视觉输出效果的功能都只能通过上下文对象来使用，而不是直接通过画布（也就是`Canvas`）
+
+对上下文的很多操作都不会立即反映到页面上，只有当对路径调用绘制（`stroke`）或填充（`fill`）方法时，操纵结果才会显示出来
+----
+===实例代码：利用canvas画一根简单的线条===
+
+`canvas`标签：
+{{{HTML
+<pre class="brush: html">
+<canvas id="diagonal" style="border: 1px solid;" width="200" height="200"></canvas>
+</pre>
+}}}
+
+用来操纵`canvas`的`JavaScript`代码：
+{{{JavaScript
+<pre class="brush: js">
+function drawDiagonal(){
+	// 取得canvas元素及其绘图上下文
+	var canvas = document.getElementById('diagonal');
+	var context = canvas.getContext('2d');
+
+	// 用绝对坐标来创建一条路径
+	context.beginPath();
+	context.moveTo(70, 140);
+	context.lineTo(140, 70);
+
+	// 将这条线绘制到canvas上
+	context.stroke();
+}
+window.addEventListener("load", drawDiagonal, true);
+</pre>
+}}}
+----
+<red>date</red> : 2012-03-14
+----

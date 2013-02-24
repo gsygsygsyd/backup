@@ -1,0 +1,12 @@
+﻿%title Me
+
+[[../../index|首页]] - [[../index|Album]]
+==Me==
+----
+<center>
+<h2>
+[[pic01|No.01]]
+[[pic02|No.02]]
+</h2>
+</center>
+----
