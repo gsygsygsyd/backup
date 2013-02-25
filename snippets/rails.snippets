@@ -5,6 +5,8 @@ snippet r_upa   更新字段
 # Controller
 snippet r_bef   重用控制器方法
 	before_filter :${1}
+snippet r_rspt  响应请求
+	respond_to ${1}
 # Model
 snippet r_adc   增加数据表字段
 	add_column :${1}
@@ -48,3 +50,6 @@ snippet r_asd   差异测试
 	assert_difference${1}
 snippet r_fix   静态测试
 	fixtures :${1}
+# Config
+snippet r_res   资源路由
+	resources :${1}

@@ -1,0 +1,4 @@
+%title PHP标准库
+
+[[../../../index|首页]] - [[../index|PHP]]
+==PHP标准库==

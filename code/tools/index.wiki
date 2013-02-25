@@ -9,6 +9,7 @@
 ----
 [[vim/index|Vim]]
 [[git/index|Git]]
+[[bash/index|Bash]]
 </h2>
 </center>
 ----

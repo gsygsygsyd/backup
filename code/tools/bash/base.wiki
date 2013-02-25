@@ -1,0 +1,15 @@
+%title 基础语法
+
+[[../../../index|首页]] - [[../index|Tools]] - [[index|Base]]
+==基础语法==
+----
+声明变量时直接写就行，但引用变量时必须在变量名前面加上美元符，如 `$name`
+
+变量赋值时，等号两边不能有空格，这是`Bash`脚本最“变态”的一个地方，如 `name=Ruchee`
+
+变量值不需要外围的引号，除非其中包含空格，如 `str="my name is Ruchee"`
+
+单行可以多次赋值，如 `name=Ruchee email=my@ruchee.com`
+----
+<red>date</red> : 2013-02-15
+----

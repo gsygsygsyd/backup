@@ -7,7 +7,6 @@
 <h2>
 [[base/index|语言基础]]
 ----
-[[coffeescript/index|Coffee]]
 [[jquery/index|jQuery]]
 [[html5/index|HTML5]]
 </h2>

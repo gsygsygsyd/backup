@@ -2,3 +2,8 @@
 
 [[../../../index|首页]] - [[../index|JS]]
 ==jQuery==
+----
+<center>
+[[base|基础用法拾遗]]
+</center>
+----

@@ -1,6 +1,6 @@
 ﻿%title ThinkPHP使用基础
 
-[[../../index|首页]] - [[index|PHP]]
+[[../../index|首页]] - [[../index|PHP]] - [[index|ThinkPHP]]
 ==ThinkPHP使用基础==
 ----
 ===文件组织规划===

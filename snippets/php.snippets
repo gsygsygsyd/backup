@@ -23,9 +23,7 @@ snippet na      命名空间（行语法）
 	namespace ${1};${2}
 snippet na.     命名空间（大括号语法）
 	namespace ${1} {
-
 	  ${2}
-
 	}
 snippet _na     当前命名空间
 	__NAMESPACE__${1}
@@ -85,11 +83,11 @@ snippet f       函数定义
 	function ${1:f_name} (${2}) {
 	  ${3}
 	}  // function
-snippet f.      匿名函数
+snippet f.      匿名函数（换行）
 	function (${1}) {
 	  ${2}
 	}
-snippet ff      匿名函数
+snippet ff      匿名函数（不换行）
 	function (${1}) {${2}};
 snippet ffu     带use子句的匿名函数
 	function (${1}) use ${2} {${3}};
@@ -97,63 +95,43 @@ snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
 	function __construct (${1}) {
-
 	  ${2}
-
 	}  // __construct
 snippet fd      析构方法
 	function __destruct () {
-
 	  ${1}
-
 	}  // __destruct
 snippet fcl     克隆方法
 	function __clone () {
-
 	  ${1}
-
 	}  // __clone
 snippet fto     将类当作字符串打印
 	function __toString (${1}) {
-
 	  ${2}
-
 	}  // __toString
 snippet fau     自动加载
 	function __autoload (${1}) {
-
 	  ${2}
-
 	}  // __autoload
 snippet fge     __get()：访问未定义的属性时被调用
 	function __get (${1:property}) {
-
 	  ${2}
-
 	}  // __get
 snippet fse     __set()：给未定义的属性赋值时被调用
 	function __set (${1:property}, ${2:value}) {
-
 	  ${3}
-
 	}  // __set
 snippet fca     __call()：调用未定义的方法时被调用
 	function __call (${1:$methodname}, ${2:args}) {
-
 	  ${3}
-
 	}  // __call
 snippet fis     __isset()：对未定义的属性调用isset()时被调用
 	function __isset (${1:property}) {
-
 	  ${2}
-
 	}  // __isset
 snippet fun     __unset()：对未定义的属性调用unset()时被调用
 	function __unset (${1:property}) {
-
 	  ${2}
-
 	}  // __unset
 # 流程控制
 snippet if      if
@@ -168,19 +146,19 @@ snippet el      else
 	else {
 	  ${1}
 	}
-snippet fo      for
+snippet fo      for循环
 	for (${1}) {
 	  ${2}
 	}  // for
-snippet fe      foreach
+snippet fe      foreach迭代
 	foreach (${1}) {
 	  ${2}
 	}  // foreach
-snippet wh      while
+snippet wh      while循环
 	while (${1}) {
 	  ${2}
 	}  // while
-snippet do      do-while
+snippet do      do-while循环
 	do {
 	  ${2}
 	}
@@ -230,9 +208,13 @@ snippet ins     检查对象是否是指定类的实例
 	instanceof ${1}
 snippet s       self::
 	self::${1}
+snippet >       =>
+	=> ${1}
 snippet .       $this->
 	$this->${1}
 # 异常处理
+snippet th      抛出异常
+	throw new ${1:Exception} (${2});
 snippet try     包围代码块
 	try {
 	  ${1}
@@ -241,8 +223,10 @@ snippet cat     捕获异常
 	catch (${1:Exception} $${2:e}) {
 	  ${3}
 	}
-snippet th      抛出异常
-	throw new ${1:Exception} (${2});
+snippet fin     善后处理
+	finally {
+	  ${1}
+	}
 # 输入输出
 snippet e       输出
 	echo ${1};
@@ -254,6 +238,7 @@ snippet spr     格式化输出给一个字符串
 	sprintf('${1}'${2});
 snippet nuf     数值格式化
 	number_format(${1})
+# 调试
 snippet p_r     打印详细的变量信息
 	print_r(${1});
 snippet vd      打印详细的变量信息

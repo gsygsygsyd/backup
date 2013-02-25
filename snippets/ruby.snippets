@@ -14,11 +14,11 @@ snippet im      JRuby特有
 snippet ex      包含Module（单例包含）
 	extend(${1})
 snippet rq      包含文件（只加载一次）
-	require '${1}'
+	require '${1}'${2}
 snippet rqr     相对包含文件
-	require_relative '${1}'
+	require_relative '${1}'${2}
 snippet ld      包含文件（可加载多次）
-	load '${1}.rb'
+	load '${1}.rb'${2}
 # 模块、类
 snippet mo      Module定义
 	module ${1:m_name}
@@ -192,7 +192,7 @@ snippet m       collect的别名
 snippet det     返回第一个满足条件的元素
 	detect ${1}
 snippet fi      detect的别名
-	find ${1}
+	find${1}
 snippet par     判断条件为真和为假的元素都返回
 	partition ${1}
 snippet z       同时取出多个集合的元素
@@ -344,12 +344,14 @@ snippet |       | .. |
 	|${1}| ${2}
 snippet _       __NAME__
 	__${1:LINE}__
+snippet _e      文件结束
+	__END__${1}
 snippet _l      当前代码行号
 	__LINE__${1}
-snippet _e      当前文件编码
-	__ENCODING__${1}
 snippet _f      当前文件名
 	__FILE__${1}
+snippet _en     当前文件编码
+	__ENCODING__${1}
 snippet .       =>
 	=> ${1}
 # 常用模块
