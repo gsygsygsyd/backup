@@ -1,0 +1,11 @@
+%title 问题拾遗
+
+[[../../../index|首页]] - [[../index|Web]]
+==问题拾遗==
+----
+<center>
+[[rake_error|Rake错误]]
+----
+[[gem|安装Gem包时阻止自动安装文档]]
+</center>
+----

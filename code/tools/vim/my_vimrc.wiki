@@ -5,7 +5,7 @@
 ----
 本文可能不会及时更新，最新的配置文件请访问这个链接：[[vimrc.shtml|http://www.ruchee.com/code/tools/vim/vimrc.shtml]]
 
-`Github`地址：[https://github.com/ruchee/vimrc/blob/master/.vimrc https://github.com/ruchee/vimrc/blob/master/.vimrc]
+`Github`地址：[https://github.com/ruchee/vim/blob/master/.vimrc https://github.com/ruchee/vim/blob/master/.vimrc]
 
 配置文件相对应的`Vim`配置下载地址：[[../../../download/Vim_Ruchee.zip|http://www.ruchee.com/download/Vim_Ruchee.zip]]（适用于`Windows`、`Linux`和`Cygwin`，`Linux`下解压或将乱码）
 ----

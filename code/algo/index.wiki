@@ -10,6 +10,8 @@
 [[sort/index|排序]]
 [[search/index|查找]]
 [[string/index|字符串]]
+----
+[[question/index|问题收集]]
 </h2>
 </center>
 ----

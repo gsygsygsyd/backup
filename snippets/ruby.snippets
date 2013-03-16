@@ -1,18 +1,26 @@
-snippet #       添加编码信息
-	# encoding: utf-8${1}
+snippet #       文件编码
+	# encoding: utf-8
 snippet -       分隔注释
 	# -------------------------------${1}
 snippet =b      嵌入式文档（多行注释）
 	=begin
 	${1}
 	=end
+snippet BEGIN   在程序开始时执行（顺序执行）
+	BEGIN {
+	  ${1}
+	}
+snippet END     在程序结束时执行（反序执行）
+	END {
+	  ${1}
+	}
 # 包含指令
-snippet in      包含Module（类包含）
+snippet in      包含Module（对整个类有效）
 	include ${1}
+snippet ex      包含Module（只对调用该方法的单个对象有效）
+	extend(${1})
 snippet im      JRuby特有
 	import ${1}
-snippet ex      包含Module（单例包含）
-	extend(${1})
 snippet rq      包含文件（只加载一次）
 	require '${1}'${2}
 snippet rqr     相对包含文件
@@ -25,70 +33,98 @@ snippet mo      Module定义
 
 	  ${2}
 
-	end  # module
+	end
 snippet cl      类定义
 	class ${1:cl_name}
 
 	  ${2}
 
-	end  # class
+	end
+snippet str     类生成器（Struct.new）
+	Struct.new(${1})
 # 字符串、代码块
-snippet q       相当于单引号字符串
+snippet q       单引号字符串字面量
 	%q{${1}}
-snippet Q       相当于双引号字符串
+snippet Q       双引号字符串字面量
 	%Q{${1}}
 snippet %       等同于%Q
 	%{${1}}
 snippet w       字符串数组
 	%w{${1}}
-snippet x       相当与``，用于执行操作系统命令
+snippet x       相当于``，用于执行操作系统命令
 	%x{${1}}
-snippet r       正则
+snippet r       正则字面量
 	%r{${1}}
+snippet s       Symbol字面量
+	%s{${1}}
+snippet i       Symbol数组 [2.x新增]
+	%i{${1}}
 snippet doc     多行字符串
 	<<${1:HEREDOC}
 	${2}
 	$1
 # 方法
+snippet pro     Proc.new
+	Proc.new${1}
 snippet la      匿名函数
-	lambda${1}
+	->${1} { ${2} }
+snippet lam     lambda
+	lambda ${1}
+snippet la?     是否是一个Lambda
+	lambda?${1}
 snippet d       不带参数
 	def ${1:f_name}
 	  ${2}
-	end  # function
+	end
 snippet d.      带参数
 	def ${1:f_name} (${2})
 	  ${3}
-	end  # function
+	end
 snippet ud      销毁方法
-	undef :${1}
+	undef ${1}
 snippet di      构造方法（不带参数）
 	def initialize
 	  ${1}
-	end  # initialize
+	end
 snippet di.     构造方法（带参数）
 	def initialize (${1})
 	  ${2}
-	end  # initialize
+	end
+snippet dic     执行拷贝操作后自动调用（不带参数）
+	def initialize_copy
+	  ${1}
+	end
+snippet dic.    执行拷贝操作后自动调用（带参数）
+	def initialize_copy (${1})
+	  ${2}
+	end
 snippet dmem    幽灵方法
 	def method_missing (${1})
 	  ${2}
-	end  # method_missing
+	end
+snippet dcom    访问不存在常量的情况下调用的幽灵方法
+	def const_missing (${1})
+	  ${2}
+	end
 snippet aw      写方法
 	attr_writer :${1}
 snippet ar      读方法
 	attr_reader :${1}
 snippet aa      读写方法
 	attr_accessor :${1}
+snippet ca      Proc call
+	call${1}
+snippet puclme  设定public类方法
+	public_class_method :${1}
+snippet prclme  设定private类方法
+	private_class_method :${1}
 # 流程控制
 snippet if      if
 	if ${1}
 	  ${2}
-	end  # if
+	end
 snippet ul      uless（与if相反）
 	unless ${1}
-	  ${2}
-	end  # unless
 snippet elif    elsif
 	elsif ${1}
 	  ${2}
@@ -96,22 +132,21 @@ snippet el      else
 	else
 	  ${1}
 snippet th      then
-	then
-	  ${1}
+	then ${1}
 snippet fo      for .. in
-	for ${1} in ${2}
+	for ${1} in ${2} do
 	  ${3}
-	end  # for
+	end
 snippet fe      foreach（部分模块所特有，譬如IO）
 	foreach ${1}
 snippet wh      while
 	while ${1}
 	  ${2}
-	end  # while
+	end
 snippet ut      until（与while相反）
 	until ${1}
 	  ${2}
-	end  # until
+	end
 snippet cs      case
 	case ${1}
 	  ${2}
@@ -119,22 +154,90 @@ snippet cs      case
 snippet do      do（无参数）
 	do
 	  ${1}
-	end  # do
+	end
 snippet do.     do（有参数）
 	do |${1}|
 	  ${2}
-	end  # do
+	end
 # 异常处理
 snippet be      begin
 	begin
 	  ${1}
-	end  # begin
-snippet ra      raise
+	end
+snippet ra      抛出异常
 	raise ${1}
-snippet res     rescue
+snippet res     捕获异常
 	rescue ${1}
-snippet ens     ensure
+snippet ens     善后处理
 	ensure${1}
+snippet msg     异常信息
+	message${1}
+snippet E       Exception
+	Exception ${1}
+snippet Enomem  NoMemoryError
+	NoMemoryError ${1}
+snippet Esc     ScriptError
+	ScriptError ${1}
+snippet Eload   LoadError
+	LoadError ${1}
+snippet Enoti   NotImplementedError
+	NotImplementedError ${1}
+snippet Esyn    SyntaxError
+	SyntaxError ${1}
+snippet Ese     SecurityError
+	SecurityError ${1}
+snippet Esig    SignalException
+	SignalException ${1}
+snippet Eint    Interrupt
+	Interrupt ${1}
+snippet Esys    SystemExit
+	SystemExit ${1}
+snippet Esysst  SystemStackError
+	SystemStackError ${1}
+snippet Estd    StandardError
+	StandardError ${1}
+snippet Earg    ArgumentError
+	ArgumentError ${1}
+snippet Efib    FiberError
+	FiberError ${1}
+snippet Eio     IOError
+	IOError ${1}
+snippet Eeof    EOFError
+	EOFError ${1}
+snippet Eindex  IndexError
+	IndexError ${1}
+snippet Ekey    KeyError
+	KeyError ${1}
+snippet Estop   StopIteration
+	StopIteration ${1}
+snippet Elocal  LocalJumpError
+	LocalJumpError ${1}
+snippet Ena     NameError
+	NameError ${1}
+snippet Enome   NoMethodError
+	NoMethodError ${1}
+snippet Era     RangeError
+	RangeError ${1}
+snippet Efloat  FloatDomainError
+	FloatDomainError ${1}
+snippet Ere     RegexpError
+	RegexpError ${1}
+snippet Erun    RuntimeError
+	RuntimeError ${1}
+snippet Esysc   SystemCallError
+	SystemCallError ${1}
+snippet Eth     ThreadError
+	ThreadError ${1}
+snippet Etype   TypeError
+	TypeError ${1}
+snippet Ezero   ZeroDivisionError
+	ZeroDivisionError ${1}
+snippet thr     发出跳转执行流程的“信号”
+	throw ${1}
+snippet cat     捕获跳转“信号”，执行跳转
+	catch ${1} do
+	  ${2}
+	end
 # 迭代器
 snippet lo      loop
 	loop ${1}
@@ -144,36 +247,46 @@ snippet up      upto
 	upto(${1})
 snippet dw      downto
 	downto(${1})
+snippet st      step（可指定步进值）
+	step(${1})
+snippet bet?    是否位于...之间
+	between?${1}
 snippet toa     转成数组
 	to_a${1}
+snippet toh     转换成Hash [2.x新增]
+	to_h${1}
 snippet toi     转成整数
 	to_i${1}
 snippet tof     转成浮点数
 	to_f${1}
 snippet tos     转成字符串
 	to_s${1}
-snippet ins     等同于to_s
+snippet ins     等同于to_s（常用于调试）
 	inspect${1}
-snippet toe     to_enum
+snippet top     转换成Proc对象
+	to_proc${1}
+snippet tosy    将String转换成Symbol
+	to_sym${1}
+snippet toe     返回一个枚举器
 	to_enum${1}
-snippet enf     enum_for
+snippet enf     to_enum的别名
 	enum_for${1}
 snippet e       each
 	each ${1}
 snippet eawi    each_with_index
-	each_with_index${1}
+	each_with_index ${1}
 snippet wi      with_index
-	with_index${1}
+	with_index ${1}
 snippet eab     each_byte
-	each_byte${1}
+	each_byte ${1}
 snippet eac     each_char
-	each_char${1}
+	each_char ${1}
 snippet eal     each_line
-	each_line${1}
-snippet eap     each_pair
-	each_pair${1}
+	each_line ${1}
+snippet eap     传递键值分离的哈希对
+	each_pair ${1}
 snippet eas     each_slice
-	each_slice${1}
+	each_slice ${1}
 # 刷选
 snippet gr      grep
 	grep(/${1}/)
@@ -185,14 +298,14 @@ snippet fia     select的别名
 	find_all ${1}
 snippet rej     与select相反
 	reject ${1}
-snippet col     返回数组
+snippet col     处理数组各个元素后返回
 	collect ${1}
 snippet m       collect的别名
 	map ${1}
 snippet det     返回第一个满足条件的元素
 	detect ${1}
 snippet fi      detect的别名
-	find${1}
+	find ${1}
 snippet par     判断条件为真和为假的元素都返回
 	partition ${1}
 snippet z       同时取出多个集合的元素
@@ -213,8 +326,6 @@ snippet mi      min
 snippet mib     min_by
 	min_by ${1}
 # 反射
-snippet rest    是否有这个方法
-	respond_to? :${1}
 snippet inmo    获取包含的类
 	included_modules${1}
 snippet me      对象的方法
@@ -223,46 +334,40 @@ snippet glv     全局变量
 	global_variables${1}
 snippet lov     局部变量
 	local_variables${1}
-snippet cons    类/Module的常量
-	constants${1}
-snippet cog     获取常量值
-	const_get${1}
-snippet cos     设置常量值
-	const_set${1}
-snippet rec     删除常量值
-	remove_const${1}
+snippet clv     类变量
+	class_variables${1}
 snippet recv    删除类变量
 	remove_class_variables${1}
 snippet reme    删除类方法
 	remove_method${1}
 snippet udme    解除类方法定义
-	undef_method${1}
+	undef_method ${1}
 snippet dfme    定义方法
-	define_method(${1})
-snippet clv     类变量
-	class_variables${1}
-snippet clvg    获取类变量值
-	class_variable_get${1}
-snippet clvs    设置类变量值
-	class_variable_set${1}
-snippet inme    类/Module的方法
+	define_method :${1}
+snippet insme   类/模块的方法
 	instance_methods${1}
-snippet inv     实例变量
+snippet insv    实例变量
 	instance_variables${1}
-snippet invg    获取实例变量值
-	instance_variable_get${1}
-snippet invs    设置实例变量值
-	instance_variable_set${1}
-snippet invd    判断实例变量是否已定义
-	instance_variable_defined?${1}
-snippet ino     是否是实例变量
-	instance_of?${1}
-snippet inex
-	instance_exec${1}
-snippet ine     在对象上下文解释字符串
+snippet insvd?  判断实例变量是否已定义
+	instance_variable_defined? ${1}
+snippet inse    在对象上下文解释字符串
 	instance_eval${1}
 snippet cle     在类上下文解释字符串
 	class_eval${1}
+snippet inso?   是否是类本身的实例（可用==代替）
+	instance_of? ${1}
+snippet isa?    是否是类某个子类的实例（可用===代替）
+	is_a? ${1}
+snippet ret?    是否有这个方法
+	respond_to? :${1}
+snippet fre     冻结一个对象
+	freeze${1}
+snippet fro?    对象是否已冻结
+	frozen?${1}
+snippet in?     给定值是否处于范围之内
+	include? ${1}
+snippet mb?     include?的别名
+	member? ${1}
 # 字符串相关
 snippet cap     首字母大写
 	capitalize${1}
@@ -302,19 +407,25 @@ snippet rt      重新开始执行当前迭代
 	retry${1}
 snippet yi      返回但不退出、执行代码块
 	yield${1}
+snippet blg?    是否有传递代码块
+	block_given?${1}
+snippet du      对象克隆
+	dup${1}
 snippet su      super
 	super${1}
 snippet sucl    superclass
 	superclass${1}
 snippet df?     检查是否有定义
-	defined?${1}
+	defined? ${1}
 snippet al      别名
 	alias ${1}
 snippet alme    方法别名
 	alias_method${1}
 snippet ev      字符串求值
 	eval(${1})
-snippet le      返回字符数或长度
+snippet sh      弹出数组的第一个元素
+	shift${1}
+snippet len     返回字符数或长度
 	length${1}
 snippet sz      size（等同于length）
 	size${1}
@@ -324,8 +435,6 @@ snippet en      返回字符串的编码方式
 	encoding${1}
 snippet oid     对象ID
 	object_id${1}
-snippet s       self
-	self${1}
 snippet g       获取输入
 	gets${1}
 snippet p       输出（自动换行）
@@ -344,14 +453,22 @@ snippet |       | .. |
 	|${1}| ${2}
 snippet _       __NAME__
 	__${1:LINE}__
+snippet _i      object_id
+	__id__${1}
 snippet _e      文件结束
 	__END__${1}
 snippet _l      当前代码行号
 	__LINE__${1}
-snippet _f      当前文件名
+snippet _d      文件所在路径，不含文件名 [2.x新增]
+	__dir__${1}
+snippet _f      当前文件名（__dir__ + '/' + __FILE__ 就是完整的路径了）
 	__FILE__${1}
 snippet _en     当前文件编码
 	__ENCODING__${1}
+snippet se      self
+	self${1}
+snippet <       { ... }
+	{ ${1} }
 snippet .       =>
 	=> ${1}
 # 常用模块
@@ -361,3 +478,5 @@ snippet Com     比较
 	Comparable${1}
 snippet Obs     观察者
 	Observable${1}
+snippet Sin     单键
+	Singleton${1}

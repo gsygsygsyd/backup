@@ -1,6 +1,6 @@
 %title Linux编程
 
-[[../../../index|首页]] - [[../index|C++]]
+[[../../../index|首页]] - [[../index|C/C++]]
 ==Linux编程==
 ----
 <center>

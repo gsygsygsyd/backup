@@ -1,0 +1,23 @@
+%title PHP
+
+[[../../../index|首页]] - [[../index|Web]]
+==PHP==
+----
+<center>
+[[base|PHP基本语法]]
+----
+[[standard|PHP编码规范]]
+----
+[[array|数组]]
+----
+[[oop|面向对象编程]]
+----
+[[namespace|命名空间]]
+----
+[[exception|异常处理]]
+----
+[[file|文件操作]]
+----
+[[funcs|常用函数]]
+</center>
+----

@@ -1,6 +1,6 @@
 %title 基础语法
 
-[[../../../index|首页]] - [[../index|Tools]] - [[index|Base]]
+[[../../../index|首页]] - [[../index|Tools]] - [[index|Bash]]
 ==基础语法==
 ----
 声明变量时直接写就行，但引用变量时必须在变量名前面加上美元符，如 `$name`

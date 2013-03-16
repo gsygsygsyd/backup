@@ -1,0 +1,13 @@
+%title 数据库
+
+[[../../../index|首页]] - [[../index|Web]]
+==数据库==
+----
+<center>
+[[mysql|MySQL]]
+----
+[[view|视图]]
+----
+[[mongodb|MongoDB]]
+</center>
+----

@@ -1,17 +1,17 @@
 %title 语言基础
 
-[[../../../index|首页]] - [[../index|C++]]
+[[../../../index|首页]] - [[../index|C/C++]]
 ==语言基础==
 ----
 <center>
-[[c_base|C基础拾遗]]
-----
-[[cpp_base|C++基础拾遗]]
-----
-[[same_and_diff|C&C++异同]]
+[[base|基础语法拾遗]]
 ----
 [[array_pointer|数组和指针]]
 ----
 [[class_object|类和对象]]
+----
+[[funcs|常用库函数]]
+----
+[[same_and_diff|语言异同]]
 </center>
 ----

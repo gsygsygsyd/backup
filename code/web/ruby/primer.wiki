@@ -1,0 +1,98 @@
+%title Rails框架基础
+
+[[../../../index|首页]] - [[../index|Web]] - [[index|Ruby]]
+==Rails框架基础==
+----
+===创建项目===
+
+# `rails new demo`：创建一个名为`demo`的新项目
+# `cd demo`：进入项目文件夹
+# `rails server`：启动`Rails`内置服务器（可略写为`rails s`）
+# 启动浏览器，输入`http://127.0.0.1:3000`即可访问该项目
+
+每次新建项目时`Rails`都会自动执行`bundle install`检查更新需要的模块，需要耗费较长的时间
+
+除了第一次必须联网外，以后可以使用下面的命令直接从本地`cache`进行检查更新
+
+# `rails new demo --skip-bundle`：跳过更新检查
+# `cd demo`
+# `bundle install --local`：使用本地`cache`（路径在`Ruby1.9.2\lib\ruby\gems\1.9.1\cache`）
+# `rails server`
+
+每次修改`Gemfile`文件都需要重新执行一次`bundle`
+----
+===Rails基本架构===
+
+# `Gemfile`：设定`Rails`应用需要使用的`Gems`模块
+# `Rakefile`：用来载入可以被命令行执行的一些`Rake`任务
+# `config.ru`：用来启动应用的`Rack`服务器设置
+# `script/`：存放`Rails`的系统指令
+# `app/`：存放`Controllers`、`Models`、`Views`，开发时的主要工作目录
+# `config/`：存放`Rails`应用、`URL`、数据库等的设置文件
+# `db/`：存放数据库的结构纲要
+# `lib/`：自定义模块存放处
+# `public/`：唯一可以通过网址直接访问的目录，存放图片、`JS`、`CSS`等文件
+# `test/`：存放测试程序
+# `vendor/`：插件目录
+# `doc/`：存放自己的文件
+# `log/`：日志文件夹
+# `tmp/`：存放临时性文件
+----
+===数据库===
+
+`config/database.yml`是`Rails`的数据库配置文件，包括`开发`、`测试`、`生产`三个模式
+
+`YAML`格式严格要求缩排，且冒号后必须有一个空格，对于数值或多行的内容，最好加上引号，以防字符串解析错误
+
+`Rails`的`ORM`（`Object-relational mappong`）规则
+
+# 一个表格对应一个类
+# 类方法用来对表格进行操作
+# 数据表的一个记录对应一个对象
+# 实例方法用于执行针对单条记录上的操作
+# 数据表的字段映射到对象属性
+
+| <center>Calss</center> | obj-attribute | obj-attribute | obj-attribute |
+| object                 |               |               |               |
+| object                 |               |               |               |
+----
+===常用命令===
+
+# `rvm list known`：列出可以使用`rvm`安装的软件包
+# `rvm install 1.9.3`：安装指定版本的`Ruby`
+# `rvm use 1.9.3`：使用指定版本的`Ruby`
+# `rvm use 1.9.3 --default`：选定作为默认版本
+# `rvm list`：列出已安装的`Ruby`版本
+# `rvm remove 1.9.3`：卸载指定版本的`Ruby`
+
+# `gem list`：列出所有已安裝的模块
+# `gem list rails`：列出所有已安装的`Rails`
+# `gem update --system`：升級`RubyGems`到最新版本
+# `gem update`：更新所有已安裝的`Gems`
+# `gem update gem_name`：更新指定模块到最新版本
+# `gem install gem_name`：安裝指定模块
+# `gem install gem_name --no-ri --no-rdoc`：安装模块时不安装对应的文档
+# `gem install rails --version 3.2.2`：安装指定版本的`Rails`
+# `gem uninstall gem_name`：反安裝模块
+
+# `rails _3.2.2_ new demo`：使用指定版本的`Rails`创建项目
+# `rails new demo --skip-bundle`：创建项目时暂时不执行更新操作
+# `rails new demo -d=mysql`：创建`MySQL`版项目（不指定则默认使用`SQLite3`）
+# `rails server webrick`：使用指定服务器运行`Rails`项目
+# `rails console`：进入`Rails`主控制台（简写为`rails c`）
+
+# `rails g scaffold product title:string description:text`：生成脚手架
+# `rails g controller say hello goodbye`：创建控制器
+# `rails g model product title:string description:text`：创建模型
+# `rails g migration mgt_name`：创建`Migration`档案
+
+# `rake -T`：列出所有`rake`支持的命令
+# `rake db:create`：创建数据库文件
+# `rake db:migrate`：执行数据迁移
+# `rake db:rollback`：数据回滚
+# `rake test`：执行测试
+# `rake db:seed`：使用测试数据进行填充
+# `rake doc:rails`：创建自己的`Rails API`文档
+----
+<red>date</red> : 2012-03-06、2012-03-17
+----

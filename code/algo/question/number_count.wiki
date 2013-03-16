@@ -1,0 +1,34 @@
+%title 统计数字1的个数
+
+[[../../../index|首页]] - [[../index|Algo]] - [[index|Question]]
+==统计数字1的个数==
+----
+===问题描述===
+
+给定一个数组，统计其中包含`1`的个数，如数字`11`就有两个`1`，不能使用字符串的处理方法，只能用数学计算方式完成
+----
+===问题求解===
+
+`Ruby`
+{{{Ruby
+<pre class="brush: ruby">
+def count_number_one (arr)
+  count = 0
+  arr.inject do |sum, n|
+    while n > 0
+      sum ||= 0
+      sum += 1 if n%10 == 1
+      n /= 10
+    end  # while
+    count = sum
+  end  # do
+  count
+end  # function
+
+# 测试
+puts count_number_one(1..101)  # => 23
+</pre>
+}}}
+----
+<red>date</red> : 2013-02-26
+----

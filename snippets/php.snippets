@@ -1,7 +1,7 @@
 snippet /       单行注释
 	// ${1}
 snippet //      多行注释
-	/* ${1}*/
+	/*${1}*/
 snippet -       分隔注释
 	// -------------------------------${1}
 snippet php     单行标签
@@ -22,11 +22,9 @@ snippet doc     跨行文本
 snippet na      命名空间（行语法）
 	namespace ${1};${2}
 snippet na.     命名空间（大括号语法）
-	namespace ${1} {
+	namespace${1} {
 	  ${2}
 	}
-snippet _na     当前命名空间
-	__NAMESPACE__${1}
 snippet u       设置别名
 	use ${1};
 snippet uas     自定义别名
@@ -86,53 +84,53 @@ snippet f       函数定义
 snippet f.      匿名函数（换行）
 	function (${1}) {
 	  ${2}
-	}
+	}  // function
 snippet ff      匿名函数（不换行）
 	function (${1}) {${2}};
 snippet ffu     带use子句的匿名函数
-	function (${1}) use ${2} {${3}};
+	function (${1}) use (${2}) {${3}};
 snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
 	function __construct (${1}) {
 	  ${2}
-	}  // __construct
+	}  // function
 snippet fd      析构方法
 	function __destruct () {
 	  ${1}
-	}  // __destruct
+	}  // function
 snippet fcl     克隆方法
 	function __clone () {
 	  ${1}
-	}  // __clone
+	}  // function
 snippet fto     将类当作字符串打印
 	function __toString (${1}) {
 	  ${2}
-	}  // __toString
+	}  // function
 snippet fau     自动加载
 	function __autoload (${1}) {
 	  ${2}
-	}  // __autoload
+	}  // function
 snippet fge     __get()：访问未定义的属性时被调用
 	function __get (${1:property}) {
 	  ${2}
-	}  // __get
+	}  // function
 snippet fse     __set()：给未定义的属性赋值时被调用
 	function __set (${1:property}, ${2:value}) {
 	  ${3}
-	}  // __set
+	}  // function
 snippet fca     __call()：调用未定义的方法时被调用
 	function __call (${1:$methodname}, ${2:args}) {
 	  ${3}
-	}  // __call
+	}  // function
 snippet fis     __isset()：对未定义的属性调用isset()时被调用
 	function __isset (${1:property}) {
 	  ${2}
-	}  // __isset
-snippet fun     __unset()：对未定义的属性调用unset()时被调用
+	}  // function
+snippet fus     __unset()：对未定义的属性调用unset()时被调用
 	function __unset (${1:property}) {
 	  ${2}
-	}  // __unset
+	}  // function
 # 流程控制
 snippet if      if
 	if (${1}) {
@@ -166,13 +164,104 @@ snippet do      do-while循环
 snippet sw      switch
 	switch (${1}) {
 	  ${2}
-	}  // switch
+	}
 snippet cs      case
 	case ${1}:
 	  ${2}
 snippet def     default
 	default:
 	  ${1}
+# 异常处理
+snippet thr     抛出异常
+	throw new ${1:Exception} (${2});
+snippet try     包围代码块
+	try {
+	  ${1}
+	}
+snippet cat     捕获异常
+	catch (${1:Exception} $${2:e}) {
+	  ${3}
+	}
+snippet fin     善后处理 [5.5计划增加]
+	finally {
+	  ${1}
+	}
+snippet E       Exception
+	Exception${1}
+snippet gmsg    获取消息字符串
+	getMessage()${1}
+snippet gcode   获取错误代码
+	getCode()${1}
+snippet gfile   获取产生异常的文件
+	getFile()${1}
+snippet gline   获取产生异常的行号
+	getLine()${1}
+snippet gpre    获取一个嵌套的异常对象
+	getPrevious()${1}
+snippet gtra    获取一个异常数据的多维数组
+	getTrace()${1}
+snippet gtraas  获取异常数据的字符串版本
+	getTraceAsString()${1}
+# 反射
+snippet R       Reflection
+	Reflection${1}
+snippet Rcl     类信息和工具
+	ReflectionClass${1}
+snippet Rme     类方法信息和工具
+	ReflectionMethod${1}
+snippet Rpar    方法参数信息
+	ReflectionParameter${1}
+snippet Rpro    类属性信息
+	ReflectionProperty${1}
+snippet Rfun    函数信息和工具
+	ReflectionFunction${1}
+snippet Rext    PHP扩展信息
+	ReflectionExtension${1}
+snippet Rexc    错误类
+	ReflectionException${1}
+# 输入输出
+snippet e       输出
+	echo ${1};
+snippet pi      输出
+	print ${1};
+snippet pf      格式化输出
+	printf('${1}'${2});
+snippet spr     格式化输出给一个字符串
+	sprintf('${1}'${2});
+snippet nuf     数值格式化
+	number_format(${1})
+# 调试
+snippet vd      打印详细的变量信息
+	var_dump(${1});
+snippet ve      打印易读的变量信息
+	var_export(${1});
+snippet p_r     打印详细的变量信息
+	print_r(${1});
+snippet vde     打印详细的变量信息，并终止执行
+	var_dump(${1}); exit();
+snippet vee     打印易读的变量信息，并终止执行
+	var_export(${1}); exit();
+snippet p_re    打印详细的变量信息，并终止执行
+	print_r(${1}); exit();
+# 超全局变量
+snippet glo     全局变量
+	$GLOBALS['${1}']
+snippet env     环境变量
+	$_ENV['${1}']
+snippet ser     服务器环境变量
+	$_SERVER['${1}']
+snippet coo     COOKIE数据
+	$_COOKIE['${1}']
+snippet ses     SESSION数据
+	$_SESSION['${1}']
+snippet get     GET数据
+	$_GET['${1}']
+snippet pos     POST数据
+	$_POST['${1}']
+snippet req     GET、POST、COOKIE数据
+	$_REQUEST['${1}']
+snippet fil     与文件上传相关的变量数组
+	$_FILES['${1}']
 # 单个关键字
 snippet ab      抽象类
 	abstract ${1}
@@ -206,68 +295,20 @@ snippet ex      结束
 	exit(${1});
 snippet ins     检查对象是否是指定类的实例
 	instanceof ${1}
+snippet _       __XXX__
+	__${1}__
+snippet _f      __FILE__
+	__FILE__${1}
+snippet _l      __LINE__
+	__LINE__${1}
+snippet _n      __NAMESPACE__
+	__NAMESPACE__${1}
 snippet s       self::
 	self::${1}
 snippet >       =>
 	=> ${1}
-snippet .       $this->
+snippet .      $this->
 	$this->${1}
-# 异常处理
-snippet th      抛出异常
-	throw new ${1:Exception} (${2});
-snippet try     包围代码块
-	try {
-	  ${1}
-	}
-snippet cat     捕获异常
-	catch (${1:Exception} $${2:e}) {
-	  ${3}
-	}
-snippet fin     善后处理
-	finally {
-	  ${1}
-	}
-# 输入输出
-snippet e       输出
-	echo ${1};
-snippet p       输出
-	print ${1};
-snippet pri     格式化输出
-	printf('${1}'${2});
-snippet spr     格式化输出给一个字符串
-	sprintf('${1}'${2});
-snippet nuf     数值格式化
-	number_format(${1})
-# 调试
-snippet p_r     打印详细的变量信息
-	print_r(${1});
-snippet vd      打印详细的变量信息
-	var_dump(${1});
-snippet ve      打印易读的变量信息
-	var_export(${1});
-snippet vde     打印详细的变量信息，并终止执行
-	var_dump(${1}); exit();
-snippet vee     打印易读的变量信息，并终止执行
-	var_export(${1}); exit();
-# 超全局变量
-snippet glo     全局变量
-	$GLOBALS['${1}']
-snippet env     环境变量
-	$_ENV['${1}']
-snippet ser     服务器环境变量
-	$_SERVER['${1}']
-snippet coo     COOKIE数据
-	$_COOKIE['${1}']
-snippet ses     SESSION数据
-	$_SESSION['${1}']
-snippet get     GET数据
-	$_GET['${1}']
-snippet pos     POST数据
-	$_POST['${1}']
-snippet req     GET、POST、COOKIE数据
-	$_REQUEST['${1}']
-snippet fil     与文件上传相关的变量数组
-	$_FILES['${1}']
 #### 常用函数 ####
 # 类型相关
 snippet gett    取得变量类型
@@ -305,6 +346,25 @@ snippet exp     分离字符串
 	explode('${1}', ${2})
 snippet imp     组合字符串
 	implode('${1}', ${2})
+# 正则表达式
+snippet rem     匹配
+	preg_match('${1}')
+snippet rema    全局匹配
+	preg_match_all('${1}')
+snippet rer     替换
+	preg_replace('${1}')
+snippet rerc    preg_replace_callback
+	preg_replace_callback('${1}')
+snippet res     分割
+	preg_split('${1}')
+snippet reg     preg_grep
+	preg_grep('${1}')
+snippet req     preg_quote
+	preg_quote(${1})
+snippet ref     preg_filter
+	preg_filter('${1}')
+snippet rele    preg_last_error
+	preg_last_error()${1}
 #### 框架相关 ####
 # CodeIgniter
 snippet ci_lol  加载类库

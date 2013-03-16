@@ -1,0 +1,35 @@
+snippet /       单行注释
+	{# ${1} #}
+snippet //      多行注释
+	{# ${1}#}
+snippet <       {% ... %}
+	{% ${1} %}
+snippet .       {{ ... }}
+	{{ ${1} }}
+# 代码复用
+snippet im      导入并起别名
+	{% import '${1}' as ${2} %}
+snippet fim     从指定文件导入
+	{% from '${1}' import ${2} as ${3} %}
+snippet in      包含
+	{% include '${1}' %}
+snippet ex      扩展
+	{% extends '${1}' %}
+snippet ma      宏
+	{% macro ${1} %}${2}{% endmacro %}
+snippet bl      代码块
+	{% block ${1} %}${2}{% endblock %}
+# 流程控制
+snippet if      if
+	{% if ${1} %}${2}{% endif %}
+snippet fo      for ... in
+	{% for ${1} in ${2} %}${3}{% endfor %}
+snippet fi      filter
+	{% filter ${1} %}${2}{% endfilter %}
+# 其他
+snippet auto    autoescape
+	{% autoescape${1} %}${2}{% endautoescape %}
+snippet space   spaceless
+	{% spaceless %}${1}{% endspaceless %}
+snippet set     set
+	{% set ${1} %}

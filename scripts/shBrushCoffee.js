@@ -7,48 +7,22 @@ Released under the do-what-you-like-,-attribution-would-be-nice-,-but-please-don
   csKeywords = 'then unless and or is isnt not of by where when until';
   keywords = jsKeywords + ' ' + csKeywords;
   this.regexList = [
-    {
-      regex: SyntaxHighlighter.regexLib.singleLinePerlComments,
-      css: 'comments'
-    }, {
-      regex: /\#\#\#[\s\S]*?\#\#\#/gm,
-      css: 'comments'
-    }, {
-      regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString,
-      css: 'string'
-    }, {
-      regex: SyntaxHighlighter.regexLib.doubleQuotedString,
-      css: 'string'
-    }, {
-      regex: SyntaxHighlighter.regexLib.singleQuotedString,
-      css: 'string'
-    }, {
-      regex: /\'\'\'[\s\S]*?\'\'\'/gm,
-      css: 'string'
-    }, {
-      regex: /\/\/\/[\s\S]*?\/\/\//gm,
-      css: 'string'
-    }, {
-      regex: /\b([\d]+(\.[\d]+)?|0x[a-f0-9]+)\b/gmi,
-      css: 'value'
-    }, {
-      regex: /(@[\w._]*|this[\w._]*)/g,
-      css: 'variable bold'
-    }, {
-      regex: /(([\w._]+)::([\w._]*))/g,
-      css: 'variable bold'
-    }, {
-      regex: /([\w._]+)\s*(?=\=)/g,
-      css: 'variable bold'
-    }, {
-      regex: /(-&gt;|->|=&gt;|=>|===|==|=|>|&gt;|<|&lt;|\.\.\.|&&|&amp;&amp;|\|\||\!\!|\!|\+\+|\+|--|-|\[|\]|\(|\)|\{|\})|\?|\/|\*|\%/g,
-      css: 'keyword'
-    }, {
-      regex: new RegExp(this.getKeywords(keywords), 'gm'),
-      css: 'keyword'
-    }
+    { regex: SyntaxHighlighter.regexLib.singleLinePerlComments, css: 'comments' },
+    { regex: /\#\#\#[\s\S]*?\#\#\#/gm, css: 'comments'},
+    { regex: SyntaxHighlighter.regexLib.multiLineDoubleQuotedString, css: 'string'},
+    { regex: SyntaxHighlighter.regexLib.doubleQuotedString, css: 'string'},
+    { regex: SyntaxHighlighter.regexLib.singleQuotedString, css: 'string'},
+    { regex: /\'\'\'[\s\S]*?\'\'\'/gm, css: 'string'},
+    { regex: /\/\/\/[\s\S]*?\/\/\//gm, css: 'string'},
+    { regex: /\b([\d]+(\.[\d]+)?|0x[a-f0-9]+)\b/gmi, css: 'value'},
+    { regex: /(@[\w._]*|this[\w._]*)/g, css: 'variable bold'},
+    { regex: /(([\w._]+)::([\w._]*))/g, css: 'variable bold'},
+    { regex: /([\w._]+)\s*(?=\=)/g, css: 'variable bold'},
+    { regex: /(-&gt;|->|=&gt;|=>|===|==|=|>|&gt;|<|&lt;|\.\.\.|&&|&amp;&amp;|\|\||\!\!|\!|\+\+|\+|--|-|\[|\]|\(|\)|\{|\})|\?|\/|\*|\%/g, css: 'keyword'},
+    { regex: new RegExp(this.getKeywords(keywords), 'gm'), css: 'keyword'}
   ];
   return;
 };
+
 SyntaxHighlighter.brushes.CoffeeScript.prototype = new SyntaxHighlighter.Highlighter();
-SyntaxHighlighter.brushes.CoffeeScript.aliases = ['coffeescript', 'CoffeeScript', 'Coffee', 'coffee'];
+SyntaxHighlighter.brushes.CoffeeScript.aliases = ['coffee', 'Coffee'];

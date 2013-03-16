@@ -1,11 +1,20 @@
-%title Web笔记
+%title Web开发笔记
 
 [[../../index|首页]]
-==Web笔记==
+==Web开发笔记==
 ----
 <center>
-[[html/index|HTML]]
+<h2>
+[[php/index|PHP]]
+[[html5/index|HTML5]]
+[[laravel/index|Laravel]]
 ----
-[[css/index|CSS]]
+[[regex/index|正则]]
+[[database/index|数据库]]
+[[pattern/index|模式]]
+[[test/index|测试]]
+[[refactor/index|重构]]
+[[deploy/index|部署]]
+</h2>
 </center>
 ----

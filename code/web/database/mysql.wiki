@@ -1,0 +1,226 @@
+%title MySQL
+
+[[../../../index|首页]] - [[../index|Web]] - [[index|DataBase]]
+==MySQL==
+----
+===基本命令===
+
+数据库相关
+
+* `mysql -h 服务器主机名 -P 端口号 -u 用户名 -p`：使用密码登录数据库系统
+* `exit;`或`quit;`：退出本次登录
+* `show character set;`：查看`MySQL`支持的字符集
+* `show status;`：查看服务器状态信息
+* `show grants;`：显示授权用户的安全权限
+* `show errors;`：显示服务器错误
+* `show warning;`：显示服务器警告
+
+具体操作相关
+
+* `source ./xxx/yyy/zzz.sql;`：执行外部`SQL`文件
+* `show databases;`：显示所有数据库
+* `create database 数据库名;`：新建数据库
+* `use 数据库名;`：指定对某个数据库进行操作
+* `show tables;`：显示当前数据库所有的表格
+* `show columns from 表名;`：查看指定表的结构（简写法为 `describe 表名;`，更简单的写法为 `desc 表名;`）
+
+`-h localhost`相当于`--host=localhost`，`-u ruchee`相当于`--user=ruchee`，`-p`相当于`--password`
+
+如果在登录`MySQL`时加上了`--xml`选项，则查询数据时将输出为`XML`形式
+
+`MySQL`的每条语句和命令都必须以一个分号结束，命令和语句不区分大小写
+----
+===用户管理===
+
+* `create user 'myname'@'localhost' identified by 'mypasswd'`：创建用户`myname`，使用密码`mypasswd`
+* `grant all privileges on mydb.* to 'myname'@'localhost'`：将数据库`mydb`上的所有权限赋予`myname`
+* `grant all privileges on mydb.* to 'myname'@'localhost' identified by 'mypasswd'`：创建用户、赋予权限，一步到位
+----
+===字符、字符串===
+
+一般使用`char`类型存储长度相同的字符串，如省份名称的缩写等
+
+`varchar`类型用来存储变长字符串（`MySQL`现在最大支持到`65536`字节），这两者的使用方式都很类似
+
+如果需要存储超过`64KB`的数据，可以使用以下的文本数据类型（不过现在`tinytext`和`text`一般用不到了）
+
+# `tinytext`：最大可存储`255`字节
+# `text`：最大可存储`65535`字节
+# `mediumtext`：最大可存储`16777215`字节
+# `longtext`：最带可存储`4294967295`字节
+----
+===数字数据===
+
+数值数据分`整型`和`浮点型`，两者都可以用`unsigned`修饰，浮点型可以指定位数和精度
+
+整型数据：`tinyint`、`smallint`、`mediumint`、`int`、`bigint`
+
+浮点型数据：`float(p,s)`、`double(p,s)`
+----
+===时间、日期===
+
+`MySQL`允许存放从公元前`1000`年到公元`9999`年之间的日期
+
+主要的时间数据类型以及默认的格式
+
+# `date`：默认格式`YYYY-MM-DD`
+# `datetime`：默认格式`YYYY-MM-DD HH:MI:SS`
+# `timestamp`：默认格式`YYYY-MM-DD HH:MI:SS`
+# `year`：默认格式`YYYY`
+# `time`：默认格式`HHH:MI:SS`
+
+日期格式的组成部分
+
+# `YYYY`：年份，包括世纪
+# `MM`：月份
+# `DD`：日
+# `HH`：小时
+# `HHH`：小时（过去的）
+# `MI`：分钟
+# `SS`：秒
+
+可以自定义的日期、时间格式
+
+# `%Y`：四位数字的年份，如`2012`
+# `%b`：月份的简写，如`Jan`、`Feb`
+# `%c`：月份的数字形式，如`3`、`12`
+# `%M`：完整的月份名称，如`January`、`December`
+# `%m`：月份的数字表示
+# `%a`：星期的简写，如`Sun`、`Mon`
+# `%W`：完整的星期名称，如`Sunday`、`Saturday`
+# `%j`：日在当年的次序，如`364`
+# `%d`：日在当月的次序，如`03`、`31`
+# `%w`：日在星期的次序，如`0`（星期日）、`6`（星期六）
+# `%p`：上午或下午（`AM`或`PM`）
+# `%H`：小时（`24`小时制），如`23`
+# `%h`：小时（`12`小时制），如`11`
+# `%i`：分钟，如`59`
+# `%s`：秒数，如`59`
+# `%f`：毫秒数
+----
+===表的定义===
+
+在一个宽泛的定义下，表存在三种类型：
+
+# `永久表`：使用`create table`创建
+# `临时表`：通过子查询返回
+# `虚拟表`：通过`create view`子句创建
+----
+===表格的创建===
+
+# 建表指令：`create table 表名`
+# 设置主键：`constraint 主键标识 primary key (person_id, food)`
+# 设置外键：`constraint 外键标识 foreign key (person_id) references person (person_id)`
+
+外键约束只在使用`InnoDB`存储引擎时才起作用
+----
+===表格的修改===
+
+典型的表格修改语句：`alter table 表名 modify 属性 对应的数据类型以及相关约束语句`
+
+添加属性类：`alter table 表名 add 属性 对应的数据类型以及相关约束语句`
+
+如果将某列设置成自增（`auto_increment`），则`MySQL`默认从数字`1`开始
+----
+===表格的删除===
+
+典型的表格删除语句：`drop table 表名`
+----
+===表间连接===
+
+进行多表连接查询时，一种方式是使用完整的表名称，如`employee.emp_id`；另一种方式是使用表别名，既可用空格的方法，也可使用`as`指定
+
+示例：`select e.emp_id, e.fname, e.lname, d.name dept_name from employee e inner join department d on e.dept_id = d.dept_id;`
+----
+===增加数据===
+
+典型的数据插入语句：`insert into 表名 (属性列) values (对应的数据列)`
+
+对于暂时不打算赋值或者不需要赋值的属性列，可以赋为`null`
+
+对于时间数据，除了按默认的格式赋值以外，还可以自定义格式：`birth_date = str_to_date('MAR-12-2012', '%b-%d-%Y')`
+----
+===删除数据===
+
+典型的数据删除语句：`delete from 表名 where 条件`
+
+省略`where`子句将会删除该表中所有的行
+----
+===修改数据===
+
+典型的数据修改语句：`update 表名 set 属性1 = 数据1, 属性2 = 数据2, ... where 条件`
+
+如果省略`where`子句，那么`update`将会修改该表的每一行
+----
+===查找数据===
+
+典型的数据查找语句：`select 属性列 from 表名 where 条件`
+
+`select`子句可以额外包含字符、字符串、数字、表达式、内建函数、用户自定义函数等，如 `select emp_id, 'ACTIVE', emp_id * 3.14159, UPPER(lname) from employee;`
+
+可以为每一列设置别名，只需在对应的属性名后空一个空格（或者显式以`as`指定），然后紧跟别名即可，如 `select 'ACTIVE' status from employee;`或`select 'ACTIVE' as status from employee;`
+
+在`select`的后面加上关键字`distinct`可以去除结果中重复的行（执行`distinct`时，系统会首先对数据进行排序，对于大数据集来说相当耗时，所以此关键字不要随便使用）
+
+在`select`语句的最后加上`limit 数字`可以限制返回的结果数，返回的记录条数将少于或等于该数值
+
+如果写成`limit xx,yy`或`limit yy offset xx`，则表示返回从第`xx+1`行开始的`yy`行（行数从`0`开始），譬如`limit 2,5`或`limit 5 offset 2`表示从第`3`行开始的`5`行
+----
+===数据排序===
+
+`order by`支持多重排序，也就是说可以跟多个属性名，如 `order by id, name`（按`id`和`name`进行排序）
+
+也可以借助内建函数提取部分数据进行排序，如 `order by right(fed_id, 3)`（按`fed_id`最后三个字符排序）
+
+还可以根据属性列的本身的序号进行排序，如 `order by 2, 5`（根据表的第`2`列和第`5`列排序）
+
+根据属性列序号进行排序的方法只适用于单独的查询语句，不应在程序中使用，因为一旦增加新的属性列就有可能导致错误
+
+排序默认是`升序`（`asc`），如想降序排列，只需在列名后面加上关键字`desc`即可（`asc`或`desc`只对其修饰的排序依据列生效，如果需要对每个依据列都应用，则需要在每个排序依据列的名字后面都加上该关键字，如 `order by id desc, name desc`）
+
+`order by`子句中排序依据的列不一定要是需要检索显示的列，只要该排序依据列存在于表中即可
+
+合理使用`order by`、`desc`、`limit`的组合就可以找出`最小`、`最大`、`最便宜`、`最贵`等信息
+----
+===数据过滤===
+
+常用的过滤语句是`where`，可以使用`and`、`or`、`not`、`is`、`null`（`is null`、`is not null`）、`between`（`between xx and yy`）、`in`（`in (xx, yy, ...)`）等关键字，`and`的优先级高于`or`
+
+`in ( ... )`与`or`的功能基本等同，但`in`最大的优点在于可以再包含其他`select`语句，而且其语法更清晰，执行速度更快
+
+`not`的用途就是否定它之后所跟的任何条件
+
+支持`()`、`=`、`!=`（`<>`）、`>`、`<`、`>=`、`<=`等符号
+
+`where`可以使用`like`通配符过滤，支持的通配符为：`%`（`>= 0`个的任意字符）、`_`（`== 1`个的任意字符）
+
+还可以使用`regexp`正则表达式过滤，写成`regexp binary`则表示不区分大小写
+
+`like`与`regexp`的区别在于，`like`需要完全匹配上才会返回，而`regexp`则只需要匹配词存在就会返回，也就是说，`like`是“匹配”，`regexp`是“搜索”
+----
+===语句的书写顺序===
+
+# `select`
+# `where`
+# `order by`
+# `limit`
+----
+===内建函数===
+
+* `select now();`：获取当前日期和时间，为了与`Orcale`兼容，`MySQL`也提供了`select now() from dual;`这样的写法
+* `select version();`：获取`MySQL`版本号
+* `select user();`：获取用户名
+* `select database();`：获取数据库名
+
+* `concat(属性1, 属性2, ...)`：拼接字段，如 `concat('my email is ', email)`
+* `count(属性)`：统计总数
+* `year(属性)`：提取年份
+* `right(属性, 数值)`：提取目标属性数据的最后`N`个字符，如 `right(fed_id, 3)`
+
+* `upper(属性)`：将目标属性包含的数据变成大写形式
+* `ltrim(属性)`：去掉左边边所有的空格
+* `rtrim(属性)`：去掉右边所有的空格
+* `trim(属性)`：去掉两侧所有的空格
+----
+<red>date</red> : 2012-03-11、2012-03-12、2012-03-21、2012-06-22、2012-10-07、2012-12-03
+----

@@ -1,20 +1,14 @@
-%title C++笔记
+%title C/C++笔记
 
 [[../../index|首页]]
-==C++笔记==
+==C/C++笔记==
 ----
 <center>
 <h2>
 [[base/index|语言基础]]
 ----
-[[asm/index|Asm]]
-[[stl/index|STL]]
-[[boost/index|Boost]]
-[[ace/index|ACE]]
-[[opengl/index|GL]]
-----
-[[mfc/index|MFC]]
 [[linux/index|Linux编程]]
+[[csbase/index|专业基础]]
 </h2>
 </center>
 ----

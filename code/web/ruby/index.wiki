@@ -1,0 +1,21 @@
+%title Ruby
+
+[[../../../index|首页]] - [[../index|Web]]
+==Ruby==
+----
+<center>
+[[vm|Ruby虚拟机]]
+----
+[[base|基础语法拾遗]]
+----
+[[ruby_marrow|Ruby精要]]
+----
+[[matz|《松本行宏的程序世界》]]
+----
+[[ubuntu|Ubuntu下Ruby on Rails开发环境的安装]]
+----
+[[primer|Rails框架基础]]
+----
+[[blog|一个博客的实现]]
+</center>
+----

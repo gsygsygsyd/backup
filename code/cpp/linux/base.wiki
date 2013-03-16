@@ -1,6 +1,6 @@
 %title 环境概述
 
-[[../../../index|首页]] - [[../index|C++]] - [[index|Linux]]
+[[../../../index|首页]] - [[../index|C/C++]] - [[index|Linux]]
 ==环境概述==
 ----
 `Linux`系统编程的三大基石：`系统调用`、`C库`、`C编译器`

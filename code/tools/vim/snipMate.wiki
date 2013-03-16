@@ -74,7 +74,7 @@ endf
 
 下载地址：[[../../../download/snipMate_Ruchee.zip|http://www.ruchee.com/download/snipMate_Ruchee.zip]]（`2013-02-13`更新）
 
-`Github`地址：[https://github.com/ruchee/vimrc/tree/master/.vim/snippets https://github.com/ruchee/vimrc/tree/master/.vim/snippets]、[https://github.com/ruchee/mysite/tree/master/backup/snippets https://github.com/ruchee/mysite/tree/master/backup/snippets]
+`Github`地址：[https://github.com/ruchee/vim/tree/master/.vim/snippets https://github.com/ruchee/vim/tree/master/.vim/snippets]、[https://github.com/ruchee/backup/tree/master/snippets https://github.com/ruchee/backup/tree/master/snippets]
 
 上述补全文件会不定期更新，具体根据我自己的学习方向和学习进度而定 `^-^`
 ----

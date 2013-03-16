@@ -1,0 +1,9 @@
+%title 问题收集
+
+[[../../../index|首页]] - [[../index|Algo]]
+==问题收集==
+----
+<center>
+[[number_count|统计数字1的个数]]
+</center>
+----

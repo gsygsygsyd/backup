@@ -66,24 +66,8 @@ let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code,red,center
 </pre>
 }}}
 ----
-===高亮示例===
-C/C++
-
-{{{C
-<pre class="brush: c">
-#include <stdio.h>
-
-int
-main(void)
-{
-	printf("Hello, World!");
-
-	return 0;
-}
-</pre>
-}}}
-----
 ===相关参考===
+
 下面两个文件分别是本页面的源文件以及本博客使用的模板，谨供参考
 
 为方便浏览器显示，我将两者的后缀都改成了`.txt`，使用时分别改为`.wiki`和`.html`即可

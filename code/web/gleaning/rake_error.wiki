@@ -1,0 +1,15 @@
+%title Rake错误
+
+[[../../../index|首页]] - [[../index|Web]] - [[index|Gleaning]]
+==Rake错误==
+----
+`Q`：使用`Rails 3.0.5`在执行数据迁移时，`Rake`出现下面的错误提示
+{{{
+rake aborted!
+ERROR: 'rake/rdoctask' is obsolete and no longer supported. Use 'rdoc/task' (available in RDoc 2.4.2+) instead.
+}}}
+
+`A`：解决办法是修改项目的`Gemfile`文件，添加一行`gem 'rake', '0.8.7'`，然后执行`bundle install`
+----
+<red>date</red> : 2013-02-17
+----

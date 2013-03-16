@@ -6,12 +6,10 @@
 <center>
 <h2>
 [[c/index|C]]
-[[go/index|Go]]
-[[php/index|PHP]]
-[[javascript/index|JS]]
+[[web/index|Web]]
+[[commonlisp/index|Lisp]]
 ----
 [[algo/index|Algo]]
-[[database/index|Database]]
 [[tools/index|Tools]]
 </h2>
 </center>

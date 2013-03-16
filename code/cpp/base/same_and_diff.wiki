@@ -1,7 +1,7 @@
-%title C&C++异同
+%title 语言异同
 
-[[../../../index|首页]] - [[../index|C++]] - [[index|Base]]
-==C&C++异同==
+[[../../../index|首页]] - [[../index|C/C++]] - [[index|Base]]
+==语言异同==
 ----
 ===变量声明===
 

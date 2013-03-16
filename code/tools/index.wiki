@@ -5,8 +5,6 @@
 ----
 <center>
 <h2>
-[[regex/index|正则表达式]]
-----
 [[vim/index|Vim]]
 [[git/index|Git]]
 [[bash/index|Bash]]

@@ -6,8 +6,6 @@
 <center>
 <h2>
 [[base/index|语言基础]]
-----
-[[metapro/index|元编程]]
 </h2>
 </center>
 ----

@@ -4,8 +4,6 @@ snippet <=      代码内插
 	<%= ${1} %>
 snippet re      复用模板
 	<%= render ${1} %>
-snippet yi      模板插入
-	<%= yield %>${1}
 # 流程控制
 snippet if      if
 	<% if ${1} %>
@@ -20,6 +18,8 @@ snippet fo      for
 	<% end %>
 snippet end     结束标签
 	<% end %>${1}
+snippet yi      yield
+	yield${1}
 snippet lit     链接
 	link_to '${1}'${2}
 # 表单
