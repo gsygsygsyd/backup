@@ -6,15 +6,15 @@
 <center>
 <h2>
 [[php/index|PHP]]
+[[ruby/index|Rb]]
 [[html5/index|HTML5]]
-[[laravel/index|Laravel]]
 ----
-[[regex/index|正则]]
 [[database/index|数据库]]
 [[pattern/index|模式]]
 [[test/index|测试]]
 [[refactor/index|重构]]
 [[deploy/index|部署]]
+[[gleaning/index|拾遗]]
 </h2>
 </center>
 ----

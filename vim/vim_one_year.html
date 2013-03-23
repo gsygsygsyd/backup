@@ -1,0 +1,198 @@
+<html>
+<head>
+  <title>使用Vim一周年纪念</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="Stylesheet" type="text/css" href="../../../style.css" />
+  <!-- blog ico -->
+  <link type="image/x-icon" rel="icon" href="../../../images/ruchee.ico" />
+  <link type="image/x-icon" rel="shortcut icon" href="../../../images/ruchee.ico" />
+  <!-- for SyntaxHighlighter core -->
+  <script type="text/javascript" src="../../../scripts/shCore.js"></script>
+  <link type="text/css" rel="stylesheet" href="../../../styles/shCore.css"/>
+  <!-- for SyntaxHighlighter theme -->
+  <link type="text/css" rel="stylesheet" href="../../../styles/shThemeMidnight.css"/>
+  <!-- for SyntaxHighlighter syntax -->
+  <script type="text/javascript" src="../../../scripts/shSyntax.js"></script>
+  <!-- for SyntaxHighlighter execute -->
+  <script type="text/javascript">
+  SyntaxHighlighter.config.clipboardSwf = "../../../scripts/clipboard.swf";
+  SyntaxHighlighter.all();
+  </script>
+  </head>
+<body>
+  <center style="font-family: 'Microsoft Yahei', sans-serif; font-size: 1.80em;
+    font-weight: normal; color: #FF6600">Ruchee的荒草园子</center><br />
+  <center>青春的记忆，童年的回忆，我们的努力</center>
+
+
+<p>
+<a href="../../../index.html">首页</a> - <a href="../index.html">Tools</a> - <a href="index.html">Vim</a>
+<h2 id="toc_0.1">使用Vim一周年纪念</h2>
+<hr />
+<h3 id="toc_0.1.1">徘徊在Vim的门外</h3>
+</p>
+
+<p>
+我在学会使用<code>Vim</code>之前安装过多次<code>Gvim</code>，也卸载过多次，和很多新人一样，抱着满腔热情却又无可奈何：这么古怪的东西真有传说中的那么神吗？由于实在摸不透这玩意怎么用，也不觉得学会它会有什么好处，所以后来我就放弃了
+</p>
+
+<p>
+我在学习编程时有做笔记的习惯，最初是用一个个文本文件来记录，譬如<code>C++.txt</code>、<code>Linux.txt</code>等；后来改用<code>Openoffice</code>，相应的，笔记文件的名称也变成了<code>C++.odt</code>、<code>Linux.odt</code>；再后来，觉得这样太繁琐，所以上网找到了一款名为<code>CintaNotes</code>的笔记软件，这款软件做的很不错，但由于我那时候正在学习<code>Linux</code>的使用，而<code>CintaNotes</code>似乎是没有<code>Linux</code>版本的，所以我没用多久就放弃了<code>CintaNotes</code>
+</p>
+
+<p>
+事实证明，放弃<code>CintaNotes</code>是相当明智的，当时除了因为它不能跨平台以外，主要还是考虑到信息的捆绑度太高，如果用<code>CintaNotes</code>那就意味着以后就得一直用它了，这样具有很大的不确定性
+</p>
+
+<p>
+在方法用尽以后，我在偶然浏览<code>Gvim</code>的<code>plugin</code>目录时，发现有一个<code>tohtml.vim</code>文件，我就猜想这会不会是一个把文本文件变成<code>HTML</code>文档的东西呢？运气真好，让我猜对了，这就是一个将普通文本文件转换成<code>HTML</code>文档的插件，触发命令是<code>:TOhtml</code>。我试用过后很兴奋，这东西太神奇了，我决定使用这种方式记笔记，因为如果将笔记做成<code>HTML</code>的形式，那我以后就可以放<code>U盘</code>随身带着走了
+</p>
+
+<p>
+但我随后发现，<code>:TOhtml</code>实在太简陋了点，生成的<code>HTML</code>都是白板一块，单调得不行（这是因为普通文本默认没有着色模式的缘故）
+</p>
+
+<p>
+我就想，既然<code>Vim</code>有<code>:TOhtml</code>这样的东西，那会不会有更强大的工具呢？于是我开始搜索这方面的资料，感谢<code>Google</code>，让我找到了<a href="http://edyfox.codecarver.org/">滇狐</a>的博客，他使用的是一个叫<code>ViKi</code>的插件（和<code>Vimwiki</code>差不多，是<code>Vimwiki</code>的前辈）
+</p>
+
+<p>
+我看了<code>滇狐</code>的<code>ViKi</code>教程，感觉安装起来太麻烦，所以最终没有采用它。在继续搜索下去的过程中，我终于找到了一个符合我需要的插件，那就是本博客正在使用的<code>VimWiki</code>
+<hr />
+<h3 id="toc_0.1.2">步入Vim的大门</h3>
+</p>
+
+<p>
+记不大清我是看谁的教程入门的了，但<code>VimWiki</code>官方文档和<a href="http://wiki.ktmud.com/">丘迟</a>是给了我很大帮助的，比如本博客现在使用的<code>CSS</code>就是在<code>丘迟</code>的<code>CSS</code>基础上修改得来的
+</p>
+
+<p>
+接触<code>Vimwiki</code>的那一天是<code>2011</code>年<code>5</code>月<code>1</code>日，这也是我正式开始使用<code>Vim</code>的开始
+</p>
+
+<p>
+可以说，我爱上<code>Vim</code>完全是机缘巧合，如果不是因为正在学习<code>Linux</code>要记笔记我不会接触到<code>Vim</code>，如果不是因为想保存文档更加自由我不会发现<code>VimWiki</code>，而如果不是因为使用<code>VimWiki</code>我不会掌握<code>Vim</code>
+</p>
+
+<p>
+<code>Vim</code>现在成为了我最离不开的一个工具，也是我最喜欢和最常用的软件，它让<code>coding</code>真正成为了一件有趣的事情
+<hr />
+<h3 id="toc_0.1.3">Vim进阶</h3>
+</p>
+
+<p>
+一开始，我的<code>Vim</code>配置语句都是直接从网上复制的，选择适合自己的择优取用，没有关心这些关键字到底代表什么意思
+</p>
+
+<p>
+事实上，这正是学习<code>Vim</code>最好、最快的入门方式，初学千万不能在配置上纠结太多，这只会浇灭你学习的热情，网上有很多配置好的<code>Vim</code>，包括我也发布了几版，新人先用熟基本的操作再说，其他不要太过关心
+</p>
+
+<p>
+随着<code>Vim</code>越用越熟练，我开始学着自己书写配置语句，刚开始也只是照猫画虎，后来就是自己创造，这也正是学习的正常规律
+</p>
+
+<p>
+有些人用<code>Vim</code>的时间可能远远超过我的<code>一年</code>，但他们对<code>Vim</code>的熟悉程度却远不如我，这是为何？原因就在于<code>VimWiki</code>的存在：我每天都要使用<code>Vim</code>记日记、写笔记，这正是<code>熟能生巧</code>之功
+</p>
+
+<p>
+所以，<code>Vim</code>重在用，而不是重在学，有些初学者一味追求华丽、魔幻的插件，却连基本的操作都不熟练，如此何谈掌握呢
+</p>
+
+<p>
+经过一年的使用，<code>Vim</code>现在已经成了我最得力的助手，不管是在<code>Windows</code>下还是在<code>Linux</code>下，也不管是敲代码、记日记还是写文章，全部都用<code>Vim</code>搞定，这也是学习<code>Vim</code>最大的价值所在：跨平台，多面手，一旦掌握受益无穷
+</p>
+
+<p>
+我至今还没有编写过自己的<code>Vim</code>插件，也没完整读过<code>Vim</code>文档，只是偶尔会改改插件、写写配置，所以我还只算入门级，未来有时间有可能会考虑深入研究<code>Vim</code>，这是后话
+<hr />
+<h3 id="toc_0.1.4">对初学者的建议</h3>
+</p>
+
+<p>
+网上有不少人一方面对<code>Vim</code>很是好奇，另一方面又对<code>Vim</code>表示出不屑一顾的鄙夷，更有甚者认为使用<code>Vim</code>的人只是<code>装X</code>（我也不知道<code>X</code>代表什么，你知道吗？）
+</p>
+
+<p>
+我不知道这种意识怎么出现的，只觉得这种人很傻很天真，我不期望这种人学会<code>Vim</code>，假使学会，那他们可就真是用来“<code>装X</code>”的了，可谓侮辱整个社区的智商
+</p>
+
+<p>
+初学者只需谨记以下几点建议，坚持一个星期，定有小成：
+</p>
+
+<ol>
+<li>
+刚开始不要纠结于配置，网上找个配置好的版本先用上再说
+</li>
+<li>
+初学不要看<code>Vim</code>枯燥的文档，找几篇清晰的入门教程学会基本的几个操作就够用了
+</li>
+<li>
+或许你会觉得<code>Vim</code>某些地方用着不爽，那你可以试着找找改变的方法，尝试修改自己的配置文件
+</li>
+<li>
+<code>Vim</code>不是用来学的，学只是一个基础，最终还是得用，最好是天天都用
+</li>
+<li>
+不要奢望有哪个编辑器能比<code>Vim</code>更强大（<code>Emacs</code>例外），目前来说是不可能的，用好你的<code>Vim</code>就是
+</li>
+<li>
+不要以为用<code>Vim</code>就很厉害，不要将<code>Vim</code>用作充门面的工具，要知道，这是一种很白痴的行为
+</li>
+<li>
+适合的就是最好的，如果你觉得现有的编辑器或<code>IDE</code>用起来很舒服，那你没必要非要来学什么<code>Vim</code>，感觉不够舒服了再来学吧
+</li>
+</ol>
+
+<p>
+另外的几点提示：
+</p>
+
+<ol>
+<li>
+<code>Vim</code>和<code>Emacs</code>是同级别的工具，但两社区的文化差异较大，用惯了其中一个就很难适应另一个，所以从中选择一个即可，不要奢望两者都能玩转
+</li>
+<li>
+<code>Vim</code>很适合用来尝试新的编程语言，当别人还在问某某语言有没有<code>IDE</code>的时候，你已经在<code>Vim</code>中开始该语言的编程了
+</li>
+<li>
+尽量不要卷入编辑器的宗教之争，这没有任何意义，有时间还不如写点使用心得，造福后来者
+</li>
+<li>
+自己有什么新的发现或感悟、自己的配置文件有什么高明之处，尽管分享出来吧，<code>Vim</code>社区历来有崇尚分享的传统
+</li>
+</ol>
+
+<p>
+<code>Vim</code>的学习曲线还是比较陡峭的，一般来说，<code>一周小成</code>，<code>一月入门</code>，<code>半年熟练</code>，<code>一年掌握</code>，至少也要用上近<code>一个月</code>才能体会到<code>Vim</code>的妙处
+</p>
+
+<p>
+慢慢来，无需着急，随着熟练度的越来越高，使用起来也会越来越顺手，你会发现，自己无形中已经爱上了<code>Vim</code>
+</p>
+
+<p>
+一旦你发现自己没事干时老喜欢按<code>j</code>、<code>k</code>这两个键，那么恭喜你，你已经入门了
+<hr />
+<h3 id="toc_0.1.5">后记</h3>
+</p>
+
+<p>
+罗罗嗦嗦写这么多，也算是留个纪念，祝愿<code>Vim</code>能发展得越来越好，<code>Vim</code>社区能越来越繁荣，我的心愿也能一个个都实现吧 <code>^-^</code>
+<hr />
+<red>date</red> : 2012-05-01、2012-06-19、2012-08-17
+<hr />
+</p>
+
+  <center  style="font-family: 'Microsoft Yahei'; font-size: small; font-weight: normal; color: #009933">
+  Ruchee&nbsp;&copy;&nbsp;2011-2013&nbsp;www.ruchee.com<br>
+  Generated by <a href="http://www.vim.org" target="_blank">Vim</a> &amp; <a href="http://code.google.com/p/vimwiki/" target="_blank">Vimwiki</a>
+  </center>
+  
+  <!-- 量子统计代码 -->
+  <script type="text/javascript" src="http://js.tongji.linezing.com/2785323/tongji.js"></script>
+
+</body>
+</html>

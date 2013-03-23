@@ -1,0 +1,283 @@
+<html>
+<head>
+  <title>Vimwiki使用入门</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="Stylesheet" type="text/css" href="../../../style.css" />
+  <!-- blog ico -->
+  <link type="image/x-icon" rel="icon" href="../../../images/ruchee.ico" />
+  <link type="image/x-icon" rel="shortcut icon" href="../../../images/ruchee.ico" />
+  <!-- for SyntaxHighlighter core -->
+  <script type="text/javascript" src="../../../scripts/shCore.js"></script>
+  <link type="text/css" rel="stylesheet" href="../../../styles/shCore.css"/>
+  <!-- for SyntaxHighlighter theme -->
+  <link type="text/css" rel="stylesheet" href="../../../styles/shThemeMidnight.css"/>
+  <!-- for SyntaxHighlighter syntax -->
+  <script type="text/javascript" src="../../../scripts/shSyntax.js"></script>
+  <!-- for SyntaxHighlighter execute -->
+  <script type="text/javascript">
+  SyntaxHighlighter.config.clipboardSwf = "../../../scripts/clipboard.swf";
+  SyntaxHighlighter.all();
+  </script>
+  </head>
+<body>
+  <center style="font-family: 'Microsoft Yahei', sans-serif; font-size: 1.80em;
+    font-weight: normal; color: #FF6600">Ruchee的荒草园子</center><br />
+  <center>青春的记忆，童年的回忆，我们的努力</center>
+
+
+<p>
+<a href="../../../index.html">首页</a> - <a href="../index.html">Tools</a> - <a href="index.html">Vim</a>
+<h2 id="toc_0.1">Vimwiki使用入门</h2>
+<hr />
+<red>提醒</red>：本教程暂只适用于<code>Vimwiki-1-1-1</code>，新版有少许语法进行了变更，并不向后兼容，请阅者注意
+<hr />
+使用<code>Vimwiki</code>有近<code>20</code>天了，感觉从未有过的痛快。之前我也用过<code>Z-Blog</code>、<code>Wordpress</code>、<code>emlog</code>等带数据库的博客系统，但总是不那么畅快，一则数据容易丢失，二则不便于迁移，之后很长一段时间我就没再写博客了。发现<code>Vimwiki</code>最是适合我，纯<code>HTML</code>代码想往哪放就往哪放，再也不怕数据丢失了，<code>HTML</code>相比<code>SQL</code>语句而言，想出问题都难
+</p>
+
+<p>
+感谢<code>Vimwiki</code>的开发者提供这么好用的东东，既然没能帮忙贡献代码，就只好帮忙推广推广了，不然对不起开源社区啊
+</p>
+
+<p>
+我觉得个人博客不要搞什么数据库驱动的好，一个人就算一辈子也写不了多少文字，自己手动归类整理最好不过了，用不着数据库。此外，我不赞成使用某些助理软件，使用这些软件就相当于你的数据被其绑定了，以后想更换工具基本上没得可能，这也是我试用过<code>CintaNotes</code>后迅速将其放弃的原因。
+</p>
+
+<p>
+好了，不聊这些杂七杂八的了，下面进入正题
+<hr />
+<h3 id="toc_0.1.1">必备条件</h3>
+</p>
+
+<p>
+不是谁都可以用<code>Vimwiki</code>的，你首先得具备以下两个条件：
+</p>
+
+<ol>
+<li>
+会使用<code>Vim</code>或<code>Gvim</code>（这两者本质是一样的，只不过后者加了个漂亮的“壳”而已）
+</li>
+<li>
+会使用最基本的<code>HTML</code>标签
+</li>
+</ol>
+
+<p>
+老实说<code>Vimwiki</code>的用户应该主要就是程序员，基本上只有程序员才会去用<code>Vim</code>这样“古怪”的编辑器，而作为程序员大多都是有网页设计基础的，所以本文针对的就是会使用<code>Vim</code>的程序员
+</p>
+
+<p>
+如果不会<code>Vim</code>但想学习怎么使用的，请<code>Google：“Vim 教程”</code>，你会发现资料多了去了（本文末尾也提供了教程供下载），只要肯花上一个星期你就会是<code>Vim</code>好手
+<hr />
+<h3 id="toc_0.1.2">必备工具</h3>
+</p>
+
+<ul>
+<li>
+<code>Vim 7.x</code>，最好是<code>7.3</code>或以上
+</li>
+<li>
+<code>vimwiki-xxxx.vba</code>（这儿不提供下载，该项目网址是：<a href="http://code.google.com/p/vimwiki/">http://code.google.com/p/vimwiki/</a>）
+</li>
+</ul>
+<hr />
+<h3 id="toc_0.1.3">安装指南</h3>
+
+<p>
+首先确保你安装好了<code>Vim</code>，其次确保你已经下载好了<code>vimwiki-xxxx.vba</code>文件（当前最新为<code>vimwiki-1-1-1.vba</code>）
+</p>
+
+<ol>
+<li>
+使用<code>Vim</code>打开该<code>vimwiki-xxxx.vba</code>文件
+</li>
+<li>
+在Normal模式下执行命令：<code>:so %</code>，不多久就会自动安装完成
+</li>
+<li>
+在<code>Vim</code>配置文件中添加以下语句：
+<pre Vim>
+<pre class="brush: vim">
+" 打开语法高亮
+syntax enable
+syntax on
+
+" 打开对文件类型插件的支持
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+
+" ######### VimWiki 写作助手 ######### "
+
+" 使用鼠标映射
+let g:vimwiki_use_mouse = 1
+
+" 不要将驼峰式词组作为 Wiki 词条
+let g:vimwiki_camel_case = 0
+
+let g:vimwiki_list = [{
+\ 'path': 'D:/mysite/wiki',
+\ 'path_html': 'D:/mysite/html/',
+\ 'auto_export': 1,
+}]
+</pre>
+</pre>
+</li>
+</ol>
+
+<p>
+下面对配置文件做下解说
+</p>
+
+<ul>
+<li>
+<code>path</code>：指定你存放<code>wiki</code>源文件的目录
+</li>
+<li>
+<code>path_html</code>：指定编译得到的HTML文件放到哪个目录
+</li>
+<li>
+<code>auto_export</code>：每当保存<code>wiki</code>源文件时自动编译，关闭设为0
+</li>
+</ul>
+
+<p>
+现在再次打开 <code>Vim</code>，直接敲入 <code>\ww</code>，这样就进入了你的<code>wiki</code>首页
+<hr />
+<h3 id="toc_0.1.4">基本语法</h3>
+</p>
+
+<p>
+别见<code>VimWiki</code>小巧玲珑的，规则倒着实不少，下面是我用的最多的几个标签：<br><br>
+</p>
+
+<ul>
+<li>
+<code>== 二级标题 ==</code>：二级标题，我一般用来标识文章标题（如果行首空一个空格则会居中，适用于所有标题标签）
+</li>
+<li>
+<code>=== 三级标题 ===</code>：三级标题，我一般用来标识文章子标题
+</li>
+<li>
+<code>====== 六级标题 ====</code>：六级标签，我用来标记时间（标题标签共<code>6</code>个，对应于等于号的个数，六级标签字体最小，一级标签字体最大，本博客首页那些粉红色标题就是用的一级标签）
+</li>
+<li>
+<code>[[链接地址|链接标题]]</code>：这主要用来链接本地文件，如本页首部的<code>[首页] - [Linux] - [Vim]</code>，其对应写法为<code>[[../../../index|首页]] - [[../index|Linux]] - [[index|Vim]]</code>
+</li>
+<li>
+<code>[链接地址 链接标题]</code>：这主要用来贴链接，如我想贴个<code>Google</code>首页的链接可以这样写 <code>[http://www.google.com Google]</code>，不过这个标签我基本上没怎么用过，因为都没几个外部链接
+</li>
+<li>
+<code>[[转向地址|图片地址]]</code>：本博简介页面的头像是这样写的<code>[[index.html|images/ruchee.jpg]]</code>，这样就会显示对应的图片，而点击图片就会转到首页。如果不需要转向，直接写<code>[[图片地址]]</code>即可
+</li>
+<li>
+<code>----</code>：四条小横线相当于<code>&lt; hr &gt;</code>标签，会出现一条本博客到处可见的横线
+</li>
+<li>
+<code>{{ { 程序代码或不需要编译的内容 } }}</code>：三个大括号用来书写程序代码或其他不想被编译的内容。注意，为了防止这些演示标签生效，我加上了空格，实际使用时不要留空格
+</li>
+<li>
+<code>两个反斜点</code>（这儿不便写演示代码，反斜点一般位于数字键1的左边）：相当于<code>&lt; code &gt;</code>与<code>&lt; /code &gt;</code>标签，显示效果就是本页随处可见的绿色荧光字
+</li>
+</ul>
+
+<p>
+以上就是我用的最多的<code>Vimwiki</code>标签，更多帮助请参考本文末尾下载包附带的手册
+</p>
+
+<p>
+我不太会写更深入的教程，更详尽的介绍请参考<a href="http://wiki.ktmud.com/">丘迟的维基</a>
+<hr />
+<h3 id="toc_0.1.5">常用命令</h3>
+</p>
+
+<ol>
+<li>
+<code>:VimWiki2HTML</code>：将当前页面编译成HTML文件
+</li>
+<li>
+<code>:VimWikiAll2HTML</code>：将本<code>wiki</code>所有源文件都编译成HTML文件（如果文件很多，将花费较长时间）
+</li>
+<li>
+<code>:VimWikiGoTo</code>：转到指定的<code>wiki</code>页面
+</li>
+<li>
+<code>:VimWikiIndex</code>：转到<code>wiki</code>首页
+</li>
+<li>
+<code>:VimWikiSearch /Ruchee/</code>：搜索指定关键字，<code>:cnext</code>跳到下一个，<code>:cprevious</code>跳到上一个
+</li>
+<li>
+<code>:VimWikiTable 3 2</code>：插入一个<code>2</code>行<code>3</code>列的表格。注意，列数在前，行数在后
+</li>
+<li>
+<code>:VimWikiDeleteLink</code>：删除当前页面
+</li>
+</ol>
+
+<p>
+更多命令使用方法请参考<code>Vimwiki</code>自带的帮助文件，使用命令：<code>:help VimWiki</code>
+<hr />
+<h3 id="toc_0.1.6">更多配置</h3>
+</p>
+
+<ol>
+<li>
+<code>html_header</code>：指定编译时使用的头部模板
+</li>
+<li>
+<code>html_footer</code>：指定编译时使用的尾部模板
+</li>
+<li>
+<code>nested_syntaxes</code>：指定在使用三个大括号书写程序代码时需要语法高亮的编程语言
+</li>
+<li>
+<code>let g:vimwiki_valid_html_tags=</code>：声明可以在 <code>wiki</code>源文件中书写的HTML标签
+</li>
+</ol>
+
+<p>
+更多帮助请参考<code>Vimwiki</code>文档（借助<code>Google</code>可以很轻易地找到其文档的中文翻译稿，需要的自己动手找吧，自己动手，丰衣足食啊）
+<hr />
+<h3 id="toc_0.1.7">我的配置</h3>
+</p>
+
+<p>
+下面提供我的相关配置文件，包括以下内容：
+</p>
+
+<ul>
+<li>
+本页面的<code>wiki</code>源文件
+</li>
+<li>
+本博客的模板
+</li>
+<li>
+我<code>Vim</code>的自定义配置文件夹以及配置文件
+</li>
+<li>
+两份<code>Vim</code>手册 + 数张<code>Vim</code>图解 + 一份<code>Vimwiki</code>参考
+</li>
+</ul>
+
+<p>
+下载地址：<a href="../../../download/Vim_Ruchee.zip">http://www.ruchee.com/download/Vim_Ruchee.zip</a>（<code>2013-02-13</code>更新，<code>Linux</code>下解压或将乱码）
+</p>
+
+<p>
+提供以上文件仅供参考，希望<code>Vimwiki</code>能够成为你的得力助手<code>^-^</code>
+<hr />
+<red>date</red> : 2011-05-18、2011-05-31、2011-11-17、2012-01-04、2012-04-01、2012-05-01、2012-08-18
+<hr />
+</p>
+
+  <center  style="font-family: 'Microsoft Yahei'; font-size: small; font-weight: normal; color: #009933">
+  Ruchee&nbsp;&copy;&nbsp;2011-2013&nbsp;www.ruchee.com<br>
+  Generated by <a href="http://www.vim.org" target="_blank">Vim</a> &amp; <a href="http://code.google.com/p/vimwiki/" target="_blank">Vimwiki</a>
+  </center>
+  
+  <!-- 量子统计代码 -->
+  <script type="text/javascript" src="http://js.tongji.linezing.com/2785323/tongji.js"></script>
+
+</body>
+</html>

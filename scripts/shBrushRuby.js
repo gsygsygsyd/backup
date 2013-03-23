@@ -54,4 +54,4 @@ SyntaxHighlighter.brushes.Ruby = function()
 };
 
 SyntaxHighlighter.brushes.Ruby.prototype	= new SyntaxHighlighter.Highlighter();
-SyntaxHighlighter.brushes.Ruby.aliases		= ['ruby', 'rails', 'ror', 'rb', 'Ruby', 'Rb'];
+SyntaxHighlighter.brushes.Ruby.aliases		= ['ruby', 'Ruby'];

@@ -32,9 +32,9 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :name, :title
 
-  validates :name,  :presence => true   # 必填
-  validates :title, :presence => true,  # 必填
-                    :length => {:minimum => 5}  # 最小长度
+  validates :name,  presence: true   # 必填
+  validates :title, presence: true,  # 必填
+                    length: {minimum: 5}  # 最小长度
 
 end
 </pre>
@@ -57,9 +57,9 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :name, :title
 
-  validates :name,  :presence => true   # 必填
-  validates :title, :presence => true,  # 必填
-                    :length => {:minimum => 5}  # 最小长度
+  validates :name,  presence: true   # 必填
+  validates :title, presence: true,  # 必填
+                    length: {minimum: 5}  # 最小长度
 
   has_many :comments  # 添加关联，一篇文章可以对应多条评论
 
@@ -203,7 +203,7 @@ end
 {{{HTML
 <pre class="brush: html">
 <p>
-<%= link_to '删除评论', [comment.post, comment], :confirm => '你确定要删除吗？', :method  => :delete %>
+<%= link_to '删除评论', [comment.post, comment], confirm: '你确定要删除吗？', method: :delete %>
 </p>
 </pre>
 }}}
@@ -226,11 +226,11 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :name, :title
 
-  validates :name,  :presence => true   # 必填
-  validates :title, :presence => true,  # 必填
-                    :length => {:minimum => 5}  # 最小长度
+  validates :name,  presence: true   # 必填
+  validates :title, presence: true,  # 必填
+                    length: {minimum: 5}  # 最小长度
 
-  has_many :comments, :dependent => :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
+  has_many :comments, dependent: :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
 
 end
 </pre>
@@ -244,7 +244,7 @@ end
 class PostsController < ApplicationController
 
   # 创建简易的验证系统，排除对index和show的验证
-  http_basic_authenticate_with :name => 'ruchee', :password => '123456', :except => [:index, :show]
+  http_basic_authenticate_with name: 'ruchee', password: '123456', except: [:index, :show]
   
   # 其他代码
 end
@@ -256,7 +256,7 @@ end
 class CommentsController < ApplicationController
 
   # 创建简易的验证系统，只对destroy生效
-  http_basic_authenticate_with :name => 'ruchee', :password => '123456', :only => :destroy
+  http_basic_authenticate_with name: 'ruchee', password: '123456', only: :destroy
   
   # 其他代码
 end
@@ -274,15 +274,15 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :name, :title, :tags_attributes
 
-  validates :name,  :presence => true   # 必填
-  validates :title, :presence => true,  # 必填
-                    :length => {:minimum => 5}  # 最小长度
+  validates :name,  presence: true   # 必填
+  validates :title, presence: true,  # 必填
+                    length: {minimum: 5}  # 最小长度
 
-  has_many :comments, :dependent => :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
+  has_many :comments, dependent: :destroy  # 添加关联，一篇文章可以对应多条评论，删除文章也连带删除其相关的评论
   has_many :tags  # 一篇文章可以对应多个标签
 
-  accepts_nested_attributes_for :tags, :allow_destroy => :true,
-    :reject_if => proc {|attrs| attrs.all? {|k, v| v.blank?}}
+  accepts_nested_attributes_for :tags, allow_destroy: :true,
+    reject_if: proc {|attrs| attrs.all? {|k, v| v.blank?}}
 
 end
 </pre>
@@ -319,8 +319,8 @@ end
   </div>
 
   <h2>Tags</h2>
-  <%= render :partial => 'tags/form',
-             :locals => {:form => post_form} %>
+  <%= render partial: 'tags/form',
+             locals: {form: post_form} %>
 
   <div class="actions">
     <%= post_form.submit %>
@@ -443,5 +443,5 @@ gem 'jquery-rails'
 ----
 本文档对应的`Github`地址为：[https://github.com/ruchee/blog https://github.com/ruchee/blog]
 ----
-<red>date</red> : 2013-02-16、2013-02-17
+<red>date</red> : 2013-02-16、2013-02-17、2013-03-18
 ----

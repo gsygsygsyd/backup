@@ -49,6 +49,9 @@ snippet sw      switch
 snippet cs      case
 	case ${1}:
 	  ${2}
+snippet def     default
+	default:
+	  ${1}
 # 单个关键字
 snippet co      继续
 	continue;${1}
@@ -68,8 +71,6 @@ snippet al      弹出框
 	alert(${1});
 snippet len     获取字符串长度
 	length${1}
-snippet .       jQuery选择器
-	$(${1})
 # 常用函数
 snippet toS     转换为字符串
 	toString(${1});
@@ -81,3 +82,28 @@ snippet paI     转换为整数
 	parseInt(${1});
 snippet paF     转换为浮点数
 	parseFloat(${1});
+# DOM相关
+snippet gelbi   getElementById
+	getElementById('${1}')
+snippet gelbtn  getElementByTagName
+	getElementByTagName('${1}')
+snippet gelbcn  getElementByClassName
+	getElementByClassName('${1}')
+snippet gat     getAttribute
+	getAttribute('${1}')
+snippet sat     setAttribute
+	setAttribute('${1}', ${2})
+################
+# jQuery类库
+snippet .       jQuery选择器
+	$(${1})
+snippet >       jQuery选择器（带引号）
+	$('${1}')${2}
+snippet >>      jQuery选择器（带分号）
+	$(${1});
+################
+# Node平台
+snippet n_rq    包含
+	require('${1}');${2}
+snippet n_p     输出
+	console.log(${1});

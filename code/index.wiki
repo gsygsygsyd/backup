@@ -5,10 +5,7 @@
 ----
 <center>
 <h2>
-[[c/index|C]]
 [[web/index|Web]]
-[[commonlisp/index|Lisp]]
-----
 [[algo/index|Algo]]
 [[tools/index|Tools]]
 </h2>

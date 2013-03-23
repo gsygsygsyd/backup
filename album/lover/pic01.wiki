@@ -1,9 +1,0 @@
-﻿%title Lover
-
-[[../../index|首页]] - [[../index|Album]]
-==Lover==
-----
-<center>[[pic02.html|yun01.jpg]]</center>
-----
-<red>date</red> : 2011-03-10
-----

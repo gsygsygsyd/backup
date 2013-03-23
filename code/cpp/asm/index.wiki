@@ -1,4 +1,4 @@
-%title Asm
+%title 汇编语言
 
 [[../../../index|首页]] - [[../index|C++]]
-==Asm==
+==汇编语言==
