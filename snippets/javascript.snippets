@@ -37,7 +37,7 @@ snippet wh      while
 	while (${1}) {
 	  ${2}
 	}  // while
-snippet do      do-while
+snippet do      do .. while
 	do {
 	  ${2}
 	}
@@ -65,6 +65,8 @@ snippet pt      原型
 	prototype${1}
 snippet tp      类型
 	typeof${1}
+snippet th      this
+	this${1}
 snippet p       常用输出
 	document.writeln(${1});
 snippet al      弹出框
@@ -102,8 +104,9 @@ snippet >       jQuery选择器（带引号）
 snippet >>      jQuery选择器（带分号）
 	$(${1});
 ################
-# Node平台
-snippet n_rq    包含
+# Node相关
+snippet n_rq    包含模块
 	require('${1}');${2}
 snippet n_p     输出
-	console.log(${1});
+	console_log(${1});
+################

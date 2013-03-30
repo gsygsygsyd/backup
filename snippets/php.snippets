@@ -12,7 +12,9 @@ snippet php.    跨行标签
 	${1}
 
 	?>
-snippet pp      输出标签
+snippet pe      输出标签
+	<?php echo $${1}; ?>
+snippet pp      输出标签 [PHP 5.4起默认可用]
 	<?= ${1} ?>
 snippet doc     跨行文本
 	<<<${1:}
@@ -26,9 +28,9 @@ snippet na.     命名空间（大括号语法）
 	  ${2}
 	}
 snippet u       设置别名
-	use ${1};
+	use ${1};${2}
 snippet uas     自定义别名
-	use ${1} as ${2};
+	use ${1} as ${2};${3}
 # 代码重用
 snippet rq      require包含
 	require '${1}';${2}
@@ -81,14 +83,10 @@ snippet f       函数定义
 	function ${1:f_name} (${2}) {
 	  ${3}
 	}  // function
-snippet f.      匿名函数（换行）
-	function (${1}) {
-	  ${2}
-	}  // function
 snippet ff      匿名函数（不换行）
-	function (${1}) {${2}};
+	function (${1}) {${2}}
 snippet ffu     带use子句的匿名函数
-	function (${1}) use (${2}) {${3}};
+	function (${1}) use (${2}) {${3}}
 snippet abf     用于声明抽象方法
 	abstract function ${1:f_name} (${2});${3}
 snippet fc      构造方法
@@ -156,7 +154,7 @@ snippet wh      while循环
 	while (${1}) {
 	  ${2}
 	}  // while
-snippet do      do-while循环
+snippet do      do .. while
 	do {
 	  ${2}
 	}
@@ -173,8 +171,8 @@ snippet def     default
 	  ${1}
 # 异常处理
 snippet thr     抛出异常
-	throw new ${1:Exception} (${2});
-snippet try     包围代码块
+	throw new ${1:Exception}(${2});
+snippet try     监控代码块
 	try {
 	  ${1}
 	}
@@ -182,7 +180,7 @@ snippet cat     捕获异常
 	catch (${1:Exception} $${2:e}) {
 	  ${3}
 	}
-snippet fin     善后处理 [5.5计划增加]
+snippet fin     善后处理 [PHP 5.5新增]
 	finally {
 	  ${1}
 	}
@@ -202,7 +200,7 @@ snippet gtra    获取一个异常数据的多维数组
 	getTrace()${1}
 snippet gtraas  获取异常数据的字符串版本
 	getTraceAsString()${1}
-# 反射
+# 反射类
 snippet R       Reflection
 	Reflection${1}
 snippet Rcl     类信息和工具
@@ -219,6 +217,21 @@ snippet Rext    PHP扩展信息
 	ReflectionExtension${1}
 snippet Rexc    错误类
 	ReflectionException${1}
+# 正则表达式
+snippet reg     对数组元素进行正则筛选
+	preg_grep(${1})
+snippet req     将字符串转换成合法的正则字符串
+	preg_quote(${1})
+snippet res     对字符串进行正则分割
+	preg_split(${1})
+snippet rem     正则匹配
+	preg_match(${1})
+snippet rema    全局匹配
+	preg_match_all(${1})
+snippet rer     正则搜索和替换
+	preg_replace(${1})
+snippet rerc    正则搜索并使用回调函数进行处理
+	preg_replace_callback(${1})
 # 输入输出
 snippet e       输出
 	echo ${1};
@@ -279,7 +292,7 @@ snippet clo     对象克隆
 	clone ${1}
 snippet gl      全局变量
 	global ${1}
-snippet st      静态属性
+snippet st      静态属性/延迟绑定
 	static ${1}
 snippet con     常量属性
 	const ${1}
@@ -291,24 +304,33 @@ snippet br      中断
 	break;${1}
 snippet re      返回
 	return ${1};
+snippet yi      yield [PHP 5.5新增]
+	yield ${1};
 snippet ex      结束
 	exit(${1});
 snippet ins     检查对象是否是指定类的实例
 	instanceof ${1}
-snippet _       __XXX__
-	__${1}__
-snippet _f      __FILE__
-	__FILE__${1}
-snippet _l      __LINE__
-	__LINE__${1}
-snippet _n      __NAMESPACE__
-	__NAMESPACE__${1}
 snippet s       self::
 	self::${1}
 snippet >       =>
 	=> ${1}
 snippet .      $this->
 	$this->${1}
+# 预定义常量
+snippet _       __ ... __
+	__${1}__
+snippet _l      __LINE__
+	__LINE__${1}
+snippet _f      __FILE__
+	__FILE__${1}
+snippet _d      __DIR__
+	__DIR__${1}
+snippet _ff     __FUNCTION__
+	__FUNCTION__${1}
+snippet _cl     __CLASS__
+	__CLASS__${1}
+snippet _na     __NAMESPACE__
+	__NAMESPACE__${1}
 #### 常用函数 ####
 # 类型相关
 snippet gett    取得变量类型
@@ -335,49 +357,86 @@ snippet isnm    是否是数字或数字字符串
 	is_numeric(${1})
 snippet isca    是否是有效的函数名
 	is_callable(${1})
-snippet isnu   是否为空
+snippet isnu    是否为空
 	is_null(${1})
-# 数组、字符串相关
-snippet ra      生成器
-	range(${1})
-snippet ar      数组
+# 重要函数
+snippet ra      数组生成器
+	range(${1}, ${2})
+snippet ar      定义数组
 	array(${1})
-snippet exp     分离字符串
+snippet exp     字符串分割
 	explode('${1}', ${2})
-snippet imp     组合字符串
+snippet imp     字符串组合
 	implode('${1}', ${2})
-# 正则表达式
-snippet rem     匹配
-	preg_match('${1}')
-snippet rema    全局匹配
-	preg_match_all('${1}')
-snippet rer     替换
-	preg_replace('${1}')
-snippet rerc    preg_replace_callback
-	preg_replace_callback('${1}')
-snippet res     分割
-	preg_split('${1}')
-snippet reg     preg_grep
-	preg_grep('${1}')
-snippet req     preg_quote
-	preg_quote(${1})
-snippet ref     preg_filter
-	preg_filter('${1}')
-snippet rele    preg_last_error
-	preg_last_error()${1}
+snippet bc      数值的任意进制转换
+	base_convert(${1:num}, ${2:from}, ${3:to})
+snippet jse     JSON数据的编码
+	json_encode(${1})
+snippet jsd     JSON数据的解码
+	json_decode(${1})
 ################
 # CodeIgniter框架
-snippet ci_lol  加载类库
+snippet c_lol   加载类库
 	$this->load->library('${1}');
-snippet ci_lom  加载模型
+snippet c_lom   加载模型
 	$this->load->model('${1}');
-snippet ci_lov  加载视图
+snippet c_lov   加载视图
 	$this->load->view('${1}'${2});
-snippet ci_loh  加载辅助函数
+snippet c_loh   加载辅助函数
 	$this->load->helper('${1}');
-snippet ci_lod  加载数据库
+snippet c_lod   加载数据库
 	$this->load->database();${1}
-snippet ci_coi  加载config文件中的配置项
+snippet c_coi   加载config文件中的配置项
 	$this->config->item('${1}');
+# CodeIgniter辅助函数
+snippet c_msg   写入日志
+	log_message('${1:info}', '${2}');
+# CodeIgniter模板
+snippet c_if    分离if
+	<?php if (${1}): ?>${2}
+	<?php endif; ?>
+snippet c_elif  分离elseif
+	<?php elseif (${1}): ?>${2}
+snippet c_el    分离else
+	<?php else:${1} ?>${2}
+snippet c_eif   endif
+	<?php endif; ?>${1}
+snippet c_fo    分离for
+	<?php for (${1}): ?>${2}
+	<?php endfor; ?>
+snippet c_efo   endfor
+	<?php endfor; ?>${1}
+snippet c_fe    分离foreach
+	<?php foreach (${1}): ?>${2}
+	<?php endforeach; ?>
+snippet c_efe   endforeach
+	<?php endforeach; ?>${1}
+snippet c_wh    分离while
+	<?php while (${1}): ?>${2}
+	<?php endwhile; ?>
+snippet c_ewh   endwhile
+	<?php endwhile; ?>${1}
 ################
 # Laravel框架
+# Laravel Blade模板引擎
+snippet b_      {{ ... }}
+	{{ ${1} }}
+snippet b_if    if
+	@if (${1})
+	${2}
+	@endif
+snippet b_elif  elseif
+	@elseif (${1})
+	${2}
+snippet b_el    else
+	@else
+	${1}
+snippet b_fo    for
+	@for (${1})
+	${2}
+	@endfor
+snippet b_fe    foreach
+	@foreach (${1})
+	${2}
+	@endforeach
+################
